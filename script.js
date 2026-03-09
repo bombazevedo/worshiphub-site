@@ -1,258 +1,112 @@
 
-const pricingData = {
-  monthly: [
-    {
-      name: "Gratuito",
-      badge: "TESTE SEM RISCO",
-      description: "Para conhecer a experiência inicial do WorshipHub.",
-      price: "R$ 0",
-      perDay: "Entrada sem custo para começar",
-      features: [
-        "Acesso inicial ao app",
-        "Ideal para sentir o fluxo básico",
-        "Bom primeiro passo para equipes em descoberta"
-      ],
-      cta: "Quero começar sem custo",
-      whatsappText: "Olá! Quero começar pelo plano gratuito do WorshipHub. Pode me orientar?"
-    },
-    {
-      name: "Prelude",
-      badge: "MENSAL",
-      description: "Boa porta de entrada para ministérios que querem sair do improviso.",
-      price: "R$ 19,00",
-      perDay: "≈ R$ 0,63 por dia",
-      features: [
-        "Estrutura inicial de organização",
-        "Fluxo mais claro para eventos e equipe",
-        "Começo profissional com baixo investimento"
-      ],
-      cta: "Quero organizar minha equipe",
-      whatsappText: "Olá! Tenho interesse no plano Prelude mensal do WorshipHub."
-    },
-    {
-      name: "Chorus",
-      badge: "MENSAL",
-      description: "Para quem já precisa de uma rotina mais estável e confiável.",
-      price: "R$ 29,90",
-      perDay: "≈ R$ 0,99 por dia",
-      features: [
-        "Mais fôlego para a rotina da equipe",
-        "Boa relação entre custo e organização",
-        "Ajuda a reduzir ruído operacional"
-      ],
-      cta: "Quero dar mais consistência ao ministério",
-      whatsappText: "Olá! Quero saber mais sobre o plano Chorus mensal do WorshipHub."
-    },
-    {
-      name: "Harmony",
-      badge: "MAIS PROCURADO",
-      description: "Equilíbrio ideal entre gestão, visão e profissionalismo.",
-      price: "R$ 49,90",
-      perDay: "≈ R$ 1,66 por dia",
-      features: [
-        "Excelente para equipes em crescimento",
-        "Reforça a percepção de gestão profissional",
-        "Plano com maior potencial de conversão na landing"
-      ],
-      cta: "Quero elevar meu ministério",
-      highlight: true,
-      whatsappText: "Olá! Quero contratar o plano Harmony mensal do WorshipHub."
-    },
-    {
-      name: "Anthem",
-      badge: "MENSAL",
-      description: "Pensado para equipes mais maduras e com maior demanda operacional.",
-      price: "R$ 69,90",
-      perDay: "≈ R$ 2,33 por dia",
-      features: [
-        "Mais robustez para a liderança",
-        "Suporta operação mais exigente",
-        "Melhor ajuste para quem quer avançar com segurança"
-      ],
-      cta: "Quero controle mais refinado",
-      whatsappText: "Olá! Tenho interesse no plano Anthem mensal do WorshipHub."
-    },
-    {
-      name: "Maestro",
-      badge: "PREMIUM",
-      description: "Para operações maiores e visão mais estratégica do ministério.",
-      price: "R$ 129,90",
-      perDay: "≈ R$ 4,33 por dia",
-      features: [
-        "Camada premium de gestão",
-        "Mais preparo para cenários robustos",
-        "Forte aderência para visão multi-igrejas"
-      ],
-      cta: "Quero o máximo de estrutura",
-      whatsappText: "Olá! Quero conversar sobre o plano Maestro mensal do WorshipHub."
-    }
-  ],
-  quarterly: [
-    {
-      name: "Prelude",
-      badge: "TRIMESTRAL",
-      description: "Entrada econômica com horizonte maior de organização.",
-      price: "R$ 49,90",
-      perDay: "≈ R$ 0,55 por dia",
-      features: ["Melhor compromisso inicial", "Mais previsibilidade operacional", "Boa porta de entrada para consolidar hábito"],
-      cta: "Quero iniciar com mais previsibilidade",
-      whatsappText: "Olá! Quero saber sobre o plano Prelude trimestral do WorshipHub."
-    },
-    {
-      name: "Chorus",
-      badge: "TRIMESTRAL",
-      description: "Mais estabilidade para quem já exige uma operação mais confiável.",
-      price: "R$ 75,00",
-      perDay: "≈ R$ 0,83 por dia",
-      features: ["Menor fricção no médio prazo", "Mais constância na rotina da equipe", "Boa relação entre valor e estrutura"],
-      cta: "Quero consolidar a organização",
-      whatsappText: "Olá! Quero contratar o plano Chorus trimestral do WorshipHub."
-    },
-    {
-      name: "Harmony",
-      badge: "MAIS PROCURADO",
-      description: "Camada mais atraente para liderança que quer profissionalizar de verdade.",
-      price: "R$ 129,90",
-      perDay: "≈ R$ 1,44 por dia",
-      features: ["Equilíbrio forte entre valor e visão", "Plano ideal para crescimento", "Excelente percepção de custo-benefício"],
-      cta: "Quero profissionalizar meu ministério",
-      highlight: true,
-      whatsappText: "Olá! Tenho interesse no plano Harmony trimestral do WorshipHub."
-    },
-    {
-      name: "Anthem",
-      badge: "TRIMESTRAL",
-      description: "Mais robustez para equipes que precisam de operação mais madura.",
-      price: "R$ 179,90",
-      perDay: "≈ R$ 2,00 por dia",
-      features: ["Mais segurança para a liderança", "Maior aderência a equipes exigentes", "Boa evolução para estruturas mais sérias"],
-      cta: "Quero mais robustez na gestão",
-      whatsappText: "Olá! Quero saber mais sobre o plano Anthem trimestral do WorshipHub."
-    },
-    {
-      name: "Maestro",
-      badge: "PREMIUM",
-      description: "Escolha premium para visão estratégica e cenários maiores.",
-      price: "R$ 339,90",
-      perDay: "≈ R$ 3,78 por dia",
-      features: ["Camada premium para operação maior", "Mais preparo para multi-igrejas", "Melhor opção para liderança mais estratégica"],
-      cta: "Quero a estrutura premium",
-      whatsappText: "Olá! Quero conversar sobre o plano Maestro trimestral do WorshipHub."
-    }
-  ],
-  yearly: [
-    {
-      name: "Prelude",
-      badge: "ANUAL",
-      description: "Entrada inteligente com compromisso longo e menor custo médio.",
-      price: "R$ 159,90",
-      perDay: "≈ R$ 0,44 por dia",
-      features: ["Custo médio mais competitivo", "Mais tempo para consolidar a rotina", "Boa base para sair do improviso"],
-      cta: "Quero começar com visão anual",
-      whatsappText: "Olá! Tenho interesse no plano Prelude anual do WorshipHub."
-    },
-    {
-      name: "Chorus",
-      badge: "ANUAL",
-      description: "Mais consistência para quem deseja deixar a operação mais estável o ano todo.",
-      price: "R$ 239,90",
-      perDay: "≈ R$ 0,66 por dia",
-      features: ["Boa relação entre valor e estabilidade", "Mais previsibilidade para a liderança", "Reduz atrito operacional no longo prazo"],
-      cta: "Quero estabilidade anual",
-      whatsappText: "Olá! Quero saber mais sobre o plano Chorus anual do WorshipHub."
-    },
-    {
-      name: "Harmony",
-      badge: "MELHOR CUSTO-BENEFÍCIO",
-      description: "A combinação mais atrativa para crescimento profissional ao longo do ano.",
-      price: "R$ 399,00",
-      perDay: "≈ R$ 1,09 por dia",
-      features: ["Percepção premium com custo muito competitivo", "Plano ideal para consolidar a gestão", "Excelente escolha para captação da landing"],
-      cta: "Quero evoluir meu ministério com visão anual",
-      highlight: true,
-      whatsappText: "Olá! Quero contratar o plano Harmony anual do WorshipHub."
-    },
-    {
-      name: "Anthem",
-      badge: "ANUAL",
-      description: "Estrutura mais robusta para times maiores e rotinas mais exigentes.",
-      price: "R$ 549,90",
-      perDay: "≈ R$ 1,51 por dia",
-      features: ["Mais preparo para alta demanda", "Visão mais refinada da operação", "Escolha segura para equipes maduras"],
-      cta: "Quero robustez por mais tempo",
-      whatsappText: "Olá! Tenho interesse no plano Anthem anual do WorshipHub."
-    },
-    {
-      name: "Maestro",
-      badge: "PREMIUM ANUAL",
-      description: "Camada máxima para visão estratégica, expansão e estruturas maiores.",
-      price: "R$ 1.079,90",
-      perDay: "≈ R$ 2,96 por dia",
-      features: ["Melhor preparação para cenários maiores", "Mais valor para multi-igrejas", "Escolha premium para liderança estratégica"],
-      cta: "Quero a estrutura mais completa",
-      whatsappText: "Olá! Quero conversar sobre o plano Maestro anual do WorshipHub."
-    }
-  ]
+const appConfig = {
+  playStoreUrl: "__PLAY_STORE_URL__",
+  whatsappBase: "__WHATSAPP_LINK_GENERIC__",
+  privacyUrl: "__PRIVACY_URL__",
+  termsUrl: "__TERMS_URL__"
 };
 
-const genericWhatsapp = "__WHATSAPP_LINK_GENERIC__";
-
-function createPlanCard(plan){
-  const article = document.createElement("article");
-  article.className = `plan-card reveal ${plan.highlight ? "highlight" : ""}`;
-
-  if(plan.badge){
-    const badge = document.createElement("span");
-    badge.className = "plan-badge";
-    badge.textContent = plan.badge;
-    article.appendChild(badge);
+const pricingData = {
+  monthly: {
+    free: { name:"Gratuito", badge:"Teste sem risco", price:"R$ 0", period:"Entrada sem custo para começar", day:"", cta:"Quero começar sem custo" },
+    prelude: { name:"Prelude", badge:"Mensal", price:"R$ 19,00", period:"Boa porta de entrada para ministérios que querem sair do improviso.", day:"≈ R$ 0,63 por dia", cta:"Quero organizar minha equipe" },
+    chorus: { name:"Chorus", badge:"Mensal", price:"R$ 29,90", period:"Para quem já precisa de uma rotina mais estável e confiável.", day:"≈ R$ 0,99 por dia", cta:"Quero dar mais consistência ao ministério" },
+    harmony: { name:"Harmony", badge:"Mais procurado", price:"R$ 49,90", period:"Equilíbrio ideal entre gestão, visão e profissionalismo.", day:"≈ R$ 1,66 por dia", cta:"Quero elevar meu ministério" },
+    anthem: { name:"Anthem", badge:"Mensal", price:"R$ 69,90", period:"Pensado para equipes mais maduras e com maior demanda operacional.", day:"≈ R$ 2,33 por dia", cta:"Quero controle mais refinado" },
+    maestro: { name:"Maestro", badge:"Premium", price:"R$ 129,90", period:"Para operações maiores e visão mais estratégica do ministério.", day:"≈ R$ 4,33 por dia", cta:"Quero o máximo de estrutura" }
+  },
+  quarterly: {
+    free: { name:"Gratuito", badge:"Teste sem risco", price:"R$ 0", period:"Entrada sem custo para começar", day:"", cta:"Quero começar sem custo" },
+    prelude: { name:"Prelude", badge:"Trimestral", price:"R$ 49,90", period:"Cobrança trimestral com melhor previsibilidade para começar.", day:"≈ R$ 0,55 por dia", cta:"Quero organizar minha equipe" },
+    chorus: { name:"Chorus", badge:"Trimestral", price:"R$ 75,00", period:"Mais estabilidade e custo melhor no horizonte de 3 meses.", day:"≈ R$ 0,83 por dia", cta:"Quero dar mais consistência ao ministério" },
+    harmony: { name:"Harmony", badge:"Mais procurado", price:"R$ 129,90", period:"Investimento trimestral para equipes em crescimento.", day:"≈ R$ 1,44 por dia", cta:"Quero elevar meu ministério" },
+    anthem: { name:"Anthem", badge:"Trimestral", price:"R$ 179,90", period:"Melhor ajuste para operação exigente com mais previsibilidade.", day:"≈ R$ 2,00 por dia", cta:"Quero controle mais refinado" },
+    maestro: { name:"Maestro", badge:"Premium", price:"R$ 339,90", period:"Visão estratégica com contratação trimestral.", day:"≈ R$ 3,78 por dia", cta:"Quero o máximo de estrutura" }
+  },
+  yearly: {
+    free: { name:"Gratuito", badge:"Teste sem risco", price:"R$ 0", period:"Entrada sem custo para começar", day:"", cta:"Quero começar sem custo" },
+    prelude: { name:"Prelude", badge:"Anual", price:"R$ 159,90", period:"Melhor custo anual para começar com organização.", day:"≈ R$ 0,44 por dia", cta:"Quero organizar minha equipe" },
+    chorus: { name:"Chorus", badge:"Anual", price:"R$ 239,90", period:"Menor custo por dia para rotina estável do ministério.", day:"≈ R$ 0,66 por dia", cta:"Quero dar mais consistência ao ministério" },
+    harmony: { name:"Harmony", badge:"Mais procurado", price:"R$ 399,00", period:"Plano anual ideal para equipes em crescimento consistente.", day:"≈ R$ 1,09 por dia", cta:"Quero elevar meu ministério" },
+    anthem: { name:"Anthem", badge:"Anual", price:"R$ 549,90", period:"Escala operacional com contratação mais estratégica.", day:"≈ R$ 1,51 por dia", cta:"Quero controle mais refinado" },
+    maestro: { name:"Maestro", badge:"Premium", price:"R$ 1.079,90", period:"Estrutura anual robusta para visão de longo prazo.", day:"≈ R$ 2,96 por dia", cta:"Quero o máximo de estrutura" }
   }
+};
 
-  article.innerHTML += `
-    <h3>${plan.name}</h3>
-    <p class="plan-copy">${plan.description}</p>
-    <div class="plan-price">
-      <strong>${plan.price}</strong>
-      <span>${plan.perDay}</span>
-    </div>
-    <ul class="plan-list">
-      ${plan.features.map(item => `<li>${item}</li>`).join("")}
-    </ul>
-  `;
+const planOrder = ["free","prelude","chorus","harmony","anthem","maestro"];
 
-  const cta = document.createElement("a");
-  cta.className = plan.highlight ? "btn btn-primary" : "btn btn-secondary";
-  cta.href = plan.whatsappText ? `${genericWhatsapp}${encodeURIComponent(plan.whatsappText)}` : genericWhatsapp;
-  cta.textContent = plan.cta;
-  article.appendChild(cta);
-
-  return article;
+function setPlanData(period){
+  const source = pricingData[period];
+  document.querySelectorAll(".billing-toggle button").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.billing === period);
+  });
+  planOrder.forEach(key => {
+    const card = document.querySelector(`[data-plan="${key}"]`);
+    if(!card || !source[key]) return;
+    card.querySelector("[data-role='badge']").textContent = source[key].badge;
+    card.querySelector("[data-role='price']").textContent = source[key].price;
+    card.querySelector("[data-role='period']").textContent = source[key].period;
+    card.querySelector("[data-role='day']").textContent = source[key].day;
+    card.querySelector("[data-role='cta']").textContent = source[key].cta;
+    const cta = card.querySelector("[data-role='cta']");
+    if(cta){
+      const planName = source[key].name;
+      const message = encodeURIComponent(`Olá! Quero falar sobre o plano ${planName} do WorshipHub.`);
+      cta.href = `${appConfig.whatsappBase}${message}`;
+    }
+  });
 }
 
-function renderPricing(period = "monthly"){
-  const grid = document.getElementById("pricing-grid");
-  if(!grid) return;
-  grid.innerHTML = "";
-  pricingData[period].forEach(plan => grid.appendChild(createPlanCard(plan)));
-}
+document.querySelectorAll(".billing-toggle button").forEach(btn => {
+  btn.addEventListener("click", () => setPlanData(btn.dataset.billing));
+});
+setPlanData("monthly");
 
-document.querySelectorAll(".switch-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".switch-btn").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    renderPricing(btn.dataset.period);
+document.querySelectorAll(".faq-item").forEach(item => {
+  const trigger = item.querySelector(".faq-trigger");
+  trigger?.addEventListener("click", () => {
+    item.classList.toggle("open");
   });
 });
 
-renderPricing("monthly");
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
     if(entry.isIntersecting){
-      entry.target.classList.add("is-visible");
+      entry.target.classList.add("visible");
       observer.unobserve(entry.target);
     }
   });
-}, { threshold: 0.14 });
+},{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
-document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+document.querySelectorAll(".js-download-app").forEach(link => {
+  link.setAttribute("href", appConfig.playStoreUrl);
+});
+const privacy = document.querySelectorAll(".js-privacy");
+privacy.forEach(link => link.href = appConfig.privacyUrl);
+const terms = document.querySelectorAll(".js-terms");
+terms.forEach(link => link.href = appConfig.termsUrl);
+
+// subtle hero motion
+const heroVisual = document.querySelector(".hero-visual");
+if(heroVisual && window.matchMedia("(pointer:fine)").matches){
+  heroVisual.addEventListener("mousemove", (e)=>{
+    const rect = heroVisual.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - .5;
+    const y = (e.clientY - rect.top) / rect.height - .5;
+    heroVisual.querySelectorAll(".device").forEach((el, i)=>{
+      const rotateBase = i===0 ? -11 : i===1 ? 11 : 2;
+      const shiftX = x * (i===2 ? 8 : 12);
+      const shiftY = y * (i===2 ? 6 : 10);
+      el.style.transform = `rotate(${rotateBase + x*1.5}deg) translate(${shiftX}px, ${shiftY}px)`;
+    });
+  });
+  heroVisual.addEventListener("mouseleave", ()=>{
+    const classes = {home:-11, stats:11, music:2};
+    heroVisual.querySelectorAll(".device").forEach(el=>{
+      if(el.classList.contains("home")) el.style.transform = `rotate(${classes.home}deg)`;
+      if(el.classList.contains("stats")) el.style.transform = `rotate(${classes.stats}deg)`;
+      if(el.classList.contains("music")) el.style.transform = `rotate(${classes.music}deg)`;
+    });
+  });
+}

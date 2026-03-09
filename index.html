@@ -1,451 +1,643 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WorshipHub — Gestão profissional para ministérios de louvor</title>
-  <meta name="description" content="Escalas, repertório, comunicação por evento, estatísticas e gestão profissional da equipe em uma única plataforma para ministérios de louvor." />
-  <meta name="theme-color" content="#12081e" />
-  <meta name="robots" content="index,follow" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="WorshipHub — Gestão profissional para ministérios de louvor" />
-  <meta property="og:description" content="Organize eventos, equipe, repertório e comunicação em uma única plataforma com visual premium e operação profissional." />
-  <meta property="og:image" content="./assets/branding/og-image.png" />
-  <meta property="og:locale" content="pt_BR" />
-  <link rel="icon" type="image/png" href="./assets/branding/favicon.png" />
-  <link rel="preload" as="image" href="./assets/branding/logo-horizontal.webp" />
-  <link rel="preload" as="image" href="./assets/screens/home.webp" />
-  <link rel="stylesheet" href="./styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>WorshipHub — Plataforma profissional para ministérios de louvor</title>
+  <meta name="description" content="Organize escalas, repertório e sua equipe de louvor em uma única plataforma profissional. Menos WhatsApp confuso, menos retrabalho e mais visão da equipe.">
+  <meta name="theme-color" content="#07030f">
+  <meta property="og:title" content="WorshipHub — Plataforma profissional para ministérios de louvor">
+  <meta property="og:description" content="Organize escalas, repertório e sua equipe de louvor em uma única plataforma profissional.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="./assets/branding/logo-horizontal.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="./favicon.png">
+  <link rel="preload" href="./assets/branding/logo-horizontal.webp" as="image" type="image/webp">
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <div class="ambient ambient-1"></div>
-  <div class="ambient ambient-2"></div>
-  <div class="ambient ambient-grid"></div>
+  <div class="page-shell">
+    <div class="ambient"></div>
+    <div class="noise"></div>
 
-  <header class="topbar">
-    <div class="container nav-shell">
-      <a href="#top" class="brand" aria-label="WorshipHub">
-        <img src="./assets/branding/logo-horizontal.webp" alt="WorshipHub" class="brand-logo" />
-      </a>
-
-      <nav class="nav-actions">
-        <a href="#planos" class="btn btn-ghost">Ver planos</a>
-        <a href="#cta-final" class="btn btn-primary">Quero organizar meu ministério</a>
-      </nav>
-    </div>
-  </header>
-
-  <main id="top">
-    <section class="hero section">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <div class="eyebrow">PLATAFORMA PROFISSIONAL · LOUVOR</div>
-          <h1>A plataforma premium para gestão profissional de ministérios de louvor.</h1>
-          <p class="hero-lead">
-            Escalas organizadas, repertório centralizado, comunicação por evento, estatísticas de equipe e estrutura pronta para crescer do básico ao multi-igrejas.
-          </p>
-
-          <div class="hero-actions">
-            <a href="#planos" class="btn btn-primary btn-lg">Quero ver os planos ideais</a>
-            <a href="__PLAY_STORE_URL__" class="btn btn-secondary btn-lg">Baixar o aplicativo</a>
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a class="brand" href="#top" aria-label="WorshipHub">
+          <div class="brand-mark">
+            <img src="./assets/branding/logo-icon.webp" alt="Logo WorshipHub" width="58" height="58">
           </div>
-
-          <ul class="hero-points">
-            <li>✓ Menos ruído do que WhatsApp e planilhas soltas</li>
-            <li>✓ Gestão profissional da equipe com visão operacional</li>
-            <li>✓ Estrutura preparada para crescimento e multi-igrejas</li>
-          </ul>
-
-          <div class="mini-proof">
-            <div class="proof-card">
-              <strong>1 só lugar</strong>
-              <span>eventos, equipe, repertório e comunicação</span>
-            </div>
-            <div class="proof-card">
-              <strong>+ clareza</strong>
-              <span>para quem precisa liderar com segurança</span>
-            </div>
-            <div class="proof-card">
-              <strong>+ controle</strong>
-              <span>sobre participação, escala e recorrência</span>
-            </div>
+          <div class="brand-text">
+            <img src="./assets/branding/logo-horizontal.webp" alt="WorshipHub" style="height:38px;width:auto">
+            <div class="brand-subtitle">Gestão profissional para ministérios de louvor</div>
           </div>
-        </div>
-
-        <div class="hero-visual reveal">
-          <div class="device-stack">
-            <article class="device-card floating-card card-a">
-              <img src="./assets/screens/home.webp" alt="Tela inicial do WorshipHub com próximos eventos" loading="eager" />
-            </article>
-            <article class="device-card floating-card card-b">
-              <img src="./assets/screens/stats-chart.webp" alt="Tela de estatísticas por função no WorshipHub" loading="lazy" />
-            </article>
-            <article class="device-card floating-card card-c">
-              <img src="./assets/screens/song-links.webp" alt="Tela de música com Spotify, Deezer e YouTube no WorshipHub" loading="lazy" />
-            </article>
-            <div class="hero-float hero-float-1">Chat por evento</div>
-            <div class="hero-float hero-float-2">Histórico com Spotify · Deezer · YouTube</div>
-            <div class="hero-float hero-float-3">Gestão profissional da equipe</div>
-          </div>
-        </div>
+        </a>
+        <nav class="nav-actions">
+          <a class="btn btn-secondary" href="#planos">Ver planos</a>
+          <a class="btn btn-primary" href="#planos">Quero organizar meu ministério</a>
+        </nav>
       </div>
-    </section>
+    </header>
 
-    <section class="section quickband">
-      <div class="container">
-        <div class="logo-wall">
-          <span>Escalas sem retrabalho</span>
-          <span>Repertório com histórico</span>
-          <span>Indisponibilidade integrada</span>
-          <span>Exportação em PDF</span>
-          <span>Estatísticas de equipe</span>
-          <span>Base pronta para multi-igrejas</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section pain-solution">
-      <div class="container">
-        <div class="section-head narrow reveal">
-          <div class="eyebrow">ANTES VS. DEPOIS</div>
-          <h2>O WorshipHub existe para tirar o ministério do improviso e colocar a liderança em um fluxo mais claro.</h2>
-          <p>Menos mensagens perdidas, menos retrabalho na escala, mais visão sobre o que foi tocado, quem está disponível e como a equipe realmente funciona.</p>
-        </div>
-
-        <div class="before-after-grid">
-          <article class="compare-card reveal">
-            <span class="compare-tag">O que normalmente acontece</span>
-            <h3>Ferramentas espalhadas geram ruído.</h3>
-            <p>Escalas em um lugar, comunicação em outro, repertório sem histórico e pouca visibilidade da equipe. O resultado é desgaste operacional.</p>
-            <ul class="list-mini">
-              <li>Escalas desorganizadas</li>
-              <li>WhatsApp sem contexto</li>
-              <li>Repertório sem histórico claro</li>
-            </ul>
-          </article>
-
-          <article class="compare-card is-positive reveal">
-            <span class="compare-tag">O que o WorshipHub entrega</span>
-            <h3>Uma operação mais centralizada e profissional.</h3>
-            <p>Eventos, equipe, repertório, histórico, chat e indicadores reunidos no mesmo ambiente, com uma experiência mais coerente para liderança e integrantes.</p>
-            <ul class="list-mini">
-              <li>Fluxo padronizado</li>
-              <li>Comunicação por evento</li>
-              <li>Mais clareza para decidir</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section screenshots">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="eyebrow">PRODUTO REAL, NÃO APENAS PROMESSA</div>
-          <h2>Uma narrativa mais curta, visual e direta — com telas reais do aplicativo.</h2>
-          <p>Esta seção substitui longas explicações por prova visual. É assim que landing pages SaaS premium reduzem atrito e elevam a confiança mais rápido.</p>
-        </div>
-
-        <div class="showcase-grid">
-          <article class="showcase-card is-large reveal">
-            <div class="showcase-copy">
-              <span class="pill">Painel inicial</span>
-              <h3>Próximos eventos, pessoas escaladas e visão rápida da rotina.</h3>
-              <p>A primeira impressão do produto precisa ser forte: organização visível, cards claros e contexto imediato para quem lidera.</p>
-            </div>
-            <div class="showcase-shot">
-              <img src="./assets/screens/home.webp" alt="Tela inicial do app WorshipHub" loading="lazy" />
-            </div>
-          </article>
-
-          <article class="showcase-card reveal">
-            <div class="showcase-copy">
-              <span class="pill">Indisponibilidade</span>
-              <h3>Escalas com menos conflito</h3>
-              <p>Os próprios integrantes informam quando não podem servir, reduzindo retrabalho.</p>
-            </div>
-            <div class="showcase-shot">
-              <img src="./assets/screens/unavailability.webp" alt="Tela de indisponibilidade do WorshipHub" loading="lazy" />
-            </div>
-          </article>
-
-          <article class="showcase-card reveal">
-            <div class="showcase-copy">
-              <span class="pill">Histórico musical</span>
-              <h3>Mais inteligência para o repertório</h3>
-              <p>Consulte o que já foi tocado e encontre músicas com mais contexto e recorrência.</p>
-            </div>
-            <div class="showcase-shot">
-              <img src="./assets/screens/history.webp" alt="Tela de histórico de repertório no WorshipHub" loading="lazy" />
-            </div>
-          </article>
-
-          <article class="showcase-card reveal">
-            <div class="showcase-copy">
-              <span class="pill">Integrações reais</span>
-              <h3>Spotify, Deezer, YouTube e cifra</h3>
-              <p>Flexibilidade real para músicos e equipes, sem depender de links soltos e memória dispersa.</p>
-            </div>
-            <div class="showcase-shot">
-              <img src="./assets/screens/song-links.webp" alt="Tela de música com plataformas integradas no WorshipHub" loading="lazy" />
-            </div>
-          </article>
-
-          <article class="showcase-card reveal">
-            <div class="showcase-copy">
-              <span class="pill">Estatísticas</span>
-              <h3>Visão qualitativa e quantitativa da equipe</h3>
-              <p>Descubra participação, assiduidade, distribuição por função e tendência operacional.</p>
-            </div>
-            <div class="showcase-shot">
-              <img src="./assets/screens/stats-team.webp" alt="Tela de estatísticas de equipe no WorshipHub" loading="lazy" />
-            </div>
-          </article>
-
-          <article class="showcase-card reveal">
-            <div class="showcase-copy">
-              <span class="pill">Exportação</span>
-              <h3>PDF profissional por período</h3>
-              <p>Gere relatórios e materiais operacionais com muito mais agilidade para a liderança.</p>
-            </div>
-            <div class="showcase-shot">
-              <img src="./assets/screens/export-pdf.webp" alt="Tela de exportação em PDF no WorshipHub" loading="lazy" />
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section benefits">
-      <div class="container">
-        <div class="section-head narrow reveal">
-          <div class="eyebrow">BENEFÍCIOS CENTRAIS</div>
-          <h2>Uma experiência construída para quem precisa liderar com mais clareza, unidade e controle.</h2>
-          <p>A página vende o produto de forma global, mas os argumentos principais foram organizados para convencer rápido: centralização, gestão profissional e potencial de crescimento.</p>
-        </div>
-
-        <div class="feature-grid feature-grid-4">
-          <article class="feature-card reveal">
-            <div class="icon-chip">✦</div>
-            <h3>Gerenciamento completo em um só lugar</h3>
-            <p>Evite depender de várias ferramentas paralelas. O WorshipHub centraliza eventos, equipe, repertório e comunicação em um único fluxo.</p>
-          </article>
-          <article class="feature-card reveal">
-            <div class="icon-chip">▣</div>
-            <h3>Gestão qualitativa e quantitativa da equipe</h3>
-            <p>Visualize participação, assiduidade, indisponibilidades e distribuição por função para tomar decisões com mais precisão.</p>
-          </article>
-          <article class="feature-card reveal">
-            <div class="icon-chip">⟡</div>
-            <h3>Estrutura preparada para multi-igrejas</h3>
-            <p>Da igreja local à coordenação centralizada de múltiplas organizações, o produto já aponta para uma gestão mais profissional.</p>
-          </article>
-          <article class="feature-card reveal">
-            <div class="icon-chip">↗</div>
-            <h3>Menos retrabalho, mais excelência operacional</h3>
-            <p>Com informações centralizadas e contexto por evento, a liderança ganha tempo e melhora a experiência do ministério como um todo.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section competitive">
-      <div class="container">
-        <div class="section-head narrow reveal">
-          <div class="eyebrow">DIFERENCIAL COMPETITIVO</div>
-          <h2>O verdadeiro carro-chefe: gestão profissional do ministério, com espaço para crescer além do básico.</h2>
-          <p>A maioria das soluções resolve partes do problema. O WorshipHub se posiciona como uma camada profissional de gestão para a liderança que quer visão, controle e operação mais refinada.</p>
-        </div>
-
-        <div class="feature-grid feature-grid-4">
-          <article class="feature-card reveal">
-            <div class="icon-chip">◎</div>
-            <h3>Mais do que escala e repertório</h3>
-            <p>O valor percebido cresce quando a liderança entende que a plataforma não substitui só grupos e planilhas — ela melhora o processo de gestão como um todo.</p>
-          </article>
-          <article class="feature-card reveal">
-            <div class="icon-chip">⚙</div>
-            <h3>Processo operacional padronizado</h3>
-            <p>Criação, repetição, comunicação, ajuste de equipe e consulta de histórico acontecem com mais consistência e menos improviso.</p>
-          </article>
-          <article class="feature-card reveal">
-            <div class="icon-chip">◔</div>
-            <h3>Visão clara para a liderança</h3>
-            <p>Quem decide enxerga com mais nitidez gargalos de disponibilidade, participação e equilíbrio de equipe.</p>
-          </article>
-          <article class="feature-card reveal">
-            <div class="icon-chip">⌘</div>
-            <h3>Preparado para estruturas maiores</h3>
-            <p>Se hoje a operação é modesta, ótimo. Se amanhã surgir um cenário multi-igrejas, a lógica do produto já sustenta uma evolução mais profissional.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section features-compact">
-      <div class="container">
-        <div class="section-head narrow reveal">
-          <div class="eyebrow">RECURSOS QUE IMPRESSIONAM</div>
-          <h2>Recursos que transformam um app de organização em uma plataforma de gestão profissional.</h2>
-          <p>Selecionamos apenas os recursos com maior apelo de percepção de valor para o visitante frio. Menos volume, mais impacto.</p>
-        </div>
-
-        <div class="feature-grid feature-grid-3">
-          <article class="feature-card reveal">
-            <div class="icon-chip">⟳</div>
-            <h3>Duplicação de eventos</h3>
-            <p>Repita a estrutura certa do evento sem recriar tudo do zero.</p>
-          </article>
-          <article class="feature-card reveal">
-            <div class="icon-chip">☰</div>
-            <h3>Chat privativo por evento</h3>
-            <p>Somente quem está escalado interage naquele contexto.</p>
-          </article>
-          <article class="feature-card reveal">
-            <div class="icon-chip">◉</div>
-            <h3>Paleta para eventos especiais</h3>
-            <p>Mais percepção premium e identidade visual em um clique.</p>
-          </article>
-          <article class="feature-card reveal">
-            <div class="icon-chip">⌁</div>
-            <h3>Indisponibilidade sem retrabalho</h3>
-            <p>Os próprios integrantes informam quando não podem participar.</p>
-          </article>
-          <article class="feature-card reveal">
-            <div class="icon-chip">▥</div>
-            <h3>Filtros avançados de equipe</h3>
-            <p>Veja quem serve mais, quem participa melhor e como o time se distribui.</p>
-          </article>
-          <article class="feature-card reveal">
-            <div class="icon-chip">♫</div>
-            <h3>Histórico com Deezer, Spotify e YouTube</h3>
-            <p>Flexibilidade real para gestão das músicas da igreja.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="planos" class="section pricing">
-      <div class="container pricing-shell">
-        <div class="section-head reveal">
-          <div class="eyebrow">PLANOS COM PERCEPÇÃO DE VALOR</div>
-          <h2>Planos pensados para diferentes níveis de estrutura, com apresentação visual clara e conversão objetiva.</h2>
-          <p>Primeiro o visitante percebe o custo por dia, depois enxerga o valor real. A contratação comercial pode acontecer por WhatsApp enquanto você evolui o checkout externo.</p>
-        </div>
-
-        <div class="pricing-top">
-          <div class="plan-switch" role="tablist" aria-label="Período dos planos">
-            <button class="switch-btn active" data-period="monthly">Mensal</button>
-            <button class="switch-btn" data-period="quarterly">Trimestral</button>
-            <button class="switch-btn" data-period="yearly">Anual</button>
-          </div>
-          <p class="pricing-anchor">A partir de menos de <strong>R$ 1 por dia</strong> para manter o ministério mais alinhado, organizado e profissional.</p>
-        </div>
-
-        <div class="pricing-grid" id="pricing-grid"></div>
-
-        <div class="pricing-footer reveal">
-          <a href="__WHATSAPP_LINK_GENERIC__" class="btn btn-secondary">Tirar minhas dúvidas primeiro</a>
-          <a href="__PLAY_STORE_URL__" class="btn btn-primary">Baixar o aplicativo</a>
-        </div>
-
-        <p class="pricing-note">TEXTO_MOCKADO_CHECKOUT_EXTERNO: substitua este texto quando o checkout externo direto estiver disponível na landing. Até lá, mantenha a contratação comercial pelo WhatsApp e a compra final dentro do app.</p>
-      </div>
-    </section>
-
-    <section class="section testimonials">
-      <div class="container">
-        <div class="section-head narrow reveal">
-          <div class="eyebrow">PROVA SOCIAL E CONFIANÇA</div>
-          <h2>Quando a liderança sente menos risco, a decisão acontece mais rápido.</h2>
-          <p>Insira aqui depoimentos reais de perfis diferentes para criar confiança sem excesso de distração: coordenação, direção musical e responsável pelas escalas.</p>
-        </div>
-
-        <div class="testimonial-grid">
-          <article class="testimonial-card reveal">
-            <p>“TEXTO_MOCKADO_DEPOIMENTO_COORDENADOR: substitua por um depoimento real do coordenador do ministério.”</p>
-            <strong>NOME_MOCKADO_01</strong>
-            <span>Coordenador · IGREJA_MOCKADA_01</span>
-          </article>
-          <article class="testimonial-card reveal">
-            <p>“TEXTO_MOCKADO_DEPOIMENTO_DIRETOR_MUSICAL: substitua por um depoimento real do diretor musical.”</p>
-            <strong>NOME_MOCKADO_02</strong>
-            <span>Diretor musical · IGREJA_MOCKADA_02</span>
-          </article>
-          <article class="testimonial-card reveal">
-            <p>“TEXTO_MOCKADO_DEPOIMENTO_ESCALAS: substitua por um depoimento real do responsável pelas escalas.”</p>
-            <strong>NOME_MOCKADO_03</strong>
-            <span>Responsável pelas escalas · IGREJA_MOCKADA_03</span>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section faq">
-      <div class="container">
-        <div class="section-head narrow reveal">
-          <div class="eyebrow">PERGUNTAS ESSENCIAIS</div>
-          <h2>Respostas rápidas para reduzir objeções sem tirar o visitante do fluxo de decisão.</h2>
-        </div>
-
-        <div class="faq-grid">
-          <details class="faq-item reveal" open>
-            <summary>O WorshipHub é só para escala e repertório?</summary>
-            <p>Não. A proposta é ser uma plataforma profissional de gestão do ministério, reunindo equipe, eventos, comunicação, repertório, histórico e visão operacional em um único ambiente.</p>
-          </details>
-          <details class="faq-item reveal">
-            <summary>Posso começar pelo plano gratuito?</summary>
-            <p>Sim. O plano gratuito funciona como porta de entrada para experimentar o fluxo central do produto antes de evoluir para camadas mais completas.</p>
-          </details>
-          <details class="faq-item reveal">
-            <summary>Consigo contratar um plano pelo WhatsApp?</summary>
-            <p>Sim. O fluxo comercial pode começar pelo WhatsApp para tirar dúvidas e orientar a contratação. Substitua este texto quando seu checkout externo direto estiver ativo.</p>
-          </details>
-          <details class="faq-item reveal">
-            <summary>O produto atende ministérios pequenos e estruturas maiores?</summary>
-            <p>Sim. A lógica da plataforma foi pensada para funcionar bem desde equipes mais simples até operações mais estruturadas, inclusive com visão de multi-igrejas.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <section id="cta-final" class="section final-cta">
-      <div class="container">
-        <div class="cta-panel reveal">
-          <div class="cta-copy">
-            <div class="eyebrow">ÚLTIMA CHAMADA PARA DECISÃO</div>
-            <h2>Chegou a hora de organizar seu ministério com uma estrutura realmente profissional.</h2>
-            <p>Se sua liderança já sente o peso da desorganização, da comunicação confusa e da falta de visão operacional, o WorshipHub foi pensado exatamente para esse próximo nível.</p>
+    <main id="top">
+      <section class="section hero">
+        <div class="container hero-grid">
+          <div class="hero-copy reveal visible">
+            <span class="eyebrow">Plataforma profissional • Louvor</span>
+            <h1>Organize escalas, repertório e sua equipe em uma única plataforma profissional.</h1>
+            <p>Menos WhatsApp confuso, menos retrabalho na escala e mais visão da equipe. Do ministério local à coordenação de múltiplas igrejas.</p>
 
             <div class="hero-actions">
-              <a href="#planos" class="btn btn-primary btn-lg">Quero escolher o melhor plano</a>
-              <a href="__PLAY_STORE_URL__" class="btn btn-secondary btn-lg">Baixar o aplicativo</a>
+              <a class="btn btn-primary" href="#planos">Começar a organizar meu ministério</a>
+              <a class="btn btn-secondary js-download-app" href="__PLAY_STORE_URL__">Baixar o aplicativo</a>
+            </div>
+
+            <ul class="proof-list">
+              <li>Gestão centralizada de eventos, equipe, repertório e comunicação</li>
+              <li>Chat por evento, indisponibilidade, estatísticas e histórico musical</li>
+              <li>Estrutura pronta para crescimento e cenários multi-igrejas</li>
+            </ul>
+
+            <div class="mini-stat-row">
+              <div class="mini-stat">
+                <strong>1 só lugar</strong>
+                <span>Eventos, equipe, repertório e comunicação no mesmo fluxo.</span>
+              </div>
+              <div class="mini-stat">
+                <strong>+ clareza</strong>
+                <span>Para quem precisa liderar e decidir com mais segurança.</span>
+              </div>
+              <div class="mini-stat">
+                <strong>+ controle</strong>
+                <span>Participação, assiduidade, recorrência e visão operacional.</span>
+              </div>
+            </div>
+
+            <div class="pill-row">
+              <span class="pill">Escalas sem retrabalho</span>
+              <span class="pill">Repertório com histórico</span>
+              <span class="pill">Indisponibilidade integrada</span>
+              <span class="pill">Exportação em PDF</span>
+              <span class="pill">Estatísticas de equipe</span>
+              <span class="pill">Base pronta para multi-igrejas</span>
             </div>
           </div>
 
-          <div class="cta-side">
-            <div class="mini-grid">
-              <div class="mini-cell"><strong>1 plataforma</strong><span>para centralizar equipe, repertório, eventos e comunicação.</span></div>
-              <div class="mini-cell"><strong>+ clareza</strong><span>para quem lidera e precisa decidir com mais segurança.</span></div>
-              <div class="mini-cell"><strong>+ organização</strong><span>na rotina de cada evento, sem depender de fluxos soltos.</span></div>
-              <div class="mini-cell"><strong>+ escala</strong><span>para crescer do básico ao profissional sem trocar de solução.</span></div>
+          <div class="hero-visual reveal visible">
+            <div class="hero-orb"></div>
+            <div class="hero-orb two"></div>
+            <span class="float-chip one">Chat por evento</span>
+            <span class="float-chip two">Gestão profissional da equipe</span>
+            <span class="float-chip three">Spotify • Deezer • YouTube</span>
+            <div class="phone-stack">
+              <div class="device music">
+                <div class="device-screen">
+                  <picture>
+                    <source srcset="./assets/screens/music-details.webp" type="image/webp">
+                    <img src="./assets/screens/music-details.png" alt="Tela de detalhes da música">
+                  </picture>
+                </div>
+              </div>
+              <div class="device home">
+                <div class="device-screen">
+                  <picture>
+                    <source srcset="./assets/screens/home.webp" type="image/webp">
+                    <img src="./assets/screens/home.png" alt="Tela inicial do WorshipHub">
+                  </picture>
+                </div>
+              </div>
+              <div class="device stats">
+                <div class="device-screen">
+                  <picture>
+                    <source srcset="./assets/screens/stats-chart.webp" type="image/webp">
+                    <img src="./assets/screens/stats-chart.png" alt="Tela de estatísticas do WorshipHub">
+                  </picture>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
 
-  <footer class="footer">
-    <div class="container footer-shell">
-      <p>© 2026 WorshipHub. Gestão profissional para ministérios de louvor.</p>
-      <div class="footer-links">
-        <a href="__PRIVACY_URL__">Privacidade</a>
-        <a href="__TERMS_URL__">Termos</a>
-        <a href="__WHATSAPP_LINK_GENERIC__">WhatsApp comercial</a>
+      <section class="section section-tight">
+        <div class="container reveal">
+          <div class="block-head">
+            <span class="eyebrow">Antes vs. depois</span>
+            <h2 class="section-title">O WorshipHub existe para tirar o ministério do improviso e colocar a liderança em um fluxo mais claro.</h2>
+            <p class="section-lead">Menos mensagens perdidas, menos retrabalho na escala, mais visão sobre o que foi tocado, quem está disponível e como a equipe realmente funciona.</p>
+          </div>
+
+          <div class="compare">
+            <article class="card compare-card">
+              <span class="compare-tag">O que normalmente acontece</span>
+              <h3>Ferramentas espalhadas geram ruído.</h3>
+              <p>Escalas em um lugar, comunicação em outro, repertório sem histórico e pouca visibilidade da equipe. O resultado é desgaste operacional.</p>
+              <ul>
+                <li>Escalas desorganizadas</li>
+                <li>WhatsApp confuso</li>
+                <li>Repertório sem contexto</li>
+                <li>Falta de visão da equipe</li>
+              </ul>
+            </article>
+            <article class="card compare-card">
+              <span class="compare-tag">O que o WorshipHub entrega</span>
+              <h3>Uma operação mais centralizada e profissional.</h3>
+              <p>Eventos, equipe, repertório, histórico, chat e indicadores reunidos no mesmo ambiente, com uma experiência mais coerente para liderança e integrantes.</p>
+              <ul>
+                <li>Fluxo padronizado</li>
+                <li>Informação contextual</li>
+                <li>Mais previsibilidade</li>
+                <li>Melhor decisão para a liderança</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container reveal">
+          <div class="block-head">
+            <span class="eyebrow">Produto real, não apenas promessa</span>
+            <h2 class="section-title">Telas reais do aplicativo para reduzir atrito e elevar confiança mais rápido.</h2>
+            <p class="section-lead">Em vez de explicar demais, a landing mostra rapidamente o valor do produto em uso real.</p>
+          </div>
+
+          <div class="product-gallery">
+            <article class="card gallery-card">
+              <div class="gallery-copy">
+                <span class="compare-tag">Painel inicial</span>
+                <h3>Próximos eventos, pessoas escaladas e visão rápida da rotina.</h3>
+                <p>A primeira impressão precisa ser forte: organização visível, cards claros e contexto imediato para quem lidera.</p>
+              </div>
+              <div class="gallery-device">
+                <div class="device">
+                  <div class="device-screen">
+                    <picture>
+                      <source srcset="./assets/screens/home.webp" type="image/webp">
+                      <img src="./assets/screens/home.png" alt="Tela inicial do app">
+                    </picture>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="card gallery-card">
+              <div class="gallery-copy">
+                <span class="compare-tag">Filtros e visão de equipe</span>
+                <h3>Gestão qualitativa e quantitativa com leitura operacional.</h3>
+                <p>Participação, assiduidade, distribuição por função e gargalos aparecem com muito mais clareza para a coordenação.</p>
+              </div>
+              <div class="gallery-device">
+                <div class="device">
+                  <div class="device-screen">
+                    <picture>
+                      <source srcset="./assets/screens/team-stats.webp" type="image/webp">
+                      <img src="./assets/screens/team-stats.png" alt="Tela de painel do time">
+                    </picture>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="gallery-grid-mini">
+            <article class="card gallery-card">
+              <div class="gallery-copy">
+                <span class="compare-tag">Indisponibilidade</span>
+                <h3>Escalas com menos conflito.</h3>
+                <p>Os próprios integrantes informam quando não podem servir, reduzindo retrabalho.</p>
+              </div>
+              <div class="gallery-device">
+                <div class="device">
+                  <div class="device-screen">
+                    <picture>
+                      <source srcset="./assets/screens/unavailability.webp" type="image/webp">
+                      <img src="./assets/screens/unavailability.png" alt="Tela de indisponibilidade">
+                    </picture>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="card gallery-card">
+              <div class="gallery-copy">
+                <span class="compare-tag">Histórico musical</span>
+                <h3>Mais inteligência para o repertório.</h3>
+                <p>Consulte o que já foi tocado e encontre músicas com mais contexto e recorrência.</p>
+              </div>
+              <div class="gallery-device">
+                <div class="device">
+                  <div class="device-screen">
+                    <picture>
+                      <source srcset="./assets/screens/repertoire-history.webp" type="image/webp">
+                      <img src="./assets/screens/repertoire-history.png" alt="Tela de histórico de repertório">
+                    </picture>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="card gallery-card">
+              <div class="gallery-copy">
+                <span class="compare-tag">Integrações reais</span>
+                <h3>Spotify, Deezer, YouTube e cifra.</h3>
+                <p>Flexibilidade real para músicos e equipes, sem depender de links soltos e memória dispersa.</p>
+              </div>
+              <div class="gallery-device">
+                <div class="device">
+                  <div class="device-screen">
+                    <picture>
+                      <source srcset="./assets/screens/music-details.webp" type="image/webp">
+                      <img src="./assets/screens/music-details.png" alt="Tela de detalhes da música">
+                    </picture>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="card gallery-card">
+              <div class="gallery-copy">
+                <span class="compare-tag">Exportação</span>
+                <h3>PDF profissional por período.</h3>
+                <p>Gere relatórios e materiais operacionais com muito mais agilidade para a liderança.</p>
+              </div>
+              <div class="gallery-device">
+                <div class="device">
+                  <div class="device-screen">
+                    <picture>
+                      <source srcset="./assets/screens/export-pdf.webp" type="image/webp">
+                      <img src="./assets/screens/export-pdf.png" alt="Tela de exportação em PDF">
+                    </picture>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container reveal">
+          <div class="block-head">
+            <span class="eyebrow">Benefícios centrais</span>
+            <h2 class="section-title">Uma experiência construída para quem precisa liderar com mais clareza, unidade e controle.</h2>
+            <p class="section-lead">Centralização, gestão profissional e potencial de crescimento: estes são os pilares que aceleram a decisão.</p>
+          </div>
+          <div class="benefits-grid">
+            <article class="card benefit-card">
+              <div class="icon-badge">✦</div>
+              <h3>Tudo do ministério em um único sistema</h3>
+              <p>Evite depender de várias ferramentas paralelas. O WorshipHub centraliza eventos, equipe, repertório e comunicação.</p>
+            </article>
+            <article class="card benefit-card">
+              <div class="icon-badge">▣</div>
+              <h3>Gestão qualitativa e quantitativa da equipe</h3>
+              <p>Visualize participação, assiduidade, indisponibilidades e distribuição por função para decidir melhor.</p>
+            </article>
+            <article class="card benefit-card">
+              <div class="icon-badge">◇</div>
+              <h3>Coordene várias igrejas com um único painel</h3>
+              <p>Da igreja local à coordenação centralizada de múltiplas organizações, com estrutura para escalar.</p>
+            </article>
+            <article class="card benefit-card">
+              <div class="icon-badge">↗</div>
+              <h3>Menos retrabalho, mais excelência operacional</h3>
+              <p>Com informações centralizadas e contexto por evento, a liderança ganha tempo e melhora a experiência do ministério.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container reveal">
+          <div class="block-head">
+            <span class="eyebrow">Diferencial competitivo</span>
+            <h2 class="section-title">O verdadeiro carro-chefe: gestão profissional do ministério, com espaço para crescer além do básico.</h2>
+            <p class="section-lead">Outras soluções resolvem partes do problema. O WorshipHub se posiciona como uma camada profissional de gestão para liderança que quer visão, controle e operação mais refinada.</p>
+          </div>
+
+          <div class="feature-grid">
+            <article class="card feature-card">
+              <div class="icon-badge">◉</div>
+              <h3>Mais do que escala e repertório</h3>
+              <p>Ela não substitui só grupos e planilhas — melhora o processo de gestão como um todo.</p>
+            </article>
+            <article class="card feature-card">
+              <div class="icon-badge">⚙</div>
+              <h3>Processo operacional padronizado</h3>
+              <p>Criação, repetição, comunicação e consulta de histórico acontecem com mais consistência.</p>
+            </article>
+            <article class="card feature-card">
+              <div class="icon-badge">◔</div>
+              <h3>Visão clara para a liderança</h3>
+              <p>Quem decide enxerga com mais nitidez disponibilidade, participação e equilíbrio da equipe.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container reveal">
+          <div class="block-head">
+            <span class="eyebrow">Recursos que impressionam</span>
+            <h2 class="section-title">Recursos que transformam um app de organização em uma plataforma de gestão profissional.</h2>
+            <p class="section-lead">Selecionamos apenas os recursos com maior apelo de percepção de valor para o visitante frio. Menos volume, mais impacto.</p>
+          </div>
+
+          <div class="feature-grid">
+            <article class="card feature-card">
+              <div class="icon-badge">⟳</div>
+              <h3>Duplicação de eventos</h3>
+              <p>Repita a estrutura certa do evento sem recriar tudo do zero.</p>
+            </article>
+            <article class="card feature-card">
+              <div class="icon-badge">☰</div>
+              <h3>Chat privativo por evento</h3>
+              <p>Somente quem está escalado interage naquele contexto.</p>
+            </article>
+            <article class="card feature-card">
+              <div class="icon-badge">◉</div>
+              <h3>Paleta para eventos especiais</h3>
+              <p>Mais percepção premium e identidade visual em um clique.</p>
+            </article>
+            <article class="card feature-card">
+              <div class="icon-badge">⌁</div>
+              <h3>Indisponibilidade integrada</h3>
+              <p>Os próprios integrantes informam quando não podem servir.</p>
+            </article>
+            <article class="card feature-card">
+              <div class="icon-badge">☷</div>
+              <h3>Histórico musical com links reais</h3>
+              <p>Mais contexto para decidir repertório com inteligência.</p>
+            </article>
+            <article class="card feature-card">
+              <div class="icon-badge">⌕</div>
+              <h3>Exportação em PDF</h3>
+              <p>Documentos e relatórios operacionais com mais agilidade.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight" id="planos">
+        <div class="container reveal">
+          <div class="card pricing-panel">
+            <div class="block-head">
+              <span class="eyebrow">Planos com percepção de valor</span>
+              <h2 class="section-title">Planos para cada nível de ministério.</h2>
+              <p class="section-lead">Primeiro o visitante percebe o custo por dia, depois enxerga o valor real. Até o checkout externo estar pronto, a contratação comercial pode acontecer via WhatsApp.</p>
+            </div>
+
+            <div class="pricing-toolbar">
+              <div class="billing-toggle" aria-label="Período de cobrança">
+                <button class="active" data-billing="monthly" type="button">Mensal</button>
+                <button data-billing="quarterly" type="button">Trimestral</button>
+                <button data-billing="yearly" type="button">Anual</button>
+              </div>
+              <div class="pricing-copy">A partir de menos de <strong style="color:var(--gold-2)">R$ 1 por dia</strong> para manter o ministério mais alinhado, organizado e profissional.</div>
+            </div>
+
+            <div class="pricing-grid">
+              <article class="card plan-card" data-plan="free">
+                <div class="plan-top">
+                  <h3 class="plan-name">Gratuito</h3>
+                  <span class="plan-tag" data-role="badge">Teste sem risco</span>
+                </div>
+                <p class="plan-desc" data-role="period">Entrada sem custo para começar</p>
+                <div class="price-main" data-role="price">R$ 0</div>
+                <div class="price-day" data-role="day"></div>
+                <ul class="plan-points">
+                  <li>Acesso inicial ao app</li>
+                  <li>Ideal para sentir o fluxo básico</li>
+                  <li>Bom primeiro passo para equipes em descoberta</li>
+                </ul>
+                <div class="plan-footer">
+                  <a class="btn btn-secondary" data-role="cta" href="#">Quero começar sem custo</a>
+                </div>
+              </article>
+
+              <article class="card plan-card" data-plan="prelude">
+                <div class="plan-top">
+                  <h3 class="plan-name">Prelude</h3>
+                  <span class="plan-tag" data-role="badge">Mensal</span>
+                </div>
+                <p class="plan-desc" data-role="period">Boa porta de entrada para ministérios que querem sair do improviso.</p>
+                <div class="price-main" data-role="price">R$ 19,00</div>
+                <div class="price-day" data-role="day">≈ R$ 0,63 por dia</div>
+                <ul class="plan-points">
+                  <li>Estrutura inicial de organização</li>
+                  <li>Fluxo mais claro para eventos e equipe</li>
+                  <li>Começo profissional com baixo investimento</li>
+                </ul>
+                <div class="plan-footer">
+                  <a class="btn btn-secondary" data-role="cta" href="#">Quero organizar minha equipe</a>
+                </div>
+              </article>
+
+              <article class="card plan-card" data-plan="chorus">
+                <div class="plan-top">
+                  <h3 class="plan-name">Chorus</h3>
+                  <span class="plan-tag" data-role="badge">Mensal</span>
+                </div>
+                <p class="plan-desc" data-role="period">Para quem já precisa de uma rotina mais estável e confiável.</p>
+                <div class="price-main" data-role="price">R$ 29,90</div>
+                <div class="price-day" data-role="day">≈ R$ 0,99 por dia</div>
+                <ul class="plan-points">
+                  <li>Mais fôlego para a rotina da equipe</li>
+                  <li>Boa relação entre custo e organização</li>
+                  <li>Ajuda a reduzir ruído operacional</li>
+                </ul>
+                <div class="plan-footer">
+                  <a class="btn btn-secondary" data-role="cta" href="#">Quero dar mais consistência ao ministério</a>
+                </div>
+              </article>
+
+              <article class="card plan-card popular" data-plan="harmony">
+                <div class="plan-top">
+                  <h3 class="plan-name">Harmony</h3>
+                  <span class="plan-tag" data-role="badge">Mais procurado</span>
+                </div>
+                <p class="plan-desc" data-role="period">Equilíbrio ideal entre gestão, visão e profissionalismo.</p>
+                <div class="price-main" data-role="price">R$ 49,90</div>
+                <div class="price-day" data-role="day">≈ R$ 1,66 por dia</div>
+                <ul class="plan-points">
+                  <li>Excelente para equipes em crescimento</li>
+                  <li>Reforça a percepção de gestão profissional</li>
+                  <li>Plano com maior potencial de conversão na landing</li>
+                </ul>
+                <div class="plan-footer">
+                  <a class="btn btn-primary" data-role="cta" href="#">Quero elevar meu ministério</a>
+                </div>
+              </article>
+
+              <article class="card plan-card" data-plan="anthem">
+                <div class="plan-top">
+                  <h3 class="plan-name">Anthem</h3>
+                  <span class="plan-tag" data-role="badge">Mensal</span>
+                </div>
+                <p class="plan-desc" data-role="period">Pensado para equipes mais maduras e com maior demanda operacional.</p>
+                <div class="price-main" data-role="price">R$ 69,90</div>
+                <div class="price-day" data-role="day">≈ R$ 2,33 por dia</div>
+                <ul class="plan-points">
+                  <li>Mais robustez para a liderança</li>
+                  <li>Suporta operação mais exigente</li>
+                  <li>Melhor ajuste para quem quer avançar com segurança</li>
+                </ul>
+                <div class="plan-footer">
+                  <a class="btn btn-secondary" data-role="cta" href="#">Quero controle mais refinado</a>
+                </div>
+              </article>
+
+              <article class="card plan-card" data-plan="maestro">
+                <div class="plan-top">
+                  <h3 class="plan-name">Maestro</h3>
+                  <span class="plan-tag" data-role="badge">Premium</span>
+                </div>
+                <p class="plan-desc" data-role="period">Para operações maiores e visão mais estratégica do ministério.</p>
+                <div class="price-main" data-role="price">R$ 129,90</div>
+                <div class="price-day" data-role="day">≈ R$ 4,33 por dia</div>
+                <ul class="plan-points">
+                  <li>Camada premium de gestão</li>
+                  <li>Mais preparo para cenários robustos</li>
+                  <li>Forte aderência para visão multi-igrejas</li>
+                </ul>
+                <div class="plan-footer">
+                  <a class="btn btn-secondary" data-role="cta" href="#">Quero o máximo de estrutura</a>
+                </div>
+              </article>
+            </div>
+
+            <div class="pricing-bottom-actions">
+              <a class="btn btn-ghost" href="__WHATSAPP_LINK_GENERIC__" target="_blank" rel="noopener">Tirar minhas dúvidas primeiro</a>
+              <a class="btn btn-primary js-download-app" href="__PLAY_STORE_URL__">Baixar o aplicativo</a>
+            </div>
+
+            <p class="pricing-note">TEXTO_MOCKADO_CHECKOUT_EXTERNO: substitua este texto quando o checkout externo direto estiver disponível na landing. Até lá, mantenha a contratação comercial pelo WhatsApp e a compra final dentro do app.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container reveal">
+          <div class="block-head">
+            <span class="eyebrow">Prova social e confiança</span>
+            <h2 class="section-title">Quando a liderança sente menos risco, a decisão acontece mais rápido.</h2>
+            <p class="section-lead">Insira aqui depoimentos reais de perfis diferentes para criar confiança sem excesso de distração: coordenação, direção musical e responsável pelas escalas.</p>
+          </div>
+
+          <div class="social-grid">
+            <article class="card quote-card">
+              <p>“TEXTO_MOCKADO_DEPOIMENTO_COORDENADOR: substitua por um depoimento real do coordenador do ministério.”</p>
+              <strong>NOME_MOCKADO_01</strong>
+              <span>Coordenador · IGREJA_MOCKADA_01</span>
+            </article>
+            <article class="card quote-card">
+              <p>“TEXTO_MOCKADO_DEPOIMENTO_DIRETOR_MUSICAL: substitua por um depoimento real do diretor musical.”</p>
+              <strong>NOME_MOCKADO_02</strong>
+              <span>Diretor musical · IGREJA_MOCKADA_02</span>
+            </article>
+            <article class="card quote-card">
+              <p>“TEXTO_MOCKADO_DEPOIMENTO_ESCALAS: substitua por um depoimento real do responsável pelas escalas.”</p>
+              <strong>NOME_MOCKADO_03</strong>
+              <span>Responsável pelas escalas · IGREJA_MOCKADA_03</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container reveal">
+          <div class="block-head">
+            <span class="eyebrow">Perguntas essenciais</span>
+            <h2 class="section-title">Respostas rápidas para reduzir objeções sem tirar o visitante do fluxo de decisão.</h2>
+          </div>
+
+          <div class="faq-grid">
+            <article class="card faq-item open">
+              <button class="faq-trigger" type="button">
+                <span>O WorshipHub é só para escala e repertório?</span>
+                <span class="faq-icon">−</span>
+              </button>
+              <div class="faq-content">
+                Não. A proposta é ser uma plataforma profissional de gestão do ministério, reunindo equipe, eventos, comunicação, repertório, histórico e visão operacional em um único ambiente.
+              </div>
+            </article>
+            <article class="card faq-item">
+              <button class="faq-trigger" type="button">
+                <span>Posso começar pelo plano gratuito?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-content">
+                Sim. O plano gratuito serve como porta de entrada para experimentar o fluxo do produto antes de avançar para um plano pago.
+              </div>
+            </article>
+            <article class="card faq-item">
+              <button class="faq-trigger" type="button">
+                <span>Consigo contratar um plano pelo WhatsApp?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-content">
+                Sim. Enquanto o checkout externo na landing não está finalizado, a contratação comercial pode ser conduzida pelo WhatsApp com suporte à escolha do plano.
+              </div>
+            </article>
+            <article class="card faq-item">
+              <button class="faq-trigger" type="button">
+                <span>O produto atende ministérios pequenos e estruturas maiores?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-content">
+                Sim. A lógica do produto atende desde equipes mais simples até contextos mais robustos, inclusive com visão preparada para multi-igrejas.
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section final-cta">
+        <div class="container reveal">
+          <div class="card final-wrap">
+            <div class="final-copy">
+              <span class="eyebrow">Última chamada para decisão</span>
+              <h2>Chegou a hora de organizar seu ministério com uma estrutura realmente profissional.</h2>
+              <p>Se sua liderança já sente o peso da desorganização, da comunicação confusa e da falta de visão operacional, o WorshipHub foi pensado exatamente para esse próximo nível.</p>
+              <div class="final-actions">
+                <a class="btn btn-primary" href="#planos">Quero escolher o melhor plano</a>
+                <a class="btn btn-secondary js-download-app" href="__PLAY_STORE_URL__">Baixar o aplicativo</a>
+              </div>
+            </div>
+            <div class="final-points">
+              <article class="card final-point">
+                <strong>1 plataforma</strong>
+                <span>Para centralizar equipe, repertório, eventos e comunicação.</span>
+              </article>
+              <article class="card final-point">
+                <strong>+ clareza</strong>
+                <span>Para quem lidera e precisa decidir com mais segurança.</span>
+              </article>
+              <article class="card final-point">
+                <strong>+ organização</strong>
+                <span>Na rotina de cada evento, sem depender de fluxos soltos.</span>
+              </article>
+              <article class="card final-point">
+                <strong>+ escala</strong>
+                <span>Para crescer do básico ao profissional sem trocar de solução.</span>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>© 2026 WorshipHub. Gestão profissional para ministérios de louvor.</div>
+        <div class="footer-links">
+          <a class="js-privacy" href="__PRIVACY_URL__">Privacidade</a>
+          <a class="js-terms" href="__TERMS_URL__">Termos</a>
+          <a href="__WHATSAPP_LINK_GENERIC__" target="_blank" rel="noopener">WhatsApp comercial</a>
+        </div>
       </div>
-    </div>
-  </footer>
+    </footer>
+  </div>
 
   <script src="./script.js"></script>
 </body>
