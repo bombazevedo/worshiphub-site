@@ -1,106 +1,2179 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WorshipHub — Plataforma profissional para gestão de ministérios de louvor</title>
+  <meta name="description" content="Escalas organizadas, repertório centralizado, comunicação por evento e gestão profissional da equipe em um único aplicativo." />
+  <meta name="theme-color" content="#090511" />
+  <meta property="og:title" content="WorshipHub — Plataforma profissional para gestão de ministérios de louvor" />
+  <meta property="og:description" content="Escalas organizadas, repertório centralizado, comunicação por evento e gestão profissional da equipe em um único aplicativo." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="./assets/og-cover.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <style>
+    :root {
+      --bg: #090511;
+      --bg-soft: #120a22;
+      --surface: rgba(255,255,255,0.06);
+      --surface-2: rgba(255,255,255,0.03);
+      --stroke: rgba(255,255,255,0.11);
+      --text: #f7f4ff;
+      --muted: #c9c3d8;
+      --muted-2: #a7a1b6;
+      --primary: #4B0082;
+      --primary-2: #6b1cb3;
+      --gold: #FFD700;
+      --gold-2: #ffef99;
+      --success: #8df6c0;
+      --danger: #ffb3cc;
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 18px;
+      --radius-sm: 14px;
+      --shadow-lg: 0 28px 80px rgba(0, 0, 0, 0.42);
+      --shadow-md: 0 16px 40px rgba(0, 0, 0, 0.28);
+      --content: min(1180px, calc(100vw - 32px));
+      --transition: 220ms cubic-bezier(.2,.8,.2,1);
+    }
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Roboto, Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(255, 215, 0, 0.08), transparent 28%),
+        radial-gradient(circle at 15% 20%, rgba(75, 0, 130, 0.36), transparent 26%),
+        radial-gradient(circle at 80% 65%, rgba(138, 43, 226, 0.18), transparent 20%),
+        linear-gradient(180deg, #08040f 0%, #0b0614 30%, #090511 100%);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-<title>WorshipHub</title>
+    img {
+      max-width: 100%;
+      display: block;
+      height: auto;
+    }
 
-<style>
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
 
-body{
-margin:0;
-font-family:Arial,Helvetica,sans-serif;
-background:#0b0715;
-color:white;
-}
+    .page-shell {
+      position: relative;
+      isolation: isolate;
+    }
 
-.container{
-max-width:1100px;
-margin:auto;
-padding:40px;
-}
+    .noise,
+    .aurora {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -2;
+    }
 
-.hero{
-padding:120px 20px;
-text-align:center;
-background:
-radial-gradient(circle at top left, rgba(140,70,255,0.4), transparent 40%),
-radial-gradient(circle at bottom right, rgba(255,200,0,0.2), transparent 40%),
-#0b0715;
-}
+    .noise {
+      opacity: .08;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.12) 1px, transparent 1px),
+        radial-gradient(circle at 80% 30%, rgba(255,255,255,.08) 1px, transparent 1px),
+        radial-gradient(circle at 40% 70%, rgba(255,255,255,.10) 1px, transparent 1px);
+      background-size: 18px 18px, 24px 24px, 22px 22px;
+      mix-blend-mode: soft-light;
+    }
 
-h1{
-font-size:56px;
-margin-bottom:20px;
-}
+    .aurora::before,
+    .aurora::after {
+      content: "";
+      position: absolute;
+      width: 40vw;
+      height: 40vw;
+      filter: blur(80px);
+      border-radius: 50%;
+      opacity: .18;
+      animation: drift 18s ease-in-out infinite alternate;
+    }
 
-p{
-font-size:20px;
-opacity:0.85;
-}
+    .aurora::before {
+      background: linear-gradient(135deg, rgba(75,0,130,.72), rgba(255,215,0,.32));
+      top: -8vw;
+      left: -8vw;
+    }
 
-.btn{
-display:inline-block;
-margin-top:30px;
-padding:16px 28px;
-border-radius:12px;
-text-decoration:none;
-font-weight:bold;
-}
+    .aurora::after {
+      background: linear-gradient(135deg, rgba(118,34,198,.56), rgba(255,215,0,.18));
+      right: -10vw;
+      top: 18vh;
+      animation-delay: -6s;
+    }
 
-.primary{
-background:linear-gradient(135deg,#6f3cff,#8f65ff);
-color:white;
-}
+    @keyframes drift {
+      from { transform: translate3d(0,0,0) scale(1); }
+      to { transform: translate3d(6vw, 4vh, 0) scale(1.18); }
+    }
 
-.secondary{
-border:1px solid rgba(255,255,255,0.2);
-color:white;
-margin-left:10px;
-}
+    .container {
+      width: var(--content);
+      margin-inline: auto;
+    }
 
-footer{
-padding:40px;
-text-align:center;
-opacity:0.6;
-}
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 80;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(9,5,17,.88), rgba(9,5,17,.52));
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
 
-</style>
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 82px;
+    }
 
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid rgba(255,215,0,.20);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 12px 28px rgba(0,0,0,.25);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .brand-title {
+      font-size: 1rem;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .brand-subtitle {
+      color: var(--muted-2);
+      font-size: .85rem;
+      line-height: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section {
+      padding: 92px 0;
+      position: relative;
+    }
+
+    .section-tight { padding: 72px 0; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 36px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,215,0,.2);
+      background: rgba(255,255,255,0.04);
+      color: var(--gold-2);
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .section h2,
+    .hero-copy h1,
+    .final-copy h2 {
+      margin: 18px 0 14px;
+      line-height: 1.04;
+      letter-spacing: -0.04em;
+    }
+
+    .hero {
+      padding-top: 48px;
+      padding-bottom: 60px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(400px, .95fr);
+      align-items: center;
+      gap: 40px;
+    }
+
+    .hero-copy h1 {
+      font-size: clamp(2.7rem, 5.4vw, 5.45rem);
+      max-width: 12ch;
+    }
+
+    .hero-copy p {
+      margin: 0;
+      max-width: 60ch;
+      color: var(--muted);
+      font-size: clamp(1.02rem, 1.6vw, 1.18rem);
+      line-height: 1.65;
+    }
+
+    .hero-proof {
+      margin: 24px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .hero-proof li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border-radius: var(--radius-sm);
+      color: #efe8ff;
+      font-size: .93rem;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+    }
+
+    .hero-actions,
+    .final-actions,
+    .pricing-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      --btn-bg: rgba(255,255,255,0.06);
+      --btn-color: var(--text);
+      --btn-border: rgba(255,255,255,0.12);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 54px;
+      padding: 0 22px;
+      border-radius: 16px;
+      border: 1px solid var(--btn-border);
+      background: var(--btn-bg);
+      color: var(--btn-color);
+      font-weight: 700;
+      letter-spacing: -.01em;
+      cursor: pointer;
+      transition: transform var(--transition), border-color var(--transition), background var(--transition), box-shadow var(--transition), color var(--transition);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+      white-space: nowrap;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      transform: translateY(-1px);
+      border-color: rgba(255,215,0,0.35);
+      box-shadow: 0 16px 34px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,0.08);
+      outline: none;
+    }
+
+    .btn-primary {
+      --btn-bg: linear-gradient(135deg, var(--primary), #6c14b8 60%, #8d39dd 100%);
+      --btn-color: #fff;
+      --btn-border: rgba(255,215,0,.22);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.16) 15%, transparent 28%);
+      transform: translateX(-110%);
+      transition: transform 680ms ease;
+      pointer-events: none;
+    }
+
+    .btn-primary:hover::after,
+    .btn-primary:focus-visible::after {
+      transform: translateX(110%);
+    }
+
+    .btn-secondary {
+      --btn-bg: rgba(255,255,255,0.03);
+      --btn-border: rgba(255,215,0,.26);
+      --btn-color: var(--gold-2);
+    }
+
+    .btn-ghost {
+      --btn-bg: rgba(255,255,255,0.02);
+      --btn-color: #f4f0ff;
+    }
+
+    .cta-note {
+      color: var(--muted-2);
+      font-size: .92rem;
+      margin-top: 14px;
+      max-width: 52ch;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 680px;
+      display: grid;
+      place-items: center;
+      isolation: isolate;
+    }
+
+    .hero-orbit {
+      position: absolute;
+      inset: 8% 10% auto;
+      height: 520px;
+      pointer-events: none;
+      z-index: 0;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at center, rgba(255,215,0,.16) 0%, transparent 44%),
+        radial-gradient(circle at center, rgba(75,0,130,.24) 0%, transparent 62%);
+      filter: blur(22px);
+      transform: translateZ(0);
+      animation: pulse 6.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { opacity: .85; transform: scale(1); }
+      to { opacity: 1; transform: scale(1.06); }
+    }
+
+    .dashboard,
+    .phone {
+      position: absolute;
+      border-radius: 34px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,.08);
+      overflow: hidden;
+      backdrop-filter: blur(18px);
+    }
+
+    .dashboard {
+      width: min(100%, 560px);
+      min-height: 390px;
+      top: 34px;
+      left: 0;
+      padding: 18px;
+      transform: rotate(-5deg);
+      z-index: 1;
+    }
+
+    .phone {
+      width: min(100%, 320px);
+      min-height: 620px;
+      right: 8px;
+      bottom: 0;
+      padding: 14px;
+      transform: rotate(5deg);
+      z-index: 2;
+    }
+
+    .mock-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .mock-dots {
+      display: inline-flex;
+      gap: 8px;
+    }
+
+    .mock-dots span {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.20);
+    }
+
+    .mock-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      color: var(--gold-2);
+      font-size: .8rem;
+      font-weight: 700;
+    }
+
+    .mock-main {
+      display: grid;
+      gap: 14px;
+      padding-top: 16px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+    }
+
+    .metric-card,
+    .mini-card,
+    .feature-card,
+    .pain-card,
+    .proof-card,
+    .testimonial,
+    .faq-item,
+    .plan-card,
+    .showcase-card,
+    .control-card,
+    .signal-card {
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: var(--radius-md);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+
+    .metric-card {
+      padding: 16px;
+    }
+
+    .metric-card strong {
+      display: block;
+      font-size: 1.3rem;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+
+    .metric-card span {
+      color: var(--muted-2);
+      font-size: .88rem;
+      line-height: 1.45;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .chart-card {
+      padding: 16px;
+      min-height: 210px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .chart-bars {
+      display: grid;
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+      align-items: end;
+      gap: 10px;
+      min-height: 120px;
+      margin-top: 18px;
+    }
+
+    .chart-bars span {
+      display: block;
+      border-radius: 999px 999px 10px 10px;
+      background: linear-gradient(180deg, rgba(255,215,0,.96), rgba(255,215,0,.18));
+      min-height: 34px;
+      animation: bars 5s ease-in-out infinite alternate;
+    }
+
+    .chart-bars span:nth-child(odd) {
+      background: linear-gradient(180deg, rgba(159,82,241,.96), rgba(159,82,241,.18));
+    }
+
+    .chart-bars span:nth-child(1) { height: 48px; }
+    .chart-bars span:nth-child(2) { height: 80px; animation-delay: -.4s; }
+    .chart-bars span:nth-child(3) { height: 102px; animation-delay: -.7s; }
+    .chart-bars span:nth-child(4) { height: 68px; animation-delay: -.2s; }
+    .chart-bars span:nth-child(5) { height: 116px; animation-delay: -.9s; }
+    .chart-bars span:nth-child(6) { height: 84px; animation-delay: -.3s; }
+    .chart-bars span:nth-child(7) { height: 96px; animation-delay: -.5s; }
+    .chart-bars span:nth-child(8) { height: 58px; animation-delay: -.6s; }
+
+    @keyframes bars {
+      from { filter: saturate(.9) brightness(.96); transform: translateY(0); }
+      to { filter: saturate(1.06) brightness(1.02); transform: translateY(-4px); }
+    }
+
+    .mini-card {
+      padding: 16px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .mini-card h3,
+    .feature-card h3,
+    .pain-card h3,
+    .proof-card h3,
+    .control-card h3,
+    .signal-card h3,
+    .showcase-card h3,
+    .plan-card h3,
+    .testimonial h3,
+    .faq-item button {
+      margin: 0;
+      font-size: 1.02rem;
+      line-height: 1.3;
+      letter-spacing: -.02em;
+    }
+
+    .mini-card p,
+    .feature-card p,
+    .pain-card p,
+    .proof-card p,
+    .control-card p,
+    .signal-card p,
+    .showcase-card p,
+    .testimonial p,
+    .faq-item p,
+    .plan-card p,
+    .section-copy p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: .97rem;
+    }
+
+    .phone-screen {
+      display: grid;
+      gap: 14px;
+      padding-top: 16px;
+    }
+
+    .event-item {
+      display: grid;
+      gap: 10px;
+      padding: 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025));
+    }
+
+    .event-item.special {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
+        linear-gradient(90deg, rgba(255,215,0,.18), rgba(75,0,130,.16));
+      border-color: rgba(255,215,0,.22);
+    }
+
+    .event-head,
+    .event-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .event-title {
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .event-tag {
+      min-width: max-content;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.07);
+      color: var(--gold-2);
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .palette-line {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+    }
+
+    .palette-line span {
+      display: block;
+      min-height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(255,215,0,.98), rgba(156,89,255,.88));
+    }
+
+    .floating-badge {
+      position: absolute;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      color: #fff;
+      box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255,255,255,.08);
+      backdrop-filter: blur(14px);
+      font-size: .9rem;
+      z-index: 3;
+      animation: floaty 5.6s ease-in-out infinite;
+    }
+
+    .floating-badge.one {
+      left: -10px;
+      bottom: 128px;
+    }
+
+    .floating-badge.two {
+      right: 0;
+      top: 150px;
+      animation-delay: -2.8s;
+    }
+
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .section-header {
+      display: grid;
+      gap: 12px;
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .section-header h2,
+    .final-copy h2 {
+      font-size: clamp(2rem, 3vw, 3.25rem);
+    }
+
+    .signal-grid,
+    .proof-grid,
+    .pain-grid,
+    .feature-grid,
+    .testimonials,
+    .faq-grid,
+    .showcase-grid,
+    .control-grid,
+    .pricing-grid,
+    .sticky-proof {
+      display: grid;
+      gap: 18px;
+    }
+
+    .signal-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 18px;
+    }
+
+    .signal-card {
+      padding: 20px;
+      min-height: 180px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .signal-card::before,
+    .proof-card::before,
+    .feature-card::before,
+    .pain-card::before,
+    .showcase-card::before,
+    .plan-card::before,
+    .testimonial::before,
+    .faq-item::before,
+    .control-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255,215,0,.44), transparent 65%);
+      pointer-events: none;
+    }
+
+    .signal-icon,
+    .proof-icon,
+    .feature-icon,
+    .pain-icon,
+    .control-icon,
+    .showcase-icon {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      font-size: 1.45rem;
+      background: linear-gradient(135deg, rgba(255,215,0,.16), rgba(255,255,255,.05));
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+      margin-bottom: 18px;
+    }
+
+    .sticky-proof {
+      grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
+      align-items: start;
+      gap: 26px;
+    }
+
+    .proof-stack,
+    .feature-grid,
+    .pain-grid,
+    .showcase-grid,
+    .control-grid,
+    .pricing-grid,
+    .testimonials,
+    .faq-grid {
+      grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+
+    .proof-card,
+    .pain-card,
+    .feature-card,
+    .showcase-card,
+    .control-card,
+    .testimonial,
+    .faq-item {
+      position: relative;
+      overflow: hidden;
+      padding: 24px;
+      min-height: 100%;
+    }
+
+    .sticky-stage {
+      position: sticky;
+      top: 104px;
+      min-height: 540px;
+      padding: 26px;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(255,255,255,.09);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
+        radial-gradient(circle at 20% 20%, rgba(255,215,0,.08), transparent 40%),
+        radial-gradient(circle at 82% 16%, rgba(75,0,130,.24), transparent 36%);
+      box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,.08);
+      overflow: hidden;
+    }
+
+    .showcase-glow {
+      position: absolute;
+      inset: auto -8% -16% auto;
+      width: 60%;
+      height: 60%;
+      background: radial-gradient(circle, rgba(255,215,0,.18), transparent 60%);
+      filter: blur(20px);
+      pointer-events: none;
+    }
+
+    .stage-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .stage-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      color: var(--gold-2);
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .stage-panel {
+      display: grid;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .showcase-card {
+      min-height: 280px;
+      display: grid;
+      gap: 16px;
+      align-content: start;
+    }
+
+    .screen-placeholder {
+      position: relative;
+      min-height: 220px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02)),
+        linear-gradient(135deg, rgba(75,0,130,.22), rgba(255,215,0,.08));
+    }
+
+    .screen-placeholder::before {
+      content: attr(data-label);
+      position: absolute;
+      inset: auto auto 16px 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 34px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: rgba(9,5,17,.72);
+      border: 1px solid rgba(255,255,255,.08);
+      color: #fff;
+      font-size: .82rem;
+      font-weight: 700;
+      z-index: 2;
+    }
+
+    .screen-placeholder .bars {
+      position: absolute;
+      inset: 22px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .screen-placeholder .bars span {
+      display: block;
+      border-radius: 14px;
+      background: rgba(255,255,255,.14);
+    }
+
+    .screen-placeholder .bars span:nth-child(1) { height: 16%; width: 54%; }
+    .screen-placeholder .bars span:nth-child(2) { height: 26%; width: 100%; }
+    .screen-placeholder .bars span:nth-child(3) { height: 12%; width: 72%; }
+    .screen-placeholder .bars span:nth-child(4) { height: 16%; width: 86%; }
+    .screen-placeholder .bars span:nth-child(5) { height: 18%; width: 64%; }
+
+    .screen-placeholder img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .control-grid {
+      margin-top: 24px;
+    }
+
+    .control-card.highlight {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03)),
+        linear-gradient(135deg, rgba(255,215,0,.10), rgba(75,0,130,.16));
+      border-color: rgba(255,215,0,.18);
+    }
+
+    .pricing-panel {
+      position: relative;
+      padding: 28px;
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025)),
+        radial-gradient(circle at 10% 10%, rgba(255,215,0,.08), transparent 34%),
+        radial-gradient(circle at 90% 14%, rgba(75,0,130,.22), transparent 34%);
+      border: 1px solid rgba(255,255,255,.09);
+      box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,.08);
+      overflow: hidden;
+    }
+
+    .pricing-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 26px;
+    }
+
+    .billing-toggle {
+      display: inline-flex;
+      gap: 8px;
+      padding: 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.04);
+    }
+
+    .billing-toggle button {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      min-height: 42px;
+      padding: 0 16px;
+      border-radius: 999px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition), transform var(--transition);
+    }
+
+    .billing-toggle button.active {
+      background: linear-gradient(135deg, rgba(75,0,130,.95), rgba(133,41,213,.85));
+      color: #fff;
+      box-shadow: 0 12px 28px rgba(0,0,0,.22);
+    }
+
+    .pricing-copy {
+      max-width: 52ch;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .pricing-grid {
+      grid-template-columns: repeat(3, minmax(0,1fr));
+    }
+
+    .plan-card {
+      position: relative;
+      display: grid;
+      align-content: start;
+      gap: 16px;
+      padding: 24px;
+      min-height: 100%;
+      overflow: hidden;
+    }
+
+    .plan-card.recommended {
+      transform: translateY(-8px);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03)),
+        linear-gradient(135deg, rgba(255,215,0,.12), rgba(75,0,130,.16));
+      border-color: rgba(255,215,0,.24);
+      box-shadow: 0 20px 46px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    .plan-top {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .plan-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 30px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: rgba(255,215,0,.12);
+      color: var(--gold-2);
+      border: 1px solid rgba(255,215,0,.18);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .plan-price {
+      display: grid;
+      gap: 4px;
+    }
+
+    .plan-price strong {
+      font-size: 2rem;
+      line-height: 1;
+      letter-spacing: -.04em;
+    }
+
+    .plan-everyday {
+      color: var(--gold-2);
+      font-size: .92rem;
+      font-weight: 700;
+    }
+
+    .plan-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      color: var(--muted);
+    }
+
+    .plan-list li {
+      display: flex;
+      align-items: start;
+      gap: 10px;
+      line-height: 1.55;
+      font-size: .94rem;
+    }
+
+    .plan-list li::before {
+      content: "•";
+      color: var(--gold);
+      font-size: 1.2rem;
+      line-height: 1;
+      transform: translateY(1px);
+    }
+
+    .plan-cta {
+      margin-top: auto;
+      padding-top: 8px;
+    }
+
+    .disclaimer {
+      margin-top: 18px;
+      color: var(--muted-2);
+      font-size: .88rem;
+      line-height: 1.55;
+    }
+
+    .testimonials {
+      margin-top: 16px;
+    }
+
+    .testimonial .quote {
+      font-size: 1.05rem;
+      color: #fff;
+      line-height: 1.75;
+    }
+
+    .testimonial footer {
+      display: grid;
+      gap: 4px;
+      margin-top: 16px;
+      color: var(--muted-2);
+      font-size: .9rem;
+    }
+
+    .faq-grid {
+      margin-top: 16px;
+    }
+
+    .faq-item {
+      padding: 0;
+    }
+
+    .faq-item button {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: #fff;
+      text-align: left;
+      padding: 22px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      cursor: pointer;
+    }
+
+    .faq-item button span:last-child {
+      display: inline-grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.06);
+      transition: transform var(--transition), background var(--transition);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .faq-item[open] button span:last-child {
+      transform: rotate(45deg);
+      background: rgba(255,215,0,.10);
+    }
+
+    .faq-item .faq-body {
+      padding: 0 24px 24px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .final-cta {
+      padding-bottom: 120px;
+    }
+
+    .final-panel {
+      position: relative;
+      overflow: hidden;
+      padding: 34px;
+      border-radius: 36px;
+      border: 1px solid rgba(255,255,255,.09);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)),
+        radial-gradient(circle at 10% 10%, rgba(255,215,0,.16), transparent 30%),
+        radial-gradient(circle at 88% 20%, rgba(75,0,130,.28), transparent 34%);
+      box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    .final-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .final-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 14px;
+    }
+
+    .final-metrics .metric-card {
+      background: rgba(255,255,255,.04);
+    }
+
+    .footer {
+      border-top: 1px solid rgba(255,255,255,.06);
+      padding: 26px 0 36px;
+      color: var(--muted-2);
+      font-size: .92rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity .7s ease, transform .7s ease;
+      will-change: transform, opacity;
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .sticky-mobile-cta {
+      position: fixed;
+      inset: auto 12px 12px;
+      display: none;
+      z-index: 95;
+      gap: 10px;
+      padding: 12px;
+      border-radius: 22px;
+      background: rgba(9,5,17,.92);
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 22px 46px rgba(0,0,0,.34);
+      backdrop-filter: blur(14px);
+    }
+
+    .sticky-mobile-cta .btn {
+      flex: 1;
+      min-height: 46px;
+      padding-inline: 14px;
+      font-size: .92rem;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    @media (max-width: 1120px) {
+      .hero-grid,
+      .sticky-proof,
+      .final-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        min-height: 760px;
+      }
+
+      .sticky-stage {
+        position: relative;
+        top: auto;
+      }
+
+      .signal-grid,
+      .pricing-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .section { padding: 74px 0; }
+      .section-tight { padding: 58px 0; }
+      .hero { padding-top: 28px; padding-bottom: 36px; }
+      .topbar-inner { min-height: 72px; }
+      .nav-actions { display: none; }
+      .hero-proof,
+      .signal-grid,
+      .proof-stack,
+      .feature-grid,
+      .pain-grid,
+      .showcase-grid,
+      .control-grid,
+      .pricing-grid,
+      .testimonials,
+      .faq-grid,
+      .final-metrics,
+      .hero-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions,
+      .final-actions,
+      .pricing-actions {
+        flex-direction: column;
+      }
+
+      .btn { width: 100%; }
+
+      .hero-visual {
+        min-height: 700px;
+      }
+
+      .dashboard {
+        width: calc(100% - 44px);
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        top: 0;
+        transform: rotate(-3deg);
+      }
+
+      .phone {
+        width: min(88vw, 300px);
+        right: 12px;
+        bottom: -10px;
+        transform: rotate(3deg);
+      }
+
+      .floating-badge {
+        font-size: .83rem;
+        padding: 11px 13px;
+      }
+
+      .floating-badge.one { left: 0; bottom: 100px; }
+      .floating-badge.two { right: 0; top: 126px; }
+
+      .pricing-toolbar {
+        align-items: stretch;
+      }
+
+      .billing-toggle {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .billing-toggle button { flex: 1; }
+
+      .sticky-mobile-cta {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .final-cta { padding-bottom: 136px; }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="page-shell">
+    <div class="aurora"></div>
+    <div class="noise"></div>
 
-<section class="hero">
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a class="brand" href="#top" aria-label="WorshipHub">
+          <div class="brand-mark">
+            <img src="./assets/logo_icon_1024.png" alt="Logo WorshipHub" width="52" height="52" loading="eager" decoding="async" onerror="this.style.display='none'; this.parentNode.innerHTML='✦'; this.parentNode.style.fontSize='22px'; this.parentNode.style.color='var(--gold)';" />
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">WorshipHub</span>
+            <span class="brand-subtitle">Gestão profissional para ministérios de louvor</span>
+          </div>
+        </a>
 
-<div class="container">
+        <div class="nav-actions">
+          <a class="btn btn-secondary" href="#planos">Ver planos</a>
+          <a class="btn btn-primary js-download-app" href="#downloads">Quero organizar meu ministério</a>
+        </div>
+      </div>
+    </header>
 
-<h1>WorshipHub</h1>
+    <main id="top">
+      <section class="section hero">
+        <div class="container hero-grid">
+          <div class="hero-copy reveal">
+            <span class="eyebrow">Plataforma profissional • Louvor</span>
+            <h1>A plataforma profissional para gestão de ministérios de louvor.</h1>
+            <p>
+              Escalas organizadas, repertório centralizado, comunicação por evento e gestão profissional da equipe em um único aplicativo — da pequena banda até estruturas multi-igrejas.
+            </p>
 
-<p>
-A plataforma completa para organizar ministérios,
-equipes de louvor e eventos.
-</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#planos">Quero organizar meu ministério</a>
+              <a class="btn btn-secondary js-download-app" href="#downloads">Baixar o aplicativo</a>
+            </div>
 
-<a class="btn primary" href="https://support.worshiphub-recover.org">
-Central de suporte
-</a>
+            <p class="cta-note">
+              Menos ruído, menos retrabalho e mais clareza para quem lidera o louvor. Uma landing pensada para converter sem dispersar o visitante.
+            </p>
 
-<a class="btn secondary" href="https://support.worshiphub-recover.org/privacy">
-Política de privacidade
-</a>
+            <ul class="hero-proof">
+              <li>✓ Escalas sem caos e sem retrabalho</li>
+              <li>✓ Comunicação por evento, não em grupos genéricos</li>
+              <li>✓ Histórico de repertório com visão estratégica</li>
+              <li>✓ Estrutura preparada para multi-igrejas</li>
+            </ul>
+          </div>
 
-</div>
+          <div class="hero-visual reveal">
+            <div class="hero-orbit"></div>
 
-</section>
+            <div class="dashboard" aria-hidden="true">
+              <div class="mock-top">
+                <div class="mock-dots"><span></span><span></span><span></span></div>
+                <span class="mock-chip">Painel do ministério</span>
+              </div>
+              <div class="mock-main">
+                <div class="hero-metrics">
+                  <div class="metric-card">
+                    <strong>+92%</strong>
+                    <span>Escalas confirmadas sem retrabalho no fluxo ideal.</span>
+                  </div>
+                  <div class="metric-card">
+                    <strong>1 só lugar</strong>
+                    <span>Equipe, repertório, eventos e comunicação centralizados.</span>
+                  </div>
+                  <div class="metric-card">
+                    <strong>Multi-igrejas</strong>
+                    <span>Estrutura preparada para coordenação centralizada.</span>
+                  </div>
+                </div>
 
-<footer>
+                <div class="dashboard-grid">
+                  <div class="chart-card metric-card">
+                    <div>
+                      <div class="mock-chip">Participação • Assiduidade • Escalas</div>
+                      <h3 style="margin:14px 0 0; font-size:1.04rem;">Gestão qualitativa e quantitativa da equipe</h3>
+                    </div>
+                    <div class="chart-bars" aria-hidden="true">
+                      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                  </div>
 
-© 2026 WorshipHub
+                  <div class="mini-card">
+                    <h3>Próximo evento especial</h3>
+                    <p>Culto de celebração com paleta visual aplicada, chat privado e repertório vinculado.</p>
+                    <div class="event-item special">
+                      <div class="event-head">
+                        <span class="event-title">Culto de Celebração</span>
+                        <span class="event-tag">Especial</span>
+                      </div>
+                      <div class="palette-line"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                      <div class="event-meta">
+                        <span style="color:var(--muted);font-size:.88rem;">Equipe confirmada • Repertório definido</span>
+                        <span style="color:var(--gold-2);font-size:.86rem;font-weight:700;">Chat ativo</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-</footer>
+            <div class="phone" aria-hidden="true">
+              <div class="mock-top">
+                <div class="mock-chip">Fluxo operacional</div>
+                <span style="font-size:.86rem;color:var(--muted);">WorshipHub</span>
+              </div>
+              <div class="phone-screen">
+                <div class="event-item">
+                  <div class="event-head">
+                    <span class="event-title">Escala duplicada com 1 clique</span>
+                    <span class="event-tag">Tempo otimizado</span>
+                  </div>
+                  <p style="margin:0;color:var(--muted);font-size:.9rem;line-height:1.55;">Duplique eventos em segundos em vez de recriar tudo do zero.</p>
+                </div>
+                <div class="event-item">
+                  <div class="event-head">
+                    <span class="event-title">Chat privado por evento</span>
+                    <span class="event-tag">Mais clareza</span>
+                  </div>
+                  <p style="margin:0;color:var(--muted);font-size:.9rem;line-height:1.55;">Cada evento com seu próprio fluxo de comunicação entre os escalados.</p>
+                </div>
+                <div class="event-item special">
+                  <div class="event-head">
+                    <span class="event-title">Repertório com histórico</span>
+                    <span class="event-tag">Spotify • Deezer • YouTube</span>
+                  </div>
+                  <p style="margin:0;color:var(--muted);font-size:.9rem;line-height:1.55;">Mais visão para evitar repetição desnecessária e planejar melhor as músicas.</p>
+                </div>
+              </div>
+            </div>
 
+            <div class="floating-badge one">💬 Chat privado por evento</div>
+            <div class="floating-badge two">📊 Gestão profissional da equipe</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container reveal">
+          <div class="section-header">
+            <span class="eyebrow">Por que a página prende a atenção</span>
+            <h2>Uma narrativa clara, sem excesso de distrações e com valor percebido desde o primeiro scroll.</h2>
+            <p>
+              A estrutura da página segue o fluxo que mais tende a converter em SaaS: dor reconhecível, prova visual, diferenciais reais, planos fáceis de entender e chamadas objetivas para ação.
+            </p>
+          </div>
+          <div class="signal-grid">
+            <article class="signal-card">
+              <div class="signal-icon">⚡</div>
+              <h3>Abertura ultrarrápida</h3>
+              <p>HTML puro, CSS otimizado, animações leves e estrutura pronta para Cloudflare Pages.</p>
+            </article>
+            <article class="signal-card">
+              <div class="signal-icon">🎯</div>
+              <h3>Foco em captação</h3>
+              <p>Poucos caminhos, CTAs espalhados com intenção clara e narrativa orientada à decisão.</p>
+            </article>
+            <article class="signal-card">
+              <div class="signal-icon">🧠</div>
+              <h3>Hierarquia cognitiva</h3>
+              <p>O visitante entende o produto, enxerga valor e encontra respostas sem ruído visual.</p>
+            </article>
+            <article class="signal-card">
+              <div class="signal-icon">✨</div>
+              <h3>Visual premium</h3>
+              <p>Estética tecnológica, contraste forte, profundidade visual e elementos com aparência de produto de alto nível.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container sticky-proof">
+          <div class="sticky-stage reveal">
+            <div class="showcase-glow"></div>
+            <div class="stage-header">
+              <span class="stage-pill">Antes vs. depois</span>
+              <span style="font-size:.86rem;color:var(--muted-2);">Fluxo pensado para liderança</span>
+            </div>
+            <div class="stage-panel">
+              <div class="showcase-card" style="padding:18px; min-height:auto;">
+                <h3>O que normalmente acontece</h3>
+                <p>Escalas espalhadas, mensagens perdidas, repertório difícil de rastrear e pouca visibilidade da equipe.</p>
+                <div class="screen-placeholder" data-label="Cenário fragmentado">
+                  <div class="bars"><span></span><span></span><span></span><span></span><span></span></div>
+                </div>
+              </div>
+              <div class="showcase-card" style="padding:18px; min-height:auto; background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03)), linear-gradient(135deg, rgba(255,215,0,.10), rgba(75,0,130,.16)); border-color: rgba(255,215,0,.18);">
+                <h3>O que o WorshipHub entrega</h3>
+                <p>Gestão centralizada, comunicação por evento, repertório estruturado, indicadores e experiência profissional.</p>
+                <div class="screen-placeholder" data-label="Fluxo centralizado">
+                  <div class="bars"><span></span><span></span><span></span><span></span><span></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="proof-stack">
+            <article class="pain-card reveal">
+              <div class="pain-icon">🗓️</div>
+              <h3>Escalas desorganizadas consomem tempo demais</h3>
+              <p>Quando a montagem depende de vários lugares ao mesmo tempo, a liderança perde horas refazendo decisões e apagando incêndios.</p>
+            </article>
+            <article class="pain-card reveal">
+              <div class="pain-icon">💬</div>
+              <h3>Comunicação confusa no WhatsApp desgasta a equipe</h3>
+              <p>Informações se perdem, mensagens se misturam e o evento fica sem contexto claro para quem realmente vai servir.</p>
+            </article>
+            <article class="pain-card reveal">
+              <div class="pain-icon">🎵</div>
+              <h3>Repertório sem histórico reduz a qualidade do planejamento</h3>
+              <p>Sem visibilidade do que foi tocado, da frequência e das referências, a gestão musical perde consistência.</p>
+            </article>
+            <article class="proof-card reveal">
+              <div class="proof-icon">🏛️</div>
+              <h3>O WorshipHub não é apenas um app de escala</h3>
+              <p>Ele posiciona seu ministério em um nível de gestão mais profissional: eventos, equipe, repertório, comunicação e visão operacional em um só lugar.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container reveal">
+          <div class="section-header">
+            <span class="eyebrow">Benefícios centrais</span>
+            <h2>Uma experiência pensada para quem precisa liderar com mais clareza, unidade e controle.</h2>
+            <p>
+              A página vende o produto de forma global, mas os argumentos principais foram organizados para atender desde equipes mais modestas até operações mais estruturadas, inclusive cenários multi-igrejas.
+            </p>
+          </div>
+
+          <div class="feature-grid">
+            <article class="feature-card reveal">
+              <div class="feature-icon">🧩</div>
+              <h3>Gerenciamento completo em um só lugar</h3>
+              <p>Evite depender de várias ferramentas paralelas. O WorshipHub centraliza eventos, equipe, repertório e comunicação em um único fluxo.</p>
+            </article>
+            <article class="feature-card reveal">
+              <div class="feature-icon">📈</div>
+              <h3>Gestão qualitativa e quantitativa da equipe</h3>
+              <p>Visualize participação, assiduidade, indisponibilidades e distribuição por função para tomar decisões com muito mais precisão.</p>
+            </article>
+            <article class="feature-card reveal">
+              <div class="feature-icon">⛪</div>
+              <h3>Estrutura profissional com visão multi-igrejas</h3>
+              <p>Da igreja local à coordenação centralizada de múltiplas organizações, o WorshipHub foi pensado para escalar com organização e unidade.</p>
+            </article>
+            <article class="feature-card reveal">
+              <div class="feature-icon">🚀</div>
+              <h3>Menos retrabalho, mais excelência operacional</h3>
+              <p>Com informações centralizadas e fluxos claros, sua liderança ganha tempo e melhora a experiência do ministério como um todo.</p>
+            </article>
+          </div>
+
+          <div class="pricing-actions reveal" style="margin-top: 28px;">
+            <a class="btn btn-primary" href="#planos">Quero ver os planos ideais para meu ministério</a>
+            <a class="btn btn-ghost js-download-app" href="#downloads">Baixar o aplicativo</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container reveal">
+          <div class="section-header">
+            <span class="eyebrow">Funcionalidades que impressionam</span>
+            <h2>Recursos que transformam um app de organização em uma plataforma de gestão profissional.</h2>
+            <p>
+              Esta seção é importante para a captação porque mostra, com apelo visual e operacional, por que o WorshipHub vai além do básico que o mercado costuma oferecer.
+            </p>
+          </div>
+
+          <div class="showcase-grid">
+            <article class="showcase-card reveal">
+              <div class="showcase-icon">♻️</div>
+              <h3>Duplicação de eventos em vez de recriação do zero</h3>
+              <p>Um dos ganhos mais percebidos por quem lidera: repetir a estrutura certa do evento sem refazer o trabalho inteiro.</p>
+              <div class="screen-placeholder" data-label="Evento duplicado com 1 clique">
+                <img src="./assets/screens/event-duplicate.webp" alt="Tela de duplicação de evento" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+                <div class="bars"><span></span><span></span><span></span><span></span><span></span></div>
+              </div>
+            </article>
+
+            <article class="showcase-card reveal">
+              <div class="showcase-icon">💬</div>
+              <h3>Chat privativo em cada evento</h3>
+              <p>Somente quem está escalado interage naquele contexto. Resultado: muito mais organização e menos ruído na comunicação.</p>
+              <div class="screen-placeholder" data-label="Chat contextual por evento">
+                <img src="./assets/screens/chat-event.webp" alt="Tela do chat do evento" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+                <div class="bars"><span></span><span></span><span></span><span></span><span></span></div>
+              </div>
+            </article>
+
+            <article class="showcase-card reveal">
+              <div class="showcase-icon">🎨</div>
+              <h3>Paleta de cores para eventos especiais</h3>
+              <p>Com um clique, o visual do evento fica mais alinhado ao contexto, reforçando a percepção premium do ministério.</p>
+              <div class="screen-placeholder" data-label="Paleta aplicada ao evento">
+                <img src="./assets/screens/palette-event.webp" alt="Tela de paleta de evento" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+                <div class="bars"><span></span><span></span><span></span><span></span><span></span></div>
+              </div>
+            </article>
+
+            <article class="showcase-card reveal">
+              <div class="showcase-icon">📆</div>
+              <h3>Marcação de indisponibilidade sem retrabalho</h3>
+              <p>Os próprios integrantes informam quando não podem participar, o que acelera a montagem da escala e reduz conflitos.</p>
+              <div class="screen-placeholder" data-label="Indisponibilidade registrada">
+                <img src="./assets/screens/unavailability.webp" alt="Tela de indisponibilidade" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+                <div class="bars"><span></span><span></span><span></span><span></span><span></span></div>
+              </div>
+            </article>
+
+            <article class="showcase-card reveal">
+              <div class="showcase-icon">📊</div>
+              <h3>Filtros avançados e visão real de equipe</h3>
+              <p>Descubra quem está mais escalado, quem tem maior assiduidade, quais funções estão sobrecarregadas e como a equipe se distribui no período.</p>
+              <div class="screen-placeholder" data-label="Gestão da equipe com filtros">
+                <img src="./assets/screens/team-stats.webp" alt="Tela de estatísticas de equipe" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+                <div class="bars"><span></span><span></span><span></span><span></span><span></span></div>
+              </div>
+            </article>
+
+            <article class="showcase-card reveal">
+              <div class="showcase-icon">🎧</div>
+              <h3>Histórico de repertório com Deezer, Spotify e YouTube</h3>
+              <p>Mais controle sobre o que foi tocado, com flexibilidade real para os integrantes e melhor gestão das músicas da igreja.</p>
+              <div class="screen-placeholder" data-label="Histórico e links musicais">
+                <img src="./assets/screens/repertoire-history.webp" alt="Tela de histórico de repertório" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+                <div class="bars"><span></span><span></span><span></span><span></span><span></span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container reveal">
+          <div class="section-header">
+            <span class="eyebrow">Diferencial competitivo</span>
+            <h2>O verdadeiro carro-chefe: gestão profissional do ministério, com espaço para crescer além do básico.</h2>
+            <p>
+              A maioria das soluções concorrentes resolve partes do problema. O WorshipHub se posiciona como uma camada profissional de gestão para a liderança que quer visão, controle e operação mais refinada.
+            </p>
+          </div>
+
+          <div class="control-grid">
+            <article class="control-card highlight reveal">
+              <div class="control-icon">🎯</div>
+              <h3>Mais do que escala e repertório</h3>
+              <p>O valor percebido do WorshipHub cresce quando a liderança entende que ele não substitui só grupos e planilhas — ele melhora o processo de gestão como um todo.</p>
+            </article>
+            <article class="control-card reveal">
+              <div class="control-icon">🛠️</div>
+              <h3>Processo operacional padronizado</h3>
+              <p>Criação, repetição, comunicação, ajuste de equipe e consulta de histórico acontecem com muito mais consistência e menos improviso.</p>
+            </article>
+            <article class="control-card reveal">
+              <div class="control-icon">🧭</div>
+              <h3>Visão clara para a liderança</h3>
+              <p>Quem decide enxerga com mais nitidez os gargalos de disponibilidade, participação e equilíbrio da equipe.</p>
+            </article>
+            <article class="control-card reveal">
+              <div class="control-icon">🏛️</div>
+              <h3>Preparado para estruturas maiores</h3>
+              <p>Se hoje a operação é modesta, ótimo. Se amanhã surgir uma estrutura multi-igrejas, a lógica do produto já sustenta uma evolução mais profissional.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="planos">
+        <div class="container reveal">
+          <div class="pricing-panel">
+            <div class="section-header" style="margin-bottom: 22px; max-width: 880px;">
+              <span class="eyebrow">Planos com percepção de valor</span>
+              <h2>Planos pensados para diferentes níveis de estrutura, com apresentação visual clara e atrativa.</h2>
+              <p>
+                A vitrine abaixo foi desenhada para reduzir fricção: primeiro o visitante percebe o custo por dia, depois enxerga o valor real e, por fim, conversa no WhatsApp sobre o plano escolhido.
+              </p>
+            </div>
+
+            <div class="pricing-toolbar">
+              <div class="billing-toggle" aria-label="Período de cobrança">
+                <button class="active" data-billing="monthly" type="button">Mensal</button>
+                <button data-billing="quarterly" type="button">Trimestral</button>
+                <button data-billing="yearly" type="button">Anual</button>
+              </div>
+              <div class="pricing-copy">
+                A partir de menos de <strong style="color:var(--gold-2)">R$ 1 por dia</strong> para manter o ministério mais alinhado, organizado e profissional.
+              </div>
+            </div>
+
+            <div class="pricing-grid" id="pricingGrid"></div>
+
+            <div class="pricing-actions">
+              <a class="btn btn-secondary" href="#faq">Tirar minhas dúvidas primeiro</a>
+              <a class="btn btn-primary js-download-app" id="downloads" href="#downloads">Baixar o aplicativo</a>
+            </div>
+
+            <p class="disclaimer">
+              O plano gratuito continua disponível como porta de entrada. A contratação comercial pode acontecer por WhatsApp enquanto o fluxo externo de checkout evolui. Dentro do app, a compra já pode seguir a lógica operacional do produto.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container reveal">
+          <div class="section-header">
+            <span class="eyebrow">Prova social e confiança</span>
+            <h2>Depoimentos ajudam, sim — especialmente quando reduzem a sensação de risco para a liderança.</h2>
+            <p>
+              Nesta primeira versão, já deixei a estrutura pronta para inserir depoimentos reais. Isso costuma elevar a confiança sem adicionar distração desnecessária à página.
+            </p>
+          </div>
+
+          <div class="testimonials">
+            <article class="testimonial reveal">
+              <h3>“Ficou muito mais simples organizar o louvor.”</h3>
+              <p class="quote">“Antes, quase tudo dependia de grupos e mensagens espalhadas. Depois do WorshipHub, nossa escala, comunicação e repertório ficaram muito mais claros.”</p>
+              <footer>
+                <strong style="color:#fff;">Nome do responsável</strong>
+                <span>Líder de louvor • Igreja / Ministério</span>
+              </footer>
+            </article>
+            <article class="testimonial reveal">
+              <h3>“A liderança ganhou visão da equipe.”</h3>
+              <p class="quote">“Conseguimos enxergar disponibilidade, recorrência e organização com muito mais maturidade. Isso ajudou demais no planejamento.”</p>
+              <footer>
+                <strong style="color:#fff;">Nome do responsável</strong>
+                <span>Coordenador • Igreja / Ministério</span>
+              </footer>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight" id="faq">
+        <div class="container reveal">
+          <div class="section-header">
+            <span class="eyebrow">Perguntas essenciais</span>
+            <h2>Respostas rápidas para reduzir objeções sem tirar o visitante do fluxo de decisão.</h2>
+          </div>
+
+          <div class="faq-grid">
+            <details class="faq-item reveal" open>
+              <summary>
+                <button type="button" aria-expanded="true">
+                  <span>O WorshipHub é só para escala e repertório?</span>
+                  <span>+</span>
+                </button>
+              </summary>
+              <div class="faq-body">
+                Não. A proposta é ser uma plataforma profissional de gestão do ministério, reunindo equipe, eventos, comunicação, repertório, histórico e visão operacional em um único ambiente.
+              </div>
+            </details>
+            <details class="faq-item reveal">
+              <summary>
+                <button type="button" aria-expanded="false">
+                  <span>Posso começar pelo plano gratuito?</span>
+                  <span>+</span>
+                </button>
+              </summary>
+              <div class="faq-body">
+                Sim. O plano gratuito funciona como porta de entrada para conhecer a experiência do produto antes de avançar para recursos e limites mais robustos.
+              </div>
+            </details>
+            <details class="faq-item reveal">
+              <summary>
+                <button type="button" aria-expanded="false">
+                  <span>Consigo contratar um plano pelo WhatsApp?</span>
+                  <span>+</span>
+                </button>
+              </summary>
+              <div class="faq-body">
+                Sim. Nesta versão da landing, cada plano direciona para uma conversa no WhatsApp com a mensagem já preparada para facilitar sua contratação ou tirar dúvidas antes de decidir.
+              </div>
+            </details>
+            <details class="faq-item reveal">
+              <summary>
+                <button type="button" aria-expanded="false">
+                  <span>O produto atende ministérios pequenos e estruturas maiores?</span>
+                  <span>+</span>
+                </button>
+              </summary>
+              <div class="faq-body">
+                Sim. A página foi construída exatamente para comunicar essa abrangência: do ministério local a estruturas com visão multi-igrejas, preservando organização e controle.
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="section final-cta">
+        <div class="container reveal">
+          <div class="final-panel">
+            <div class="final-grid">
+              <div class="final-copy">
+                <span class="eyebrow">Última chamada para decisão</span>
+                <h2>Chegou a hora de organizar seu ministério com uma estrutura realmente profissional.</h2>
+                <p>
+                  Se o seu ministério já sente o peso da desorganização, da comunicação confusa e da falta de visão operacional, o WorshipHub foi pensado exatamente para esse próximo nível.
+                </p>
+                <div class="final-actions">
+                  <a class="btn btn-primary" href="#planos">Quero escolher o melhor plano</a>
+                  <a class="btn btn-secondary js-download-app" href="#downloads">Baixar o aplicativo</a>
+                </div>
+              </div>
+              <div class="final-metrics">
+                <div class="metric-card">
+                  <strong>1 plataforma</strong>
+                  <span>Para centralizar equipe, repertório, eventos e comunicação.</span>
+                </div>
+                <div class="metric-card">
+                  <strong>+ clareza</strong>
+                  <span>Para quem lidera e precisa decidir com mais segurança.</span>
+                </div>
+                <div class="metric-card">
+                  <strong>+ organização</strong>
+                  <span>Na rotina de cada evento, sem depender de fluxos soltos.</span>
+                </div>
+                <div class="metric-card">
+                  <strong>+ escala</strong>
+                  <span>Para crescer do básico ao profissional sem trocar de solução.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>© <span id="year"></span> WorshipHub. Gestão profissional para ministérios de louvor.</div>
+        <div class="footer-links">
+          <a href="https://support.worshiphub-recover.org/privacy" target="_blank" rel="noopener">Privacidade</a>
+          <a href="https://support.worshiphub-recover.org/terms" target="_blank" rel="noopener">Termos</a>
+          <a class="js-whatsapp-general" href="#planos">WhatsApp comercial</a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="sticky-mobile-cta">
+      <a class="btn btn-secondary js-download-app" href="#downloads">Baixar</a>
+      <a class="btn btn-primary" href="#planos">Ver planos</a>
+    </div>
+  </div>
+
+  <script>
+    const appConfig = {
+      appStoreUrl: 'https://apps.apple.com/',
+      playStoreUrl: 'https://play.google.com/store',
+      whatsappNumber: '5500000000000',
+      whatsappDefaultMessage: 'Olá! Quero entender melhor como o WorshipHub pode organizar meu ministério.',
+      preferStore: 'play', // play | app
+      plans: {
+        monthly: [
+          {
+            name: 'Gratuito',
+            slug: 'gratuito',
+            price: 0,
+            billingLabel: 'R$ 0',
+            everydayLabel: 'Entrada sem custo para começar',
+            highlight: false,
+            badge: 'Teste sem risco',
+            cta: 'Quero começar sem custo',
+            description: 'Para conhecer a experiência inicial do WorshipHub.',
+            points: [
+              'Acesso inicial ao app',
+              'Ideal para sentir o fluxo básico',
+              'Bom primeiro passo para equipes em fase de descoberta'
+            ]
+          },
+          {
+            name: 'Prelude',
+            slug: 'prelude',
+            price: 19.00,
+            billingLabel: 'R$ 19,00',
+            everydayLabel: '≈ R$ 0,63 por dia',
+            highlight: false,
+            badge: 'Mensal',
+            cta: 'Quero organizar minha equipe',
+            description: 'Boa porta de entrada para ministérios que querem sair do improviso.',
+            points: [
+              'Estrutura inicial de organização',
+              'Fluxo mais claro para eventos e equipe',
+              'Começo profissional com baixo investimento'
+            ]
+          },
+          {
+            name: 'Chorus',
+            slug: 'chorus',
+            price: 29.90,
+            billingLabel: 'R$ 29,90',
+            everydayLabel: '≈ R$ 0,99 por dia',
+            highlight: false,
+            badge: 'Mensal',
+            cta: 'Quero dar mais consistência ao ministério',
+            description: 'Para quem já precisa de uma rotina mais estável e confiável.',
+            points: [
+              'Mais fôlego para a rotina da equipe',
+              'Boa relação entre custo e organização',
+              'Ajuda a reduzir ruído operacional'
+            ]
+          },
+          {
+            name: 'Harmony',
+            slug: 'harmony',
+            price: 49.90,
+            billingLabel: 'R$ 49,90',
+            everydayLabel: '≈ R$ 1,66 por dia',
+            highlight: true,
+            badge: 'Mais procurado',
+            cta: 'Quero elevar meu ministério',
+            description: 'Equilíbrio ideal entre gestão, visão e profissionalismo.',
+            points: [
+              'Excelente para equipes em crescimento',
+              'Reforça a percepção de gestão profissional',
+              'Plano com maior potencial de conversão na landing'
+            ]
+          },
+          {
+            name: 'Anthem',
+            slug: 'anthem',
+            price: 69.90,
+            billingLabel: 'R$ 69,90',
+            everydayLabel: '≈ R$ 2,33 por dia',
+            highlight: false,
+            badge: 'Mensal',
+            cta: 'Quero controle mais refinado',
+            description: 'Pensado para equipes mais maduras e com maior demanda operacional.',
+            points: [
+              'Mais robustez para a liderança',
+              'Suporta operação mais exigente',
+              'Melhor ajuste para quem quer avançar com segurança'
+            ]
+          },
+          {
+            name: 'Maestro',
+            slug: 'maestro',
+            price: 129.90,
+            billingLabel: 'R$ 129,90',
+            everydayLabel: '≈ R$ 4,33 por dia',
+            highlight: false,
+            badge: 'Premium',
+            cta: 'Quero o máximo de estrutura',
+            description: 'Para operações maiores e visão mais estratégica do ministério.',
+            points: [
+              'Camada premium de gestão',
+              'Mais preparo para cenários robustos',
+              'Forte aderência para visão multi-igrejas'
+            ]
+          }
+        ],
+        quarterly: [
+          {
+            name: 'Prelude',
+            slug: 'prelude',
+            price: 49.90,
+            billingLabel: 'R$ 49,90',
+            everydayLabel: '≈ R$ 0,55 por dia',
+            highlight: false,
+            badge: 'Trimestral',
+            cta: 'Quero começar com economia',
+            description: 'Mais previsibilidade com menor custo médio diário.',
+            points: ['Economia em relação ao mensal', 'Bom para primeiras implantações', 'Mais compromisso com a organização']
+          },
+          {
+            name: 'Chorus',
+            slug: 'chorus',
+            price: 75.00,
+            billingLabel: 'R$ 75,00',
+            everydayLabel: '≈ R$ 0,83 por dia',
+            highlight: false,
+            badge: 'Trimestral',
+            cta: 'Quero consolidar a organização',
+            description: 'Estabilidade financeira e operacional para o trimestre.',
+            points: ['Mais previsibilidade', 'Mais tempo para o time amadurecer no fluxo', 'Melhor percepção de custo-benefício']
+          },
+          {
+            name: 'Harmony',
+            slug: 'harmony',
+            price: 129.90,
+            billingLabel: 'R$ 129,90',
+            everydayLabel: '≈ R$ 1,44 por dia',
+            highlight: true,
+            badge: 'Mais equilibrado',
+            cta: 'Quero elevar meu ministério com economia',
+            description: 'A combinação mais atraente para quem quer valor e estabilidade.',
+            points: ['Excelente vitrine comercial', 'Equilíbrio entre investimento e percepção premium', 'Aderência forte para equipes em crescimento']
+          },
+          {
+            name: 'Anthem',
+            slug: 'anthem',
+            price: 179.90,
+            billingLabel: 'R$ 179,90',
+            everydayLabel: '≈ R$ 2,00 por dia',
+            highlight: false,
+            badge: 'Trimestral',
+            cta: 'Quero mais estrutura para liderar',
+            description: 'Mais fôlego operacional para ministérios com alta atividade.',
+            points: ['Mais estabilidade', 'Mais espaço para gestão refinada', 'Boa opção para estruturas mais exigentes']
+          },
+          {
+            name: 'Maestro',
+            slug: 'maestro',
+            price: 339.90,
+            billingLabel: 'R$ 339,90',
+            everydayLabel: '≈ R$ 3,78 por dia',
+            highlight: false,
+            badge: 'Premium trimestral',
+            cta: 'Quero o plano premium',
+            description: 'Plano robusto para contextos com visão ampla de gestão.',
+            points: ['Operação premium', 'Mais adequação para complexidade maior', 'Vitrine ideal para o topo da esteira comercial']
+          }
+        ],
+        yearly: [
+          {
+            name: 'Prelude',
+            slug: 'prelude',
+            price: 159.90,
+            billingLabel: 'R$ 159,90',
+            everydayLabel: '≈ R$ 0,44 por dia',
+            highlight: false,
+            badge: 'Anual',
+            cta: 'Quero começar com o melhor custo',
+            description: 'Entrada estratégica com menor custo diário do portfólio pago.',
+            points: ['Excelente percepção de economia', 'Ótima porta de entrada anual', 'Mais compromisso com a organização a longo prazo']
+          },
+          {
+            name: 'Chorus',
+            slug: 'chorus',
+            price: 239.90,
+            billingLabel: 'R$ 239,90',
+            everydayLabel: '≈ R$ 0,66 por dia',
+            highlight: false,
+            badge: 'Anual',
+            cta: 'Quero consolidar meu ministério',
+            description: 'Mais previsibilidade, menos fricção e melhor custo ao longo do ano.',
+            points: ['Economia forte no ciclo anual', 'Excelente para ministérios estáveis', 'Ajuda a travar a decisão com clareza']
+          },
+          {
+            name: 'Harmony',
+            slug: 'harmony',
+            price: 399.00,
+            billingLabel: 'R$ 399,00',
+            everydayLabel: '≈ R$ 1,09 por dia',
+            highlight: true,
+            badge: 'Anual recomendado',
+            cta: 'Quero crescer com gestão profissional',
+            description: 'Uma das ofertas mais fortes da landing: premium, acessível e muito competitiva por dia.',
+            points: ['Âncora comercial extremamente atraente', 'Forte potencial de captação', 'Excelente discurso de valor para liderança']
+          },
+          {
+            name: 'Anthem',
+            slug: 'anthem',
+            price: 549.90,
+            billingLabel: 'R$ 549,90',
+            everydayLabel: '≈ R$ 1,51 por dia',
+            highlight: false,
+            badge: 'Anual',
+            cta: 'Quero mais profundidade de gestão',
+            description: 'Muito valor percebido para ministérios que demandam mais refinamento.',
+            points: ['Mais robustez no longo prazo', 'Bom ajuste para equipes maduras', 'Escala bem para operações intensas']
+          },
+          {
+            name: 'Maestro',
+            slug: 'maestro',
+            price: 1079.90,
+            billingLabel: 'R$ 1.079,90',
+            everydayLabel: '≈ R$ 2,96 por dia',
+            highlight: false,
+            badge: 'Premium anual',
+            cta: 'Quero a estrutura mais completa',
+            description: 'Plano ideal para o topo da estratégia comercial, especialmente em cenários mais amplos.',
+            points: ['Oferta premium com percepção ainda acessível por dia', 'Alta adequação para estruturas avançadas', 'Vitrine natural para multi-igrejas e operação ampliada']
+          }
+        ]
+      }
+    };
+
+    const pricingGrid = document.getElementById('pricingGrid');
+    const toggleButtons = document.querySelectorAll('.billing-toggle button');
+    const yearSpan = document.getElementById('year');
+    yearSpan.textContent = new Date().getFullYear();
+
+    function formatWhatsAppUrl(message) {
+      return `https://wa.me/${appConfig.whatsappNumber}?text=${encodeURIComponent(message)}`;
+    }
+
+    function renderPlans(billing) {
+      const plans = appConfig.plans[billing];
+      pricingGrid.innerHTML = '';
+      plans.forEach((plan) => {
+        const card = document.createElement('article');
+        card.className = `plan-card ${plan.highlight ? 'recommended' : ''}`;
+        card.innerHTML = `
+          <div class="plan-top">
+            <div>
+              <h3>${plan.name}</h3>
+              <p>${plan.description}</p>
+            </div>
+            <span class="plan-badge">${plan.badge}</span>
+          </div>
+          <div class="plan-price">
+            <strong>${plan.billingLabel}</strong>
+            <span class="plan-everyday">${plan.everydayLabel}</span>
+          </div>
+          <ul class="plan-list">
+            ${plan.points.map((item) => `<li>${item}</li>`).join('')}
+          </ul>
+          <div class="plan-cta">
+            <a class="btn ${plan.highlight ? 'btn-primary' : 'btn-secondary'}" target="_blank" rel="noopener" href="${formatWhatsAppUrl(`Olá! Quero saber mais sobre o plano ${plan.name} do WorshipHub (${billing === 'monthly' ? 'mensal' : billing === 'quarterly' ? 'trimestral' : 'anual'}). Pode me orientar?`)}">${plan.cta}</a>
+          </div>
+        `;
+        pricingGrid.appendChild(card);
+      });
+    }
+
+    toggleButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        toggleButtons.forEach((btn) => btn.classList.remove('active'));
+        button.classList.add('active');
+        renderPlans(button.dataset.billing);
+      });
+    });
+
+    renderPlans('monthly');
+
+    document.querySelectorAll('.js-whatsapp-general').forEach((link) => {
+      link.href = formatWhatsAppUrl(appConfig.whatsappDefaultMessage);
+      link.target = '_blank';
+      link.rel = 'noopener';
+    });
+
+    document.querySelectorAll('.js-download-app').forEach((link) => {
+      const targetUrl = appConfig.preferStore === 'app' ? appConfig.appStoreUrl : appConfig.playStoreUrl;
+      link.addEventListener('click', (event) => {
+        if (targetUrl && !targetUrl.startsWith('#')) {
+          event.preventDefault();
+          window.open(targetUrl, '_blank', 'noopener');
+        }
+      });
+    });
+
+    const revealItems = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    revealItems.forEach((item) => io.observe(item));
+
+    document.querySelectorAll('.faq-item').forEach((detail) => {
+      const button = detail.querySelector('button');
+      detail.addEventListener('toggle', () => {
+        button?.setAttribute('aria-expanded', detail.open ? 'true' : 'false');
+      });
+    });
+  </script>
 </body>
 </html>
