@@ -1,4 +1,3 @@
-
 const appConfig = {
   playStoreUrl: "__PLAY_STORE_URL__",
   whatsappBase: "__WHATSAPP_LINK_GENERIC__",
@@ -6,7 +5,7 @@ const appConfig = {
   termsUrl: "__TERMS_URL__"
 };
 
-const pricingData = {
+ {
   monthly: {
     free: { name:"Gratuito", badge:"Teste sem risco", price:"R$ 0", period:"Entrada sem custo para começar", day:"", cta:"Quero começar sem custo" },
     prelude: { name:"Prelude", badge:"Mensal", price:"R$ 19,00", period:"Boa porta de entrada para ministérios que querem sair do improviso.", day:"≈ R$ 0,63 por dia", cta:"Quero organizar minha equipe" },
@@ -36,22 +35,30 @@ const pricingData = {
 const planOrder = ["free","prelude","chorus","harmony","anthem","maestro"];
 
 function setPlanData(period){
-  const source = pricingData[period];
+  const source = pricingData[period] || pricingData.monthly;
   document.querySelectorAll(".billing-toggle button").forEach(btn => {
     btn.classList.toggle("active", btn.dataset.billing === period);
+    btn.setAttribute("aria-pressed", String(btn.dataset.billing === period));
   });
+
   planOrder.forEach(key => {
     const card = document.querySelector(`[data-plan="${key}"]`);
-    if(!card || !source[key]) return;
-    card.querySelector("[data-role='badge']").textContent = source[key].badge;
-    card.querySelector("[data-role='price']").textContent = source[key].price;
-    card.querySelector("[data-role='period']").textContent = source[key].period;
-    card.querySelector("[data-role='day']").textContent = source[key].day;
-    card.querySelector("[data-role='cta']").textContent = source[key].cta;
+    const plan = source[key];
+    if(!card || !plan) return;
+
+    const badge = card.querySelector("[data-role='badge']");
+    const price = card.querySelector("[data-role='price']");
+    const periodEl = card.querySelector("[data-role='period']");
+    const day = card.querySelector("[data-role='day']");
     const cta = card.querySelector("[data-role='cta']");
+
+    if(badge) badge.textContent = plan.badge;
+    if(price) price.textContent = plan.price;
+    if(periodEl) periodEl.textContent = plan.period;
+    if(day) day.textContent = plan.day || "";
     if(cta){
-      const planName = source[key].name;
-      const message = encodeURIComponent(`Olá! Quero falar sobre o plano ${planName} do WorshipHub.`);
+      cta.textContent = plan.cta;
+      const message = encodeURIComponent(`Olá! Quero falar sobre o plano ${plan.name} do WorshipHub.`);
       cta.href = `${appConfig.whatsappBase}${message}`;
     }
   });
@@ -64,8 +71,16 @@ setPlanData("monthly");
 
 document.querySelectorAll(".faq-item").forEach(item => {
   const trigger = item.querySelector(".faq-trigger");
+  const icon = item.querySelector(".faq-icon");
+  const syncFaq = () => {
+    const open = item.classList.contains("open");
+    trigger?.setAttribute("aria-expanded", String(open));
+    if(icon) icon.textContent = open ? "−" : "+";
+  };
+  syncFaq();
   trigger?.addEventListener("click", () => {
     item.classList.toggle("open");
+    syncFaq();
   });
 });
 
@@ -90,23 +105,26 @@ terms.forEach(link => link.href = appConfig.termsUrl);
 // subtle hero motion
 const heroVisual = document.querySelector(".hero-visual");
 if(heroVisual && window.matchMedia("(pointer:fine)").matches){
+  const heroDevices = Array.from(heroVisual.querySelectorAll(".device"));
+  heroDevices.forEach((el, i) => {
+    const base = i===0 ? "rotate(2deg)" : i===1 ? "rotate(-11deg)" : "rotate(11deg)";
+    el.dataset.baseTransform = base;
+  });
+
   heroVisual.addEventListener("mousemove", (e)=>{
     const rect = heroVisual.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - .5;
     const y = (e.clientY - rect.top) / rect.height - .5;
-    heroVisual.querySelectorAll(".device").forEach((el, i)=>{
-      const rotateBase = i===0 ? -11 : i===1 ? 11 : 2;
-      const shiftX = x * (i===2 ? 8 : 12);
-      const shiftY = y * (i===2 ? 6 : 10);
+    heroDevices.forEach((el, i)=>{
+      const rotateBase = i===0 ? 2 : i===1 ? -11 : 11;
+      const shiftX = x * (i===0 ? 8 : 12);
+      const shiftY = y * (i===0 ? 6 : 10);
       el.style.transform = `rotate(${rotateBase + x*1.5}deg) translate(${shiftX}px, ${shiftY}px)`;
     });
   });
   heroVisual.addEventListener("mouseleave", ()=>{
-    const classes = {home:-11, stats:11, music:2};
-    heroVisual.querySelectorAll(".device").forEach(el=>{
-      if(el.classList.contains("home")) el.style.transform = `rotate(${classes.home}deg)`;
-      if(el.classList.contains("stats")) el.style.transform = `rotate(${classes.stats}deg)`;
-      if(el.classList.contains("music")) el.style.transform = `rotate(${classes.music}deg)`;
+    heroDevices.forEach(el=>{
+      el.style.transform = el.dataset.baseTransform || "none";
     });
   });
 }
