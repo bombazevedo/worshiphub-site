@@ -9,10 +9,11 @@
   <meta property="og:title" content="WorshipHub — Plataforma profissional para ministérios de louvor">
   <meta property="og:description" content="Organize escalas, repertório e sua equipe de louvor em uma única plataforma profissional.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="./assets/branding/logo-horizontal.png">
+  <meta property="og:image" content="./assets/branding/logo-horizontal.webp">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="./favicon.png">
   <link rel="preload" href="./assets/branding/logo-horizontal.webp" as="image" type="image/webp">
+  <link rel="preload" href="./assets/screens/stats-chart.webp" as="image" type="image/webp" fetchpriority="high">
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -24,10 +25,10 @@
       <div class="container topbar-inner">
         <a class="brand" href="#top" aria-label="WorshipHub">
           <div class="brand-mark">
-            <img src="./assets/branding/logo-icon.webp" alt="Logo WorshipHub" width="58" height="58">
+            <img src="./assets/branding/logo-icon.webp" alt="Logo WorshipHub" width="70" height="70">
           </div>
           <div class="brand-text">
-            <img src="./assets/branding/logo-horizontal.webp" alt="WorshipHub" style="height:38px;width:auto">
+            <img class="brand-wordmark" src="./assets/branding/logo-horizontal.webp" alt="WorshipHub" width="240" height="45">
             <div class="brand-subtitle">Gestão profissional para ministérios de louvor</div>
           </div>
         </a>
@@ -48,7 +49,7 @@
 
             <div class="hero-actions">
               <a class="btn btn-primary" href="#planos">Começar a organizar meu ministério</a>
-              <a class="btn btn-secondary js-download-app" href="__PLAY_STORE_URL__">Baixar o aplicativo</a>
+              <a class="btn btn-secondary js-download-app" href="https://play.google.com/store/apps/details?id=com.robsonazevedo.worshiphub&pcampaignid=web_share">Baixar o aplicativo</a>
             </div>
 
             <ul class="proof-list">
@@ -67,8 +68,8 @@
                 <span>Para quem precisa liderar e decidir com mais segurança.</span>
               </div>
               <div class="mini-stat">
-                <strong>+ controle</strong>
-                <span>Participação, assiduidade, recorrência e visão operacional.</span>
+                <strong>+ visão operacional</strong>
+                <span>Participação, assiduidade, recorrência e mais clareza para decidir melhor.</span>
               </div>
             </div>
 
@@ -93,7 +94,7 @@
                 <div class="device-screen">
                   <picture>
                     <source srcset="./assets/screens/music-details.webp" type="image/webp">
-                    <img src="./assets/screens/music-details.png" alt="Tela de detalhes da música">
+                    <img src="./assets/screens/music-details.webp" alt="Tela de detalhes da música" loading="eager" decoding="async">
                   </picture>
                 </div>
               </div>
@@ -101,7 +102,7 @@
                 <div class="device-screen">
                   <picture>
                     <source srcset="./assets/screens/home.webp" type="image/webp">
-                    <img src="./assets/screens/home.png" alt="Tela inicial do WorshipHub">
+                    <img src="./assets/screens/home.webp" alt="Tela inicial do WorshipHub" loading="lazy" decoding="async">
                   </picture>
                 </div>
               </div>
@@ -109,7 +110,7 @@
                 <div class="device-screen">
                   <picture>
                     <source srcset="./assets/screens/stats-chart.webp" type="image/webp">
-                    <img src="./assets/screens/stats-chart.png" alt="Tela de estatísticas do WorshipHub">
+                    <img src="./assets/screens/stats-chart.webp" alt="Tela de estatísticas do WorshipHub" fetchpriority="high" loading="eager" decoding="async">
                   </picture>
                 </div>
               </div>
@@ -122,8 +123,8 @@
         <div class="container reveal">
           <div class="block-head">
             <span class="eyebrow">Antes vs. depois</span>
-            <h2 class="section-title">Pare de conduzir o ministério no improviso e dê à liderança um fluxo mais claro.</h2>
-            <p class="section-lead">Menos mensagens perdidas, menos retrabalho na escala, mais visão sobre o que foi tocado, quem está disponível e como a equipe realmente funciona.</p>
+            <h2 class="section-title">Da organização básica à gestão profissional do ministério.</h2>
+            <p class="section-lead">Menos mensagens dispersas, menos retrabalho na escala e mais clareza sobre repertório, disponibilidade e funcionamento real da equipe.</p>
           </div>
 
           <div class="compare">
@@ -173,7 +174,7 @@
                   <div class="device-screen">
                     <picture>
                       <source srcset="./assets/screens/music-details.webp" type="image/webp">
-                      <img src="./assets/screens/music-details.png" alt="Tela de integrações musicais do app">
+                      <img src="./assets/screens/music-details.webp" alt="Tela de integrações musicais do app" loading="lazy" decoding="async">
                     </picture>
                   </div>
                 </div>
@@ -191,7 +192,7 @@
                   <div class="device-screen">
                     <picture>
                       <source srcset="./assets/screens/team-stats.webp" type="image/webp">
-                      <img src="./assets/screens/team-stats.png" alt="Tela de painel do time">
+                      <img src="./assets/screens/team-stats.webp" alt="Tela de painel do time" loading="lazy" decoding="async">
                     </picture>
                   </div>
                 </div>
@@ -211,7 +212,7 @@
                   <div class="device-screen">
                     <picture>
                       <source srcset="./assets/screens/repertoire-history.webp" type="image/webp">
-                      <img src="./assets/screens/repertoire-history.png" alt="Tela de histórico de repertório">
+                      <img src="./assets/screens/repertoire-history.webp" alt="Tela de histórico de repertório" loading="lazy" decoding="async">
                     </picture>
                   </div>
                 </div>
@@ -229,7 +230,7 @@
                   <div class="device-screen">
                     <picture>
                       <source srcset="./assets/screens/export-pdf.webp" type="image/webp">
-                      <img src="./assets/screens/export-pdf.png" alt="Tela de exportação em PDF">
+                      <img src="./assets/screens/export-pdf.webp" alt="Tela de exportação em PDF" loading="lazy" decoding="async">
                     </picture>
                   </div>
                 </div>
@@ -265,7 +266,7 @@
                   <div class="device-screen">
                     <picture>
                       <source srcset="./assets/screens/event-chat.webp" type="image/webp">
-                      <img src="./assets/screens/event-chat.png" alt="Tela de chat por evento">
+                      <img src="./assets/screens/event-chat.webp" alt="Tela de chat por evento" loading="lazy" decoding="async">
                     </picture>
                   </div>
                 </div>
@@ -310,26 +311,26 @@
       <section class="section section-tight">
         <div class="container reveal">
           <div class="block-head">
-            <span class="eyebrow">Diferencial competitivo</span>
-            <h2 class="section-title">O verdadeiro carro-chefe: gestão profissional do ministério, com espaço para crescer além do básico.</h2>
-            <p class="section-lead">Outras soluções resolvem partes do problema. O WorshipHub se posiciona como uma camada profissional de gestão para liderança que quer visão, controle e operação mais refinada.</p>
+            <span class="eyebrow">Estrutura democrática e modular</span>
+            <h2 class="section-title">Sem limite de usuários. Os planos evoluem pelos recursos que fazem sentido para cada ministério.</h2>
+            <p class="section-lead">No WorshipHub, você pode convidar quantas pessoas quiser. O que muda de um plano para outro não é a quantidade de integrantes, e sim o nível de organização, controle e recursos que a operação precisa.</p>
           </div>
 
           <div class="feature-grid">
             <article class="card feature-card">
-              <div class="icon-badge">◉</div>
-              <h3>Mais do que escala e repertório</h3>
-              <p>Ela não substitui só grupos e planilhas — melhora o processo de gestão como um todo.</p>
+              <div class="icon-badge">∞</div>
+              <h3>Convide toda a equipe</h3>
+              <p>Sem travar o crescimento do ministério por quantidade de usuários. A plataforma acompanha a realidade da igreja.</p>
             </article>
             <article class="card feature-card">
-              <div class="icon-badge">⚙</div>
-              <h3>Processo operacional padronizado</h3>
-              <p>Criação, repetição, comunicação e consulta de histórico acontecem com mais consistência.</p>
+              <div class="icon-badge">◫</div>
+              <h3>Planos por necessidade real</h3>
+              <p>Você contrata conforme o perfil da operação: do essencial para escalas e repertório até uma gestão mais robusta.</p>
             </article>
             <article class="card feature-card">
-              <div class="icon-badge">◔</div>
-              <h3>Visão clara para a liderança</h3>
-              <p>Quem decide enxerga com mais nitidez disponibilidade, participação e equilíbrio da equipe.</p>
+              <div class="icon-badge">↗</div>
+              <h3>Cresça sem trocar de solução</h3>
+              <p>Do ministério mais simples a estruturas com várias equipes e múltiplas igrejas, o avanço acontece dentro da mesma base.</p>
             </article>
           </div>
         </div>
@@ -384,7 +385,7 @@
             <div class="block-head">
               <span class="eyebrow">Planos com percepção de valor</span>
               <h2 class="section-title">Planos para cada nível de ministério.</h2>
-              <p class="section-lead">Primeiro o visitante percebe o custo por dia, depois enxerga o valor real. Até o checkout externo estar pronto, a contratação comercial pode acontecer via WhatsApp.</p>
+              <p class="section-lead">Primeiro o visitante percebe o custo por dia, depois enxerga o valor real. Os planos acompanham o tipo de gestão que o ministério precisa, sem limitar quantidade de usuários.</p>
             </div>
 
             <div class="pricing-toolbar">
@@ -393,7 +394,7 @@
                 <button data-billing="quarterly" type="button">Trimestral</button>
                 <button data-billing="yearly" type="button">Anual</button>
               </div>
-              <div class="pricing-copy">A partir de menos de <strong style="color:var(--gold-2)">R$ 1 por dia</strong> para manter o ministério mais alinhado, organizado e profissional.</div>
+              <div class="pricing-copy">A partir de menos de <strong style="color:var(--gold-2)">R$ 1 por dia</strong> para manter o ministério mais alinhado, organizado e profissional, com usuários ilimitados.</div>
             </div>
 
             <div class="pricing-grid">
@@ -508,7 +509,7 @@
 
             <div class="pricing-bottom-actions">
               <a class="btn btn-ghost" href="__WHATSAPP_LINK_GENERIC__" target="_blank" rel="noopener">Tirar minhas dúvidas primeiro</a>
-              <a class="btn btn-primary js-download-app" href="__PLAY_STORE_URL__">Baixar o aplicativo</a>
+              <a class="btn btn-primary js-download-app" href="https://play.google.com/store/apps/details?id=com.robsonazevedo.worshiphub&pcampaignid=web_share">Baixar o aplicativo</a>
             </div>
 
             <p class="pricing-note">TEXTO_MOCKADO_CHECKOUT_EXTERNO: substitua este texto quando o checkout externo direto estiver disponível na landing. Até lá, mantenha a contratação comercial pelo WhatsApp e a compra final dentro do app.</p>
@@ -552,10 +553,10 @@
           </div>
 
           <div class="faq-grid">
-            <article class="card faq-item open">
+            <article class="card faq-item">
               <button class="faq-trigger" type="button">
                 <span>O WorshipHub é só para escala e repertório?</span>
-                <span class="faq-icon">−</span>
+                <span class="faq-icon">+</span>
               </button>
               <div class="faq-content">
                 Não. A proposta é ser uma plataforma profissional de gestão do ministério, reunindo equipe, eventos, comunicação, repertório, histórico e visão operacional em um único ambiente.
@@ -567,7 +568,7 @@
                 <span class="faq-icon">+</span>
               </button>
               <div class="faq-content">
-                Sim. O plano gratuito serve como porta de entrada para experimentar o fluxo do produto antes de avançar para um plano pago.
+                Sim. O plano gratuito serve como porta de entrada para experimentar o fluxo do produto antes de avançar para um plano pago, mantendo a equipe dentro da mesma base.
               </div>
             </article>
             <article class="card faq-item">
@@ -581,11 +582,11 @@
             </article>
             <article class="card faq-item">
               <button class="faq-trigger" type="button">
-                <span>O produto atende ministérios pequenos e estruturas maiores?</span>
+                <span>Existe limite de usuários por plano?</span>
                 <span class="faq-icon">+</span>
               </button>
               <div class="faq-content">
-                Sim. A lógica do produto atende desde equipes mais simples até contextos mais robustos, inclusive com visão preparada para multi-igrejas.
+                Não. O WorshipHub não limita o número de usuários. Os planos evoluem conforme os recursos e o nível de gestão que fazem sentido para cada ministério.
               </div>
             </article>
           </div>
@@ -601,25 +602,25 @@
               <p>Se sua liderança já sente o peso da desorganização, da comunicação confusa e da falta de visão operacional, o WorshipHub foi pensado exatamente para esse próximo nível.</p>
               <div class="final-actions">
                 <a class="btn btn-primary" href="#planos">Quero escolher o melhor plano</a>
-                <a class="btn btn-secondary js-download-app" href="__PLAY_STORE_URL__">Baixar o aplicativo</a>
+                <a class="btn btn-secondary js-download-app" href="https://play.google.com/store/apps/details?id=com.robsonazevedo.worshiphub&pcampaignid=web_share">Baixar o aplicativo</a>
               </div>
             </div>
             <div class="final-points">
               <article class="card final-point">
+                <strong>Usuários ilimitados</strong>
+                <span>Convide quantas pessoas quiser e mantenha toda a equipe na mesma base.</span>
+              </article>
+              <article class="card final-point">
                 <strong>1 plataforma</strong>
-                <span>Para centralizar equipe, repertório, eventos e comunicação.</span>
+                <span>Para centralizar escalas, repertório, eventos, comunicação e visão operacional.</span>
               </article>
               <article class="card final-point">
-                <strong>+ clareza</strong>
-                <span>Para quem lidera e precisa decidir com mais segurança.</span>
+                <strong>Planos modulares</strong>
+                <span>Você contrata o nível de recursos que realmente faz sentido para o seu contexto.</span>
               </article>
               <article class="card final-point">
-                <strong>+ organização</strong>
-                <span>Na rotina de cada evento, sem depender de fluxos soltos.</span>
-              </article>
-              <article class="card final-point">
-                <strong>+ escala</strong>
-                <span>Para crescer do básico ao profissional sem trocar de solução.</span>
+                <strong>Crescimento contínuo</strong>
+                <span>Do básico ao profissional sem trocar de solução nem travar o ministério.</span>
               </article>
             </div>
           </div>

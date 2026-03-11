@@ -311,6 +311,7 @@ h1,h2,h3,p{margin:0}
 }
 .faq-item.open .faq-content{padding:0 22px 22px; max-height:220px}
 .faq-item.open .faq-icon{background:rgba(255,215,0,.12); color:var(--gold-2)}
+.faq-item.open .faq-trigger{color:var(--text)}
 
 .final-cta .final-wrap{
   padding:28px; display:grid; grid-template-columns:1.1fr .9fr; gap:24px; align-items:stretch;
@@ -349,7 +350,9 @@ h1,h2,h3,p{margin:0}
   .gallery-device{justify-self:start}
 }
 @media (max-width: 760px){
-  .topbar-inner{min-height:76px}
+  .topbar-inner{min-height:82px}
+  .brand-mark{width:58px;height:58px}
+  .brand-wordmark{max-width:170px}
   .brand-subtitle{display:none}
   .nav-actions .btn-secondary{display:none}
   .section{padding:70px 0}

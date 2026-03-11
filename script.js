@@ -1,6 +1,6 @@
 
 const appConfig = {
-  playStoreUrl: "__PLAY_STORE_URL__",
+  playStoreUrl: "https://play.google.com/store/apps/details?id=com.robsonazevedo.worshiphub&pcampaignid=web_share",
   whatsappBase: "__WHATSAPP_LINK_GENERIC__",
   privacyUrl: "__PRIVACY_URL__",
   termsUrl: "__TERMS_URL__"
@@ -65,7 +65,9 @@ setPlanData("monthly");
 document.querySelectorAll(".faq-item").forEach(item => {
   const trigger = item.querySelector(".faq-trigger");
   trigger?.addEventListener("click", () => {
-    item.classList.toggle("open");
+    const isOpen = item.classList.toggle("open");
+    const icon = item.querySelector('.faq-icon');
+    if(icon) icon.textContent = isOpen ? '−' : '+';
   });
 });
 
@@ -110,3 +112,10 @@ if(heroVisual && window.matchMedia("(pointer:fine)").matches){
     });
   });
 }
+
+
+document.querySelectorAll('.faq-item').forEach(item => {
+  const icon = item.querySelector('.faq-icon');
+  if(!icon) return;
+  icon.textContent = item.classList.contains('open') ? '−' : '+';
+});
