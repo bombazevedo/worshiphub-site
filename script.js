@@ -3,7 +3,7 @@ const appConfig = {
   whatsappBase: "__WHATSAPP_LINK_GENERIC__",
   privacyUrl: "__PRIVACY_URL__",
   termsUrl: "__TERMS_URL__",
-  apiBaseUrl: "__API_BASE_URL__"
+  apiBaseUrl: "https://louvor-backend-production-c8d9.up.railway.app"
 };
 
 const pricingData = {
@@ -101,7 +101,7 @@ function updateAuthModeUI(mode){
 
   const isRegister = mode === "register";
   fieldGroupName.hidden = !isRegister;
-  fieldGroupOrgName.hidden = !isRegister;
+  fieldGroupOrgName.hidden = false;
   purchasePasswordInput.setAttribute("autocomplete", isRegister ? "new-password" : "current-password");
 }
 
