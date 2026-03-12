@@ -1,8 +1,8 @@
 const appConfig = {
   playStoreUrl: "https://play.google.com/store/apps/details?id=com.robsonazevedo.worshiphub&pcampaignid=web_share",
-  whatsappBase: "__WHATSAPP_LINK_GENERIC__",
-  privacyUrl: "__PRIVACY_URL__",
-  termsUrl: "__TERMS_URL__",
+  whatsappBase: "https://wa.me/5524999874551?text=Ol%C3%A1%2C%20estou%20vendo%20o%20site%20do%20WorshipHub%20e%20quero%20tirar%20uma%20d%C3%BAvida."
+  privacyUrl: "https://worshiphub-support.pages.dev/privacy",
+  termsUrl: "https://worshiphub-support.pages.dev/terms",
   apiBaseUrl: "https://louvor-backend-production-c8d9.up.railway.app"
 };
 
@@ -301,21 +301,28 @@ async function handlePurchaseSubmit(event){
     return;
   }
 
-  const authMode = purchaseState.authMode;
+    const authMode = purchaseState.authMode;
   const name = String(purchaseNameInput?.value || "").trim();
   const email = String(purchaseEmailInput?.value || "").trim();
   const password = String(purchasePasswordInput?.value || "").trim();
 
-  if (!email || !password) {
-    showPurchaseAlert("Informe e-mail e senha para continuar.");
-    return;
-  }
+  const hasSavedToken = !!purchaseState.token;
+  const isRegisterMode = authMode === "register";
 
-  if (authMode === "register" && !name) {
+  if (isRegisterMode && !name) {
     showPurchaseAlert("Informe seu nome para criar a conta.");
     return;
   }
 
+  if (isRegisterMode && (!email || !password)) {
+    showPurchaseAlert("Informe e-mail e senha para criar a conta.");
+    return;
+  }
+
+  if (!isRegisterMode && !hasSavedToken && (!email || !password)) {
+    showPurchaseAlert("Informe e-mail e senha para continuar.");
+    return;
+  }
   if (purchaseAnchorBox && !purchaseAnchorBox.hidden) {
     if (!purchaseState.selectedAnchorOrgId) {
       showPurchaseAlert("Selecione a organização âncora para continuar.");
@@ -332,19 +339,24 @@ async function handlePurchaseSubmit(event){
     purchaseSubmitButton.disabled = true;
     purchaseSubmitButton.textContent = "Processando...";
 
-    if (authMode === "register") {
+            if (authMode === "register") {
       await registerLandingUser(name, email, password);
       await loginLandingUser(email, password);
-    } else if (!purchaseState.token) {
+    } else if (email && password) {
       await loginLandingUser(email, password);
-    } else {
+    } else if (purchaseState.token) {
       try {
         await apiRequest("/api/orgs/mine", { method: "GET" });
       } catch {
-        await loginLandingUser(email, password);
+        purchaseState.token = "";
+        localStorage.removeItem("worshiphub_landing_token");
+        showPurchaseAlert("Sua sessão expirou. Informe e-mail e senha para continuar.");
+        return;
       }
+    } else {
+      showPurchaseAlert("Informe e-mail e senha para continuar.");
+      return;
     }
-
     await ensureOrganizationForCheckout(authMode);
 
     const checkoutResponse = await createLandingCheckout(purchaseState.selectedAnchorOrgId);
