@@ -648,7 +648,10 @@
                 </table>
               </div>
             </div>
-            <p class="pricing-note">TEXTO_MOCKADO_CHECKOUT_EXTERNO: substitua este texto quando o checkout externo direto estiver disponível na landing. Até lá, mantenha a contratação comercial pelo WhatsApp e a compra final dentro do app.</p>
+            <p class="pricing-note">
+  Para planos pagos, a contratação pode ser iniciada diretamente por esta página com um fluxo seguro e guiado.
+  Se você já possui conta, basta entrar e seguir. Se ainda não possui, você poderá criar seu acesso e continuar a contratação.
+</p>
           </div>
         </div>
       </section>
@@ -773,6 +776,81 @@
         </div>
       </section>
     </main>
+
+    <div class="purchase-modal" id="purchaseModal" aria-hidden="true">
+      <div class="purchase-modal-backdrop" data-close-purchase-modal></div>
+
+      <div class="purchase-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="purchaseModalTitle">
+        <button class="purchase-modal-close" type="button" data-close-purchase-modal aria-label="Fechar">
+          ×
+        </button>
+
+        <div class="purchase-modal-head">
+          <span class="eyebrow">Contratação segura</span>
+          <h3 id="purchaseModalTitle">Continue sua contratação</h3>
+          <p id="purchaseModalSubtitle">
+            Entre com sua conta ou crie seu acesso para prosseguir com a contratação do plano.
+          </p>
+        </div>
+
+        <div class="purchase-plan-summary" id="purchasePlanSummary">
+          <div class="purchase-plan-summary-name" id="purchasePlanName">Plano selecionado</div>
+          <div class="purchase-plan-summary-meta" id="purchasePlanMeta">Cobrança</div>
+        </div>
+
+        <div class="purchase-alert" id="purchaseAlert" hidden></div>
+
+        <div class="purchase-tabs">
+          <button class="purchase-tab active" type="button" data-auth-mode="login">Já tenho conta</button>
+          <button class="purchase-tab" type="button" data-auth-mode="register">Criar conta</button>
+        </div>
+
+        <form class="purchase-form" id="purchaseForm">
+          <div class="purchase-fields-grid">
+            <div class="field-group" id="fieldGroupName" hidden>
+              <label for="purchaseName">Seu nome</label>
+              <input id="purchaseName" name="name" type="text" autocomplete="name" />
+            </div>
+
+            <div class="field-group">
+              <label for="purchaseEmail">E-mail</label>
+              <input id="purchaseEmail" name="email" type="email" autocomplete="email" required />
+            </div>
+
+            <div class="field-group">
+              <label for="purchasePassword">Senha</label>
+              <input id="purchasePassword" name="password" type="password" autocomplete="current-password" required />
+            </div>
+
+            <div class="field-group" id="fieldGroupOrgName" hidden>
+              <label for="purchaseOrgName">Nome da organização</label>
+              <input id="purchaseOrgName" name="orgName" type="text" />
+            </div>
+          </div>
+
+          <div class="purchase-anchor-box" id="purchaseAnchorBox" hidden>
+            <div class="purchase-anchor-head">
+              <strong>Escolha a organização âncora</strong>
+              <p>
+                Como você possui mais de uma organização, selecione qual delas será a âncora do plano.
+              </p>
+            </div>
+
+            <div class="purchase-anchor-list" id="purchaseAnchorList"></div>
+
+            <label class="purchase-confirm">
+              <input id="purchaseAnchorConfirm" type="checkbox" />
+              <span>Entendo que esta definição é tratada como irreversível no autosserviço.</span>
+            </label>
+          </div>
+
+          <div class="purchase-actions">
+            <button class="btn btn-secondary" type="button" data-close-purchase-modal>Cancelar</button>
+            <button class="btn btn-primary" id="purchaseSubmitButton" type="submit">Continuar contratação</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
     <footer class="footer">
       <div class="container footer-inner">
