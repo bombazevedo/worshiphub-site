@@ -1,6 +1,6 @@
 const appConfig = {
   playStoreUrl: "https://play.google.com/store/apps/details?id=com.robsonazevedo.worshiphub&pcampaignid=web_share",
-  whatsappBase: "https://wa.me/5524999874551?text=Ol%C3%A1%2C%20estou%20vendo%20o%20site%20do%20WorshipHub%20e%20quero%20tirar%20uma%20d%C3%BAvida."
+  whatsappBase: "https://wa.me/5524999874551?text=Ol%C3%A1%2C%20estou%20vendo%20o%20site%20do%20WorshipHub%20e%20quero%20tirar%20uma%20d%C3%BAvida.",
   privacyUrl: "https://worshiphub-support.pages.dev/privacy",
   termsUrl: "https://worshiphub-support.pages.dev/terms",
   apiBaseUrl: "https://louvor-backend-production-c8d9.up.railway.app"
