@@ -468,6 +468,9 @@ privacy.forEach(link => link.href = appConfig.privacyUrl);
 const terms = document.querySelectorAll(".js-terms");
 terms.forEach(link => link.href = appConfig.termsUrl);
 
+const whatsappLinks = document.querySelectorAll(".js-whatsapp");
+whatsappLinks.forEach(link => link.href = appConfig.whatsappBase);
+
 const heroVisual = document.querySelector(".hero-visual");
 if(heroVisual && window.matchMedia("(pointer:fine)").matches){
   heroVisual.addEventListener("mousemove", (e)=>{
