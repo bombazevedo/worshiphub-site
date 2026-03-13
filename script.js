@@ -497,3 +497,48 @@ document.querySelectorAll(".faq-item").forEach(item => {
   if(!icon) return;
   icon.textContent = item.classList.contains("open") ? "−" : "+";
 });
+
+.platform-note,
+.purchase-platform-note{
+  margin-top:18px;
+  display:grid;
+  gap:8px;
+  padding:16px 18px;
+  border-radius:18px;
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 12px 34px rgba(0,0,0,.18);
+  backdrop-filter:blur(10px);
+}
+
+.platform-note strong,
+.purchase-platform-note strong{
+  color:var(--gold-2);
+}
+
+.platform-note span,
+.purchase-platform-note span{
+  color:rgba(255,255,255,.86);
+  line-height:1.6;
+}
+
+.purchase-platform-note{
+  margin-top:16px;
+  margin-bottom:4px;
+}
+
+@media (max-width: 768px){
+  .hero-actions,
+  .final-actions,
+  .pricing-bottom-actions{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .hero-actions .btn,
+  .final-actions .btn,
+  .pricing-bottom-actions .btn{
+    width:100%;
+    justify-content:center;
+  }
+}
