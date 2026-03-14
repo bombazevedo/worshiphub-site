@@ -65,6 +65,8 @@ const purchaseForm = document.getElementById("purchaseForm");
 const purchaseAlert = document.getElementById("purchaseAlert");
 const purchasePlanName = document.getElementById("purchasePlanName");
 const purchasePlanMeta = document.getElementById("purchasePlanMeta");
+const purchaseModalTitle = document.getElementById("purchaseModalTitle");
+const purchaseModalSubtitle = document.getElementById("purchaseModalSubtitle");
 const purchaseSubmitButton = document.getElementById("purchaseSubmitButton");
 const purchaseAnchorBox = document.getElementById("purchaseAnchorBox");
 const purchaseAnchorList = document.getElementById("purchaseAnchorList");
@@ -95,14 +97,41 @@ function clearPurchaseAlert(){
 
 function updateAuthModeUI(mode){
   purchaseState.authMode = mode;
+
   document.querySelectorAll("[data-auth-mode]").forEach(btn => {
     btn.classList.toggle("active", btn.dataset.authMode === mode);
   });
 
   const isRegister = mode === "register";
+
+  if (purchaseForm) {
+    purchaseForm.dataset.mode = mode;
+  }
+
   fieldGroupName.hidden = !isRegister;
-  fieldGroupOrgName.hidden = false;
+  fieldGroupOrgName.hidden = !isRegister;
+
+  if (purchaseNameInput) {
+    purchaseNameInput.required = isRegister;
+  }
+
+  if (purchaseOrgNameInput) {
+    purchaseOrgNameInput.required = isRegister;
+  }
+
   purchasePasswordInput.setAttribute("autocomplete", isRegister ? "new-password" : "current-password");
+
+  if (purchaseModalSubtitle) {
+    purchaseModalSubtitle.textContent = isRegister
+      ? "Crie sua conta para continuar a contratação do plano."
+      : "Entre com sua conta para continuar a contratação do plano.";
+  }
+
+  if (purchaseSubmitButton) {
+    purchaseSubmitButton.textContent = isRegister
+      ? "Criar conta e continuar"
+      : "Entrar e continuar";
+  }
 }
 
 function openPurchaseModal(planKey){
@@ -128,6 +157,10 @@ function openPurchaseModal(planKey){
     purchasePlanMeta.textContent = `${currentPlan.price} • ${currentPlan.badge} • ${backendBillingPeriodMap[purchaseState.billingCycle]}`;
   }
 
+  if (purchaseModalTitle) {
+    purchaseModalTitle.textContent = `Continue sua contratação`;
+  }
+
   if (purchaseAnchorBox) {
     purchaseAnchorBox.hidden = true;
   }
@@ -138,6 +171,10 @@ function openPurchaseModal(planKey){
 
   if (purchaseAnchorConfirm) {
     purchaseAnchorConfirm.checked = false;
+  }
+
+  if (purchaseForm) {
+    purchaseForm.reset();
   }
 
   clearPurchaseAlert();
@@ -379,7 +416,12 @@ async function handlePurchaseSubmit(event){
     showPurchaseAlert(payload?.message || error?.message || "Não foi possível continuar a contratação.");
   } finally {
     purchaseSubmitButton.disabled = false;
-    purchaseSubmitButton.textContent = "Continuar contratação";
+
+    if (purchaseState.authMode === "register") {
+      purchaseSubmitButton.textContent = "Criar conta e continuar";
+    } else {
+      purchaseSubmitButton.textContent = "Entrar e continuar";
+    }
   }
 }
 
