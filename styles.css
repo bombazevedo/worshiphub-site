@@ -349,6 +349,27 @@ h1,h2,h3,p{margin:0}
   margin-bottom:10px;
 }
 
+.platform-badge-with-icon{
+  gap:8px;
+}
+
+.platform-badge-icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:18px;
+  height:18px;
+  flex:0 0 18px;
+}
+
+.platform-badge-icon.apple{
+  color:#f3f1f8;
+}
+
+.platform-badge-icon.android{
+  color:#7CFFB2;
+}
+
 .platform-note-item p{
   color:rgba(255,255,255,.88);
   line-height:1.62;
