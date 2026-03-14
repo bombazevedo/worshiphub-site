@@ -350,24 +350,33 @@ h1,h2,h3,p{margin:0}
 }
 
 .platform-badge-with-icon{
-  gap:8px;
+  gap:9px;
 }
 
 .platform-badge-icon{
   display:inline-flex;
   align-items:center;
   justify-content:center;
+  width:20px;
+  height:20px;
+  flex:0 0 20px;
+  line-height:1;
+}
+
+.platform-badge-icon svg{
+  display:block;
   width:18px;
   height:18px;
-  flex:0 0 18px;
 }
 
 .platform-badge-icon.apple{
-  color:#f3f1f8;
+  color:#f5f5f7;
+  filter:drop-shadow(0 0 4px rgba(255,255,255,.08));
 }
 
 .platform-badge-icon.android{
-  color:#7CFFB2;
+  color:#A4C639;
+  filter:drop-shadow(0 0 4px rgba(164,198,57,.10));
 }
 
 .platform-note-item p{
