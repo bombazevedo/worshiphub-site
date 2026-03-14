@@ -645,6 +645,10 @@ h1,h2,h3,p{margin:0}
   gap:8px;
 }
 
+.field-group[hidden]{
+  display:none !important;
+}
+
 .field-group label{
   font-weight:700;
   color:var(--text);
