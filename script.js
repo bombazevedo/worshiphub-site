@@ -1,5 +1,6 @@
 const appConfig = {
   playStoreUrl: "https://play.google.com/store/apps/details?id=com.robsonazevedo.worshiphub&pcampaignid=web_share",
+  appStoreUrl: "https://apps.apple.com/us/app/worshiphub/id6754579246",
   whatsappBase: "https://wa.me/5524999874551?text=Ol%C3%A1%2C%20estou%20vendo%20o%20site%20do%20WorshipHub%20e%20quero%20tirar%20uma%20d%C3%BAvida.",
   privacyUrl: "https://worshiphub-support.pages.dev/privacy",
   termsUrl: "https://worshiphub-support.pages.dev/terms",
@@ -502,6 +503,10 @@ document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
 document.querySelectorAll(".js-download-app").forEach(link => {
   link.setAttribute("href", appConfig.playStoreUrl);
+});
+
+document.querySelectorAll(".js-download-app-ios").forEach(link => {
+  link.setAttribute("href", appConfig.appStoreUrl);
 });
 
 const privacy = document.querySelectorAll(".js-privacy");
