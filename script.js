@@ -186,8 +186,11 @@ function openPurchaseModal(planKey){
 }
 
 function closePurchaseModal(){
-  purchaseModal?.classList.remove("is-open");
-  purchaseModal?.setAttribute("aria-hidden", "true");
+  if (purchaseModal) {
+    purchaseModal.classList.remove("is-open");
+    purchaseModal.setAttribute("aria-hidden", "true");
+  }
+
   document.body.style.overflow = "";
   clearPurchaseAlert();
 }
@@ -428,23 +431,30 @@ async function handlePurchaseSubmit(event){
 
 function setPlanData(period){
   const source = pricingData[period];
+  if (!source) return;
+
   purchaseState.billingCycle = period;
 
-  document.querySelectorAll(".billing-toggle button").forEach(btn => {
+  document.querySelectorAll(".billing-toggle button").forEach((btn) => {
     btn.classList.toggle("active", btn.dataset.billing === period);
   });
 
-  planOrder.forEach(key => {
+  planOrder.forEach((key) => {
     const card = document.querySelector(`[data-plan="${key}"]`);
-    if(!card || !source[key]) return;
+    if (!card || !source[key]) return;
 
-    card.querySelector("[data-role='badge']").textContent = source[key].badge;
-    card.querySelector("[data-role='price']").textContent = source[key].price;
-    card.querySelector("[data-role='period']").textContent = source[key].period;
-    card.querySelector("[data-role='day']").textContent = source[key].day;
-
+    const badge = card.querySelector("[data-role='badge']");
+    const price = card.querySelector("[data-role='price']");
+    const periodLabel = card.querySelector("[data-role='period']");
+    const day = card.querySelector("[data-role='day']");
     const cta = card.querySelector("[data-role='cta']");
-    if(cta){
+
+    if (badge) badge.textContent = source[key].badge;
+    if (price) price.textContent = source[key].price;
+    if (periodLabel) periodLabel.textContent = source[key].period;
+    if (day) day.textContent = source[key].day;
+
+    if (cta) {
       cta.textContent = source[key].cta;
       cta.setAttribute("href", key === "free" ? appConfig.playStoreUrl : "#");
       cta.dataset.planKey = key;
@@ -452,13 +462,41 @@ function setPlanData(period){
     }
   });
 }
+const billingToggleButtons = document.querySelectorAll(".billing-toggle button");
+const pricingCtas = document.querySelectorAll("[data-role='cta']");
+const authModeButtons = document.querySelectorAll("[data-auth-mode]");
+const closePurchaseModalElements = document.querySelectorAll("[data-close-purchase-modal]");
+const faqItems = document.querySelectorAll(".faq-item");
+const revealItems = document.querySelectorAll(".reveal");
+const downloadLinks = document.querySelectorAll(".js-download-app");
+const downloadLinksIos = document.querySelectorAll(".js-download-app-ios");
+const privacyLinks = document.querySelectorAll(".js-privacy");
+const termsLinks = document.querySelectorAll(".js-terms");
+const whatsappLinks = document.querySelectorAll(".js-whatsapp");
 
-document.querySelectorAll(".billing-toggle button").forEach(btn => {
+let purchaseModalBindingsInitialized = false;
+
+function initializePurchaseModalBindings(){
+  if (purchaseModalBindingsInitialized) return;
+  purchaseModalBindingsInitialized = true;
+
+  authModeButtons.forEach((button) => {
+    button.addEventListener("click", () => updateAuthModeUI(button.dataset.authMode));
+  });
+
+  closePurchaseModalElements.forEach((element) => {
+    element.addEventListener("click", closePurchaseModal);
+  });
+
+  purchaseForm?.addEventListener("submit", handlePurchaseSubmit);
+}
+
+billingToggleButtons.forEach((btn) => {
   btn.addEventListener("click", () => setPlanData(btn.dataset.billing));
 });
 setPlanData("monthly");
 
-document.querySelectorAll("[data-role='cta']").forEach((cta) => {
+pricingCtas.forEach((cta) => {
   cta.addEventListener("click", (event) => {
     const planKey = cta.dataset.planKey;
     if (!planKey) return;
@@ -468,82 +506,122 @@ document.querySelectorAll("[data-role='cta']").forEach((cta) => {
     }
 
     event.preventDefault();
+    initializePurchaseModalBindings();
     openPurchaseModal(planKey);
   });
 });
 
-document.querySelectorAll("[data-auth-mode]").forEach((button) => {
-  button.addEventListener("click", () => updateAuthModeUI(button.dataset.authMode));
-});
-
-document.querySelectorAll("[data-close-purchase-modal]").forEach((element) => {
-  element.addEventListener("click", closePurchaseModal);
-});
-
-purchaseForm?.addEventListener("submit", handlePurchaseSubmit);
-
-document.querySelectorAll(".faq-item").forEach(item => {
+faqItems.forEach((item) => {
   const trigger = item.querySelector(".faq-trigger");
+  const icon = item.querySelector(".faq-icon");
+
+  if (icon) {
+    icon.textContent = item.classList.contains("open") ? "−" : "+";
+  }
+
   trigger?.addEventListener("click", () => {
     const isOpen = item.classList.toggle("open");
-    const icon = item.querySelector(".faq-icon");
-    if(icon) icon.textContent = isOpen ? "−" : "+";
+    if (icon) {
+      icon.textContent = isOpen ? "−" : "+";
+    }
   });
 });
 
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add("visible");
-      observer.unobserve(entry.target);
-    }
-  });
-},{threshold:.12});
-document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+if (revealItems.length) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
 
-document.querySelectorAll(".js-download-app").forEach(link => {
+  revealItems.forEach((el) => observer.observe(el));
+}
+
+downloadLinks.forEach((link) => {
   link.setAttribute("href", appConfig.playStoreUrl);
 });
 
-document.querySelectorAll(".js-download-app-ios").forEach(link => {
+downloadLinksIos.forEach((link) => {
   link.setAttribute("href", appConfig.appStoreUrl);
 });
 
-const privacy = document.querySelectorAll(".js-privacy");
-privacy.forEach(link => link.href = appConfig.privacyUrl);
+privacyLinks.forEach((link) => {
+  link.href = appConfig.privacyUrl;
+});
 
-const terms = document.querySelectorAll(".js-terms");
-terms.forEach(link => link.href = appConfig.termsUrl);
+termsLinks.forEach((link) => {
+  link.href = appConfig.termsUrl;
+});
 
-const whatsappLinks = document.querySelectorAll(".js-whatsapp");
-whatsappLinks.forEach(link => link.href = appConfig.whatsappBase);
+whatsappLinks.forEach((link) => {
+  link.href = appConfig.whatsappBase;
+});
 
 const heroVisual = document.querySelector(".hero-visual");
-if(heroVisual && window.matchMedia("(pointer:fine)").matches){
-  heroVisual.addEventListener("mousemove", (e)=>{
-    const rect = heroVisual.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - .5;
-    const y = (e.clientY - rect.top) / rect.height - .5;
-    heroVisual.querySelectorAll(".device").forEach((el, i)=>{
-      const rotateBase = i===0 ? -11 : i===1 ? 11 : 2;
-      const shiftX = x * (i===2 ? 8 : 12);
-      const shiftY = y * (i===2 ? 6 : 10);
-      el.style.transform = `rotate(${rotateBase + x*1.5}deg) translate(${shiftX}px, ${shiftY}px)`;
-    });
+if (heroVisual && window.matchMedia("(pointer:fine)").matches) {
+  const devices = Array.from(heroVisual.querySelectorAll(".device"));
+  const baseTransforms = new Map();
+
+  devices.forEach((el, i) => {
+    const rotateBase = i === 0 ? -11 : i === 1 ? 11 : 2;
+    baseTransforms.set(el, rotateBase);
   });
 
-  heroVisual.addEventListener("mouseleave", ()=>{
-    const classes = { home:-11, stats:11, music:2 };
-    heroVisual.querySelectorAll(".device").forEach(el=>{
-      if(el.classList.contains("home")) el.style.transform = `rotate(${classes.home}deg)`;
-      if(el.classList.contains("stats")) el.style.transform = `rotate(${classes.stats}deg)`;
-      if(el.classList.contains("music")) el.style.transform = `rotate(${classes.music}deg)`;
+  let heroRect = null;
+  let rafId = null;
+  let pointerX = 0;
+  let pointerY = 0;
+
+  const updateHeroDevices = () => {
+    rafId = null;
+    if (!heroRect) return;
+
+    const x = (pointerX - heroRect.left) / heroRect.width - 0.5;
+    const y = (pointerY - heroRect.top) / heroRect.height - 0.5;
+
+    devices.forEach((el, i) => {
+      const rotateBase = baseTransforms.get(el) || 0;
+      const shiftX = x * (i === 2 ? 8 : 12);
+      const shiftY = y * (i === 2 ? 6 : 10);
+      el.style.transform = `rotate(${rotateBase + x * 1.5}deg) translate(${shiftX}px, ${shiftY}px)`;
     });
-  });
+  };
+
+  heroVisual.addEventListener("mouseenter", () => {
+    heroRect = heroVisual.getBoundingClientRect();
+  }, { passive: true });
+
+  heroVisual.addEventListener("mousemove", (e) => {
+    if (!heroRect) {
+      heroRect = heroVisual.getBoundingClientRect();
+    }
+
+    pointerX = e.clientX;
+    pointerY = e.clientY;
+
+    if (!rafId) {
+      rafId = requestAnimationFrame(updateHeroDevices);
+    }
+  }, { passive: true });
+
+  heroVisual.addEventListener("mouseleave", () => {
+    heroRect = null;
+
+    if (rafId) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+
+    devices.forEach((el) => {
+      const rotateBase = baseTransforms.get(el) || 0;
+      el.style.transform = `rotate(${rotateBase}deg)`;
+    });
+  }, { passive: true });
+
+  window.addEventListener("resize", () => {
+    heroRect = null;
+  }, { passive: true });
 }
-
-document.querySelectorAll(".faq-item").forEach(item => {
-  const icon = item.querySelector(".faq-icon");
-  if(!icon) return;
-  icon.textContent = item.classList.contains("open") ? "−" : "+";
-});
