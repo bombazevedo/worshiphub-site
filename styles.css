@@ -44,23 +44,23 @@ button{font:inherit}
   position:fixed; inset:0; pointer-events:none; z-index:-2;
 }
 .noise{
-  opacity:.05;
+  opacity:.03;
   background-image:
-    radial-gradient(circle at 15% 15%, rgba(255,255,255,.14) 1px, transparent 1px),
-    radial-gradient(circle at 70% 35%, rgba(255,255,255,.10) 1px, transparent 1px);
-  background-size:20px 20px, 28px 28px;
+    radial-gradient(circle at 15% 15%, rgba(255,255,255,.10) 1px, transparent 1px),
+    radial-gradient(circle at 70% 35%, rgba(255,255,255,.08) 1px, transparent 1px);
+  background-size:24px 24px, 32px 32px;
 }
 .ambient::before,.ambient::after{
-  content:""; position:absolute; border-radius:999px; filter:blur(90px);
-  animation:aurora 18s var(--ease) infinite alternate;
+  content:""; position:absolute; border-radius:999px; filter:blur(64px);
+  animation:aurora 24s var(--ease) infinite alternate;
 }
 .ambient::before{
-  width:34vw; height:34vw; left:-10vw; top:-6vw;
-  background:linear-gradient(135deg, rgba(75,0,130,.55), rgba(255,215,0,.16));
+  width:30vw; height:30vw; left:-8vw; top:-4vw;
+  background:linear-gradient(135deg, rgba(75,0,130,.42), rgba(255,215,0,.12));
 }
 .ambient::after{
-  width:28vw; height:28vw; right:-8vw; top:24vh;
-  background:linear-gradient(135deg, rgba(131,56,236,.34), rgba(255,215,0,.08));
+  width:24vw; height:24vw; right:-6vw; top:24vh;
+  background:linear-gradient(135deg, rgba(131,56,236,.24), rgba(255,215,0,.06));
   animation-delay:-7s;
 }
 @keyframes aurora{
@@ -91,12 +91,12 @@ h1,h2,h3,p{margin:0}
   background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
   border:1px solid var(--stroke);
   border-radius:var(--radius-lg);
-  box-shadow:var(--shadow-md);
+  box-shadow:0 12px 26px rgba(0,0,0,.18);
 }
 .topbar{
   position:sticky; top:0; z-index:80;
-  backdrop-filter:blur(16px);
-  background:linear-gradient(180deg, rgba(6,2,13,.92), rgba(6,2,13,.62));
+  backdrop-filter:blur(10px);
+  background:linear-gradient(180deg, rgba(6,2,13,.94), rgba(6,2,13,.74));
   border-bottom:1px solid rgba(255,255,255,.05);
 }
 .topbar-inner{
@@ -152,12 +152,12 @@ h1,h2,h3,p{margin:0}
 }
 .hero-visual::before{
   content:""; position:absolute; inset:12% 8% 8% 18%; border-radius:40px;
-  background:radial-gradient(circle at 30% 15%, rgba(126,50,255,.18), transparent 34%), linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
-  border:1px solid rgba(255,255,255,.06);
+  background:radial-gradient(circle at 30% 15%, rgba(126,50,255,.14), transparent 32%), linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+  border:1px solid rgba(255,255,255,.05);
 }
 .float-chip{
   position:absolute; z-index:5; padding:10px 14px; border-radius:999px;
-  background:rgba(10,7,20,.92); border:1px solid rgba(255,255,255,.09); color:#fff; font-weight:700; font-size:.93rem; box-shadow:var(--shadow-md);
+  background:rgba(10,7,20,.92); border:1px solid rgba(255,255,255,.08); color:#fff; font-weight:700; font-size:.93rem; box-shadow:0 12px 28px rgba(0,0,0,.22);
 }
 .float-chip.one{left:0; bottom:135px}
 .float-chip.two{right:0; top:160px}
@@ -171,9 +171,9 @@ h1,h2,h3,p{margin:0}
   aspect-ratio: 9/19.5;
   border-radius:44px;
   background:#0b0913;
-  box-shadow:0 42px 90px rgba(0,0,0,.48), 0 0 0 1px rgba(255,255,255,.09) inset;
+  box-shadow:0 28px 56px rgba(0,0,0,.34), 0 0 0 1px rgba(255,255,255,.08) inset;
   padding:10px;
-  transition:transform .35s var(--ease), box-shadow .35s var(--ease);
+  transition:transform .28s var(--ease), box-shadow .28s var(--ease);
   overflow:hidden;
 }
 .device::before{
@@ -181,7 +181,7 @@ h1,h2,h3,p{margin:0}
   width:34%; height:20px; border-radius:0 0 16px 16px; background:#05040a; z-index:2;
 }
 .device::after{
-  content:""; position:absolute; inset:10px; border-radius:34px; border:1px solid rgba(255,255,255,.07); pointer-events:none;
+  content:""; position:absolute; inset:10px; border-radius:34px; border:1px solid rgba(255,255,255,.06); pointer-events:none;
 }
 .device-screen{
   position:relative; width:100%; height:100%; border-radius:34px; overflow:hidden;
@@ -189,10 +189,10 @@ h1,h2,h3,p{margin:0}
 }
 .device-screen img{
   width:100%; height:100%; object-fit:cover; object-position:top center;
-  transition:transform .45s var(--ease);
+  transition:transform .32s var(--ease);
 }
-.device:hover{box-shadow:0 52px 100px rgba(0,0,0,.58), 0 0 0 1px rgba(255,255,255,.11) inset}
-.device:hover .device-screen img{transform:scale(1.03)}
+.device:hover{box-shadow:0 34px 64px rgba(0,0,0,.40), 0 0 0 1px rgba(255,255,255,.10) inset}
+.device:hover .device-screen img{transform:scale(1.02)}
 .device.home{left:2%; bottom:26px; transform:rotate(-11deg)}
 .device.stats{right:1%; bottom:56px; transform:rotate(11deg)}
 .device.music{top:10px; right:17%; width:min(26vw,250px); transform:rotate(2deg)}
@@ -474,8 +474,36 @@ h1,h2,h3,p{margin:0}
     width:100%;
     justify-content:center;
   }
-  .hero-visual{min-height:500px}
-  .device{width:min(58vw,260px)}
+
+  .ambient,
+  .noise{
+    display:none;
+  }
+
+  .topbar{
+    backdrop-filter:none;
+    background:rgba(6,2,13,.96);
+  }
+
+  .hero-visual{
+    min-height:460px;
+  }
+
+  .hero-visual::before,
+  .hero-orb{
+    display:none;
+  }
+
+  .device{
+    width:min(58vw,260px);
+    box-shadow:0 16px 30px rgba(0,0,0,.24);
+    transition:none;
+  }
+
+  .device-screen img{
+    transition:none;
+  }
+
   .device.music{top:0; right:18%; width:min(44vw,200px)}
   .device.home{left:2%; bottom:12px}
   .device.stats{right:1%; bottom:38px}
@@ -486,7 +514,6 @@ h1,h2,h3,p{margin:0}
   .gallery-device .device,.gallery-grid-mini .gallery-device .device{width:min(64vw,280px)}
   .split-card,.compare-card,.gallery-card,.quote-card,.faq-trigger,.benefit-card,.feature-card,.plan-card{padding-left:20px;padding-right:20px}
 }
-
 .brand-text img{max-width:200px}
 .gallery-device .device-screen img{object-position:top center}
 
@@ -547,10 +574,9 @@ h1,h2,h3,p{margin:0}
 .purchase-modal-backdrop{
   position:absolute;
   inset:0;
-  background:rgba(3,2,8,.72);
-  backdrop-filter:blur(10px);
+  background:rgba(3,2,8,.78);
+  backdrop-filter:blur(6px);
 }
-
 .purchase-modal-dialog{
   position:relative;
   width:min(760px, calc(100vw - 28px));
