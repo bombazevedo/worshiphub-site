@@ -20,39 +20,64 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   window.__whGaLoaded = false;
+
   function loadGoogleAnalytics(){
     if (window.__whGaLoaded) return;
     window.__whGaLoaded = true;
+
     var gaScript = document.createElement('script');
     gaScript.async = true;
     gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-JRXHJWWSSD';
     document.head.appendChild(gaScript);
+
     gtag('js', new Date());
     gtag('config', 'G-JRXHJWWSSD');
   }
-  window.addEventListener('load', function () {
-    window.setTimeout(loadGoogleAnalytics, 1800);
-  }, { once: true });
+
+  function scheduleGoogleAnalytics(){
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(function () {
+        window.setTimeout(loadGoogleAnalytics, 4500);
+      }, { timeout: 8000 });
+    } else {
+      window.setTimeout(loadGoogleAnalytics, 5000);
+    }
+  }
+
+  window.addEventListener('load', scheduleGoogleAnalytics, { once: true });
 </script>
+  
   <!-- Microsoft Clarity -->
 <script type="text/javascript">
 (function(){
   var clarityLoaded = false;
+
   function loadClarity(){
     if (clarityLoaded) return;
     clarityLoaded = true;
+
     (function(c,l,a,r,i,t,y){
       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
       t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
       y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "wcagbrmi97");
   }
-  window.addEventListener('load', function () {
-    window.setTimeout(loadClarity, 3200);
-  }, { once: true });
+
+  function scheduleClarity(){
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(function () {
+        window.setTimeout(loadClarity, 9000);
+      }, { timeout: 12000 });
+    } else {
+      window.setTimeout(loadClarity, 10000);
+    }
+  }
+
+  window.addEventListener('load', scheduleClarity, { once: true });
 })();
 </script>
-  </head>
+
+</head>
 <body>
   <div class="page-shell">
     <div class="ambient"></div>
@@ -81,7 +106,7 @@
         <div class="container hero-grid">
           <div class="hero-copy reveal visible">
   <span class="eyebrow">Plataforma profissional • Louvor</span>
-  <div style="display:inline-flex; align-items:center; gap:8px; padding:8px 14px; margin:10px 0 14px; border-radius:999px; background:rgba(108,92,231,.12); border:1px solid rgba(201,162,39,.28); color:#f3e7b2; font-weight:700; font-size:.95rem;">14 dias grátis no plano completo</div>
+  <div style="display:inline-flex; align-items:center; gap:8px; padding:12px 20px; margin:10px 0 16px; border-radius:999px; background:rgba(108,92,231,.16); border:1px solid rgba(201,162,39,.38); color:#f6ebbd; font-weight:800; font-size:1.12rem; line-height:1.1; box-shadow:0 10px 24px rgba(0,0,0,.18);">14 dias grátis no plano completo</div>
   <h1>Organize escalas, repertório e sua equipe em uma única plataforma profissional para ministérios de louvor.</h1>
   <p>Menos WhatsApp confuso, menos retrabalho na escala e mais visão da equipe. Comece com 14 dias grátis no plano completo dentro do app e escolha depois a configuração mais adequada para a realidade do seu ministério.</p>
 
