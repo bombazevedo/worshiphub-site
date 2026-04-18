@@ -528,18 +528,25 @@ faqItems.forEach((item) => {
 });
 
 if (revealItems.length) {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
-      }
+  const isMobileViewport = window.matchMedia("(max-width: 760px)").matches;
+
+  if (isMobileViewport) {
+    revealItems.forEach((el) => {
+      el.classList.add("visible");
     });
-  }, { threshold: 0.12 });
+  } else {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
 
-  revealItems.forEach((el) => observer.observe(el));
+    revealItems.forEach((el) => observer.observe(el));
+  }
 }
-
 downloadLinks.forEach((link) => {
   link.setAttribute("href", appConfig.playStoreUrl);
 });
