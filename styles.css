@@ -438,7 +438,7 @@ h1,h2,h3,p{margin:0}
 
 @media (max-width: 1160px){
   .hero-grid,.grid-2,.final-cta .final-wrap{grid-template-columns:1fr}
-  .hero-visual{order:-1; min-height:580px}
+  .hero-visual{min-height:580px}
   .hero-copy h1{max-width:12ch}
   .device.home{left:8%; bottom:16px}
   .device.stats{right:8%}
