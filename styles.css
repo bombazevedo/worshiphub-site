@@ -241,6 +241,64 @@ h1,h2,h3,p{margin:0}
 .gallery-grid-mini .gallery-card{grid-template-columns:.95fr .85fr}
 .gallery-grid-mini .gallery-device .device{width:min(22vw,220px)}
 
+.starter-section{
+  padding-top:48px;
+  padding-bottom:48px;
+}
+
+.starter-card{
+  padding:28px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(280px,.72fr);
+  gap:28px;
+  align-items:center;
+  border-color:rgba(255,215,0,.16);
+  background:
+    radial-gradient(circle at 12% 18%, rgba(255,215,0,.08), transparent 28%),
+    linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.028));
+}
+
+.starter-card .section-title{
+  max-width:13ch;
+}
+
+.starter-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:22px;
+}
+
+.starter-btn{
+  border-color:rgba(255,215,0,.34);
+}
+
+.starter-steps{
+  display:grid;
+  gap:14px;
+}
+
+.starter-step{
+  padding:16px 18px;
+  border-radius:20px;
+  background:rgba(255,255,255,.035);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.starter-step strong{
+  display:block;
+  color:var(--gold-2);
+  font-size:1rem;
+  margin-bottom:7px;
+}
+
+.starter-step span{
+  display:block;
+  color:var(--muted);
+  line-height:1.55;
+  font-size:.96rem;
+}
+
 .benefits-grid{margin-top:28px; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:20px}
 .benefit-card{padding:22px}
 .icon-badge{
@@ -437,7 +495,7 @@ h1,h2,h3,p{margin:0}
 .reveal.visible{opacity:1; transform:none}
 
 @media (max-width: 1160px){
-  .hero-grid,.grid-2,.final-cta .final-wrap{grid-template-columns:1fr}
+  .hero-grid,.grid-2,.final-cta .final-wrap,.starter-card{grid-template-columns:1fr}
   .hero-visual{min-height:580px}
   .hero-copy h1{max-width:12ch}
   .device.home{left:8%; bottom:16px}
@@ -513,6 +571,20 @@ h1,h2,h3,p{margin:0}
   .billing-toggle button{flex:1}
   .gallery-device .device,.gallery-grid-mini .gallery-device .device{width:min(64vw,280px)}
   .split-card,.compare-card,.gallery-card,.quote-card,.faq-trigger,.benefit-card,.feature-card,.plan-card{padding-left:20px;padding-right:20px}
+
+  .starter-card{
+    padding:22px;
+  }
+
+  .starter-actions{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .starter-actions .btn{
+    width:100%;
+    justify-content:center;
+  }
 }
 .brand-text img{max-width:200px}
 .gallery-device .device-screen img{object-position:top center}
