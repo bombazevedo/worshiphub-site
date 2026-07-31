@@ -101,29 +101,30 @@ h1,h2,h3,p{margin:0}
 }
 .topbar{
   position:sticky; top:0; z-index:80;
-  backdrop-filter:blur(10px);
-  background:linear-gradient(180deg, rgba(6,2,13,.94), rgba(6,2,13,.74));
-  border-bottom:1px solid rgba(255,255,255,.05);
+  backdrop-filter:blur(12px);
+  background:linear-gradient(180deg, rgba(6,2,13,.98), rgba(8,3,17,.92));
+  border-bottom:1px solid rgba(126,50,255,.14);
+  box-shadow:0 8px 28px rgba(0,0,0,.18);
 }
 .topbar-inner{
-  min-height:74px; display:flex; align-items:center; justify-content:space-between; gap:18px;
+  min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:18px;
 }
-.brand{display:inline-flex; align-items:center; gap:12px; min-width:0}
+.brand{display:inline-flex; align-items:center; gap:12px; min-width:0; padding:2px 0}
 .brand-mark{
   display:none;
 }
 .brand-text{
-  display:grid;
-  gap:1px;
-  padding:5px 10px 6px;
-  border:1px solid rgba(255,255,255,.15);
-  border-radius:13px;
-  background:linear-gradient(135deg,rgba(255,255,255,.98),rgba(245,240,251,.94));
-  box-shadow:0 8px 24px rgba(0,0,0,.18);
+  display:flex;
+  align-items:center;
+  min-width:0;
 }
-.brand-wordmark{width:170px}
+.brand-wordmark{
+  width:180px;
+  max-width:180px;
+  filter:drop-shadow(0 5px 14px rgba(0,0,0,.22));
+}
 .brand-title{font-size:1rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
-.brand-subtitle{display:none;font-size:.78rem;color:#554c63}
+.brand-subtitle{display:none;font-size:.78rem;color:var(--muted-2)}
 .nav-actions{display:flex; align-items:center; gap:12px}
 .btn{
   min-height:50px; padding:0 22px; border-radius:17px; border:1px solid transparent;
@@ -154,6 +155,7 @@ h1,h2,h3,p{margin:0}
   box-shadow:0 20px 42px rgba(37,211,102,.30), 0 0 0 1px rgba(255,255,255,.12) inset;
 }
 .hero{padding-top:30px; padding-bottom:42px}
+#planos{scroll-margin-top:84px}
 .hero-grid{display:grid; grid-template-columns:minmax(0,1.08fr) minmax(390px,.92fr); gap:30px; align-items:center}
 .hero-copy h1{
   font-size:clamp(3rem,4vw,3.95rem);
@@ -583,9 +585,9 @@ h1,h2,h3,p{margin:0}
   .nav-actions .btn-primary{min-height:46px;padding:0 16px;border-radius:15px;font-size:.9rem}
 }
 @media (max-width: 760px){
-  .topbar-inner{min-height:70px}
+  .topbar-inner{min-height:68px}
   .brand-mark{width:58px;height:58px}
-  .brand-wordmark{width:160px;max-width:160px}
+  .brand-wordmark{width:158px;max-width:158px}
   .brand-subtitle{display:none}
   .nav-actions .btn-secondary{display:none}
   .nav-actions .btn-primary{min-height:46px; padding:0 16px; border-radius:15px; font-size:.86rem}
@@ -706,12 +708,11 @@ h1,h2,h3,p{margin:0}
 @media (max-width: 520px){
   .topbar-inner{justify-content:center}
   .nav-actions{display:none}
-  .brand-wordmark{width:160px;max-width:160px}
+  .brand-wordmark{width:154px;max-width:154px}
 }
 @media (max-width:340px) and (max-height:650px){
   .topbar-inner{min-height:60px}
-  .brand-text{padding:3px 7px}
-  .brand-wordmark{width:130px;max-width:130px}
+  .brand-wordmark{width:132px;max-width:132px}
   .hero{padding-top:12px}
   .hero-copy > .eyebrow{display:none}
   .trial-badge{padding:7px 12px;margin:0;font-size:.82rem}
