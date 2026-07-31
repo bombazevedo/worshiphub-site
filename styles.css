@@ -38,6 +38,12 @@ body{
 img{display:block;max-width:100%;height:auto}
 a{text-decoration:none;color:inherit}
 button{font:inherit}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible{
+  outline:3px solid var(--gold);
+  outline-offset:3px;
+}
 
 .page-shell{position:relative;isolation:isolate}
 .ambient,.noise{
@@ -129,17 +135,43 @@ h1,h2,h3,p{margin:0}
 .btn-ghost{
   background:rgba(255,255,255,.05); color:var(--text); border-color:var(--stroke);
 }
+.btn-whatsapp{
+  background:linear-gradient(135deg,#158f58,#25D366);
+  color:#fff;
+  box-shadow:0 16px 34px rgba(37,211,102,.22), 0 0 0 1px rgba(255,255,255,.10) inset;
+}
+.btn-whatsapp:hover{
+  box-shadow:0 20px 42px rgba(37,211,102,.30), 0 0 0 1px rgba(255,255,255,.12) inset;
+}
 .hero{padding-top:44px; padding-bottom:56px}
 .hero-grid{display:grid; grid-template-columns: minmax(0,1.02fr) minmax(420px,.98fr); gap:34px; align-items:center}
 .hero-copy h1{
-  font-size:clamp(3rem,6vw,6rem);
-  line-height:.98; letter-spacing:-.06em; max-width:10.5ch; margin:18px 0 18px;
+  font-size:clamp(3rem,5.35vw,5.35rem);
+  line-height:.99; letter-spacing:-.055em; max-width:13ch; margin:18px 0 18px;
 }
 .hero-copy p{font-size:1.1rem; color:var(--muted); line-height:1.68; max-width:60ch}
-.hero-actions{display:flex; flex-wrap:wrap; gap:14px; margin:28px 0 18px}
+.trial-badge{
+  display:inline-flex; align-items:center; gap:8px; padding:11px 18px; margin:10px 0 2px;
+  border-radius:999px; background:rgba(75,0,130,.28); border:1px solid rgba(255,215,0,.38);
+  color:var(--gold-2); font-weight:800; font-size:1rem; line-height:1.1; box-shadow:0 10px 24px rgba(0,0,0,.18);
+}
+.hero-copy .hero-support-line{
+  margin-top:10px; color:var(--gold-2); font-size:.98rem; font-weight:700;
+}
+.hero-actions{display:grid; gap:12px; margin:26px 0 22px}
+.hero-primary-actions{display:flex; flex-wrap:wrap; gap:12px}
+.hero-secondary-links{display:flex; flex-wrap:wrap; gap:10px 20px; color:var(--muted-2); font-size:.92rem}
+.hero-secondary-links a{
+  text-decoration:underline;
+  text-decoration-color:rgba(255,215,0,.42);
+  text-underline-offset:4px;
+}
+.hero-secondary-links a:hover{color:var(--gold-2)}
 .proof-list{display:grid; gap:10px; margin:0; padding:0; list-style:none; color:var(--muted)}
 .proof-list li{display:flex; gap:10px; align-items:flex-start}
 .proof-list li::before{content:"✓"; color:var(--gold); font-weight:900; margin-top:1px}
+.hero .mini-stat-row,
+.hero .pill-row{display:none}
 .mini-stat-row{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin-top:24px}
 .mini-stat{
   padding:18px; border-radius:20px; background:rgba(255,255,255,.04); border:1px solid var(--stroke);
@@ -491,6 +523,29 @@ h1,h2,h3,p{margin:0}
 .footer-links{display:flex; gap:16px; flex-wrap:wrap}
 .footer-links a:hover{color:var(--gold-2)}
 
+.whatsapp-float{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  z-index:90;
+  display:grid;
+  gap:2px;
+  min-width:196px;
+  padding:12px 18px;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:18px;
+  color:#fff;
+  background:linear-gradient(135deg,#158f58,#25D366);
+  box-shadow:0 18px 44px rgba(0,0,0,.36), 0 10px 28px rgba(37,211,102,.22);
+  transition:transform .22s var(--ease), box-shadow .22s var(--ease);
+}
+.whatsapp-float:hover{
+  transform:translateY(-3px);
+  box-shadow:0 22px 52px rgba(0,0,0,.40), 0 14px 34px rgba(37,211,102,.28);
+}
+.whatsapp-float span{font-size:.72rem; font-weight:700; opacity:.86; letter-spacing:.035em; text-transform:uppercase}
+.whatsapp-float strong{font-size:.95rem}
+
 .reveal{opacity:0; transform:translateY(26px); transition:opacity .7s var(--ease), transform .7s var(--ease)}
 .reveal.visible{opacity:1; transform:none}
 
@@ -508,15 +563,19 @@ h1,h2,h3,p{margin:0}
   .gallery-device{justify-self:start}
 }
 @media (max-width: 760px){
-  .topbar-inner{min-height:82px}
+  .topbar-inner{min-height:76px}
   .brand-mark{width:58px;height:58px}
   .brand-wordmark{max-width:170px}
   .brand-subtitle{display:none}
   .nav-actions .btn-secondary{display:none}
-  .section{padding:70px 0}
-  .hero{padding-top:26px}
-  .hero-copy h1,.section-title,.final-copy h2{font-size:clamp(2.4rem,12vw,4rem)}
+  .nav-actions .btn-primary{min-height:46px; padding:0 16px; border-radius:15px; font-size:.86rem}
+  .section{padding:58px 0}
+  .section-tight{padding:50px 0}
+  .hero{padding:22px 0 34px}
+  .hero-copy h1{font-size:clamp(2.35rem,10.8vw,3.45rem); max-width:14ch; margin:15px 0}
+  .section-title,.final-copy h2{font-size:clamp(2.25rem,10.5vw,3.65rem)}
   .hero-copy p,.section-lead{font-size:1rem}
+  .trial-badge{padding:9px 14px; font-size:.9rem}
   .mini-stat-row,.benefits-grid,.feature-grid,.pricing-grid,.social-grid,.final-points{grid-template-columns:1fr}
   
   .hero-actions,
@@ -533,6 +592,17 @@ h1,h2,h3,p{margin:0}
     justify-content:center;
   }
 
+  .hero-primary-actions{
+    display:grid;
+    grid-template-columns:1fr;
+  }
+
+  .hero-secondary-links{
+    display:grid;
+    gap:10px;
+    padding-top:2px;
+  }
+
   .ambient,
   .noise{
     display:none;
@@ -544,7 +614,7 @@ h1,h2,h3,p{margin:0}
   }
 
   .hero-visual{
-    min-height:460px;
+    min-height:410px;
   }
 
   .hero-visual::before,
@@ -562,7 +632,7 @@ h1,h2,h3,p{margin:0}
     transition:none;
   }
 
-  .device.music{top:0; right:18%; width:min(44vw,200px)}
+  .device.music{top:0; right:18%; width:min(42vw,190px)}
   .device.home{left:2%; bottom:12px}
   .device.stats{right:1%; bottom:38px}
   .float-chip{display:none}
@@ -585,6 +655,33 @@ h1,h2,h3,p{margin:0}
     width:100%;
     justify-content:center;
   }
+
+  .whatsapp-float{
+    right:12px;
+    bottom:max(12px, env(safe-area-inset-bottom));
+    min-width:0;
+    padding:11px 15px;
+    border-radius:16px;
+  }
+
+  .whatsapp-float span{display:none}
+  .whatsapp-float strong{font-size:.88rem}
+  .footer{padding-bottom:96px}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .ambient::before,
+  .ambient::after{animation:none}
+  .reveal{opacity:1; transform:none; transition:none}
+  .btn,
+  .device,
+  .device-screen img,
+  .whatsapp-float{transition:none}
+}
+@media (max-width: 520px){
+  .topbar-inner{justify-content:center}
+  .nav-actions{display:none}
+  .brand-wordmark{max-width:190px}
 }
 .brand-text img{max-width:200px}
 .gallery-device .device-screen img{object-position:top center}
