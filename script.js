@@ -14,15 +14,14 @@ const pricingData = {
     chorus: { name:"Chorus", badge:"Mensal", price:"R$ 29,90", period:"Para quem já precisa de uma rotina mais estável e confiável.", day:"≈ R$ 0,99 por dia", cta:"Quero dar mais consistência ao ministério" },
     harmony: { name:"Harmony", badge:"Mais procurado", price:"R$ 39,90", period:"Equilíbrio ideal entre gestão, visão e profissionalismo.", day:"≈ R$ 1,66 por dia", cta:"Quero elevar meu ministério" },
     anthem: { name:"Anthem", badge:"Mensal", price:"R$ 59,90", period:"Pensado para equipes mais maduras e com maior demanda operacional.", day:"≈ R$ 2,33 por dia", cta:"Quero controle mais refinado" },
-    maestro: { name:"Maestro", badge:"Premium", price:"R$ 119,90", period:"Para operações maiores e visão mais estratégica do ministério.", day:"≈ R$ 4,33 por dia", cta:"Quero o máximo de estrutura" }
-  },
+    maestro: { name:"Maestro", badge:"Premium", price:"R$ 89,90", period:"Para operações maiores e visão mais estratégica do ministério.", day:"≈ R$ 3,00 por dia", cta:"Quero o máximo de estrutura" }  },
   quarterly: {
     free: { name:"Gratuito", badge:"Teste sem risco", price:"R$ 0", period:"Entrada sem custo para começar", day:"", cta:"Quero começar sem custo" },
     prelude: { name:"Prelude", badge:"Trimestral", price:"R$ 49,90", period:"Cobrança trimestral com melhor previsibilidade para começar.", day:"≈ R$ 0,55 por dia", cta:"Quero organizar minha equipe" },
     chorus: { name:"Chorus", badge:"Trimestral", price:"R$ 79,90", period:"Mais estabilidade e custo melhor no horizonte de 3 meses.", day:"≈ R$ 0,83 por dia", cta:"Quero dar mais consistência ao ministério" },
     harmony: { name:"Harmony", badge:"Mais procurado", price:"R$ 109,90", period:"Investimento trimestral para equipes em crescimento.", day:"≈ R$ 1,44 por dia", cta:"Quero elevar meu ministério" },
     anthem: { name:"Anthem", badge:"Trimestral", price:"R$ 169,90", period:"Melhor ajuste para operação exigente com mais previsibilidade.", day:"≈ R$ 2,00 por dia", cta:"Quero controle mais refinado" },
-    maestro: { name:"Maestro", badge:"Premium", price:"R$ 329,90", period:"Visão estratégica com contratação trimestral.", day:"≈ R$ 3,78 por dia", cta:"Quero o máximo de estrutura" }
+    maestro: { name:"Maestro", badge:"Premium", price:"R$ 249,90", period:"Visão estratégica com contratação trimestral.", day:"≈ R$ 2,78 por dia", cta:"Quero o máximo de estrutura" }
   },
   yearly: {
     free: { name:"Gratuito", badge:"Teste sem risco", price:"R$ 0", period:"Entrada sem custo para começar", day:"", cta:"Quero começar sem custo" },
@@ -30,7 +29,7 @@ const pricingData = {
     chorus: { name:"Chorus", badge:"Anual", price:"R$ 239,90", period:"Menor custo por dia para rotina estável do ministério.", day:"≈ R$ 0,66 por dia", cta:"Quero dar mais consistência ao ministério" },
     harmony: { name:"Harmony", badge:"Mais procurado", price:"R$ 379,90", period:"Plano anual ideal para equipes em crescimento consistente.", day:"≈ R$ 1,09 por dia", cta:"Quero elevar meu ministério" },
     anthem: { name:"Anthem", badge:"Anual", price:"R$ 499,90", period:"Escala operacional com contratação mais estratégica.", day:"≈ R$ 1,51 por dia", cta:"Quero controle mais refinado" },
-    maestro: { name:"Maestro", badge:"Premium", price:"R$ 999,90", period:"Estrutura anual robusta para visão de longo prazo.", day:"≈ R$ 2,96 por dia", cta:"Quero o máximo de estrutura" }
+    maestro: { name:"Maestro", badge:"Premium", price:"R$ 749,90", period:"Estrutura anual robusta para visão de longo prazo.", day:"≈ R$ 2,05 por dia", cta:"Quero o máximo de estrutura" }
   }
 };
 
