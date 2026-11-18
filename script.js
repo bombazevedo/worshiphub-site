@@ -33,7 +33,35 @@ const pricingData = {
   }
 };
 
+
+function getPreferredStoreUrl() {
+  const agent = navigator.userAgent || "";
+
+  const isIPadDesktop =
+    navigator.platform === "MacIntel" &&
+    navigator.maxTouchPoints > 1;
+
+  const isIOS =
+    /iPad|iPhone|iPod/i.test(agent) ||
+    isIPadDesktop;
+
+  const isAndroid = /Android/i.test(agent);
+
+  if (isIOS) {
+    return appConfig.appStoreUrl;
+  }
+
+  if (isAndroid) {
+    return appConfig.playStoreUrl;
+  }
+
+  // Em dispositivos nao identificados, apresenta
+  // os botoes das duas lojas na area inicial.
+  return "#top";
+}
+
 const planOrder = ["free","prelude","chorus","harmony","anthem","maestro"];
+
 
 const backendPlanCodeMap = {
   prelude: "1",
@@ -136,7 +164,7 @@ function updateAuthModeUI(mode){
 
 function openPurchaseModal(planKey){
   if(planKey === "free"){
-    window.location.href = appConfig.playStoreUrl;
+    window.location.href = getPreferredStoreUrl();
     return;
   }
 
@@ -453,13 +481,14 @@ function setPlanData(period){
     if (periodLabel) periodLabel.textContent = source[key].period;
     if (day) day.textContent = source[key].day;
 
-    if (cta) {
-      cta.textContent = source[key].cta;
-      cta.setAttribute("href", key === "free" ? appConfig.playStoreUrl : "#");
-      cta.dataset.planKey = key;
-      cta.dataset.billingPeriod = period;
-    }
-  });
+
+if (cta) {
+  cta.textContent = source[key].cta;
+  cta.setAttribute("href", key === "free" ? getPreferredStoreUrl() : "#");
+  cta.dataset.planKey = key;
+  cta.dataset.billingPeriod = period;
+}
+});
 }
 const billingToggleButtons = document.querySelectorAll(".billing-toggle button");
 const pricingCtas = document.querySelectorAll("[data-role='cta']");
@@ -546,6 +575,55 @@ if (revealItems.length) {
     revealItems.forEach((el) => observer.observe(el));
   }
 }
+
+// Registro de intencao de instalacao nas lojas.
+// Preserva o evento automatico "click" do GA4.
+// Utiliza um nome proprio para evitar duplicacao
+// dentro da mesma categoria de evento.
+
+document.addEventListener("click", function(event) {
+  const link = event.target.closest("a[href]");
+
+  if (!link) return;
+
+  let destination;
+
+  try {
+    destination = new URL(link.href, window.location.href);
+  } catch (error) {
+    return;
+  }
+
+  let store = null;
+
+  if (
+    destination.hostname === "play.google.com" &&
+    destination.pathname.startsWith("/store/apps/") &&
+    destination.searchParams.get("id") ===
+      "com.robsonazevedo.worshiphub"
+  ) {
+    store = "google_play";
+  }
+
+  if (
+    destination.hostname === "apps.apple.com" &&
+    destination.pathname.includes("/id6754579246")
+  ) {
+    store = "app_store";
+  }
+
+  if (!store) return;
+
+  if (typeof gtag === "function") {
+    gtag("event", "store_cta_click", {
+      store: store,
+      link_url: destination.href,
+      transport_type: "beacon"
+    });
+  }
+
+}, { capture: true });
+
 downloadLinks.forEach((link) => {
   link.setAttribute("href", appConfig.playStoreUrl);
 });
